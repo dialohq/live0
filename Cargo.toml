@@ -4,3 +4,11 @@ members = ["crates/*"]
 
 [workspace.dependencies]
 parser = { path = "crates/parser" }
+
+[workspace.lints.clippy]
+expect_used = "deny"
+panic = "deny"
+todo = "deny"
+unimplemented = "deny"
+unreachable = "deny"
+unwrap_used = "deny"

@@ -13,6 +13,16 @@ const SUM: u8 = 5;
 const PRODUCT: u8 = 6;
 const NEG: u8 = 7;
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Infix {
+    Binary(BinOp),
+    IsNull,
+    In,
+    Like,
+    ILike,
+    Between,
+}
+
 pub fn parse(tokens: Vec<Token>) -> Result<Query, SyntaxError> {
     let mut p = Parser { tokens, pos: 0 };
     let query = p.query()?;
@@ -384,18 +394,24 @@ impl Parser {
             } else {
                 self.peek().clone()
             };
-            let bp = match op.kind {
-                TokenKind::Keyword("OR") => OR,
-                TokenKind::Keyword("AND") => AND,
-                TokenKind::Eq
-                | TokenKind::NotEq
-                | TokenKind::Lt
-                | TokenKind::LtEq
-                | TokenKind::Gt
-                | TokenKind::GtEq
-                | TokenKind::Keyword("IS" | "IN" | "LIKE" | "ILIKE" | "BETWEEN") => CMP,
-                TokenKind::Plus | TokenKind::Minus => SUM,
-                TokenKind::Star | TokenKind::Slash => PRODUCT,
+            let (bp, infix) = match op.kind {
+                TokenKind::Keyword("OR") => (OR, Infix::Binary(BinOp::Or)),
+                TokenKind::Keyword("AND") => (AND, Infix::Binary(BinOp::And)),
+                TokenKind::Eq => (CMP, Infix::Binary(BinOp::Eq)),
+                TokenKind::NotEq => (CMP, Infix::Binary(BinOp::NotEq)),
+                TokenKind::Lt => (CMP, Infix::Binary(BinOp::Lt)),
+                TokenKind::LtEq => (CMP, Infix::Binary(BinOp::LtEq)),
+                TokenKind::Gt => (CMP, Infix::Binary(BinOp::Gt)),
+                TokenKind::GtEq => (CMP, Infix::Binary(BinOp::GtEq)),
+                TokenKind::Keyword("IS") => (CMP, Infix::IsNull),
+                TokenKind::Keyword("IN") => (CMP, Infix::In),
+                TokenKind::Keyword("LIKE") => (CMP, Infix::Like),
+                TokenKind::Keyword("ILIKE") => (CMP, Infix::ILike),
+                TokenKind::Keyword("BETWEEN") => (CMP, Infix::Between),
+                TokenKind::Plus => (SUM, Infix::Binary(BinOp::Add)),
+                TokenKind::Minus => (SUM, Infix::Binary(BinOp::Sub)),
+                TokenKind::Star => (PRODUCT, Infix::Binary(BinOp::Mul)),
+                TokenKind::Slash => (PRODUCT, Infix::Binary(BinOp::Div)),
                 _ => break,
             };
             if bp <= min_bp {
@@ -406,8 +422,17 @@ impl Parser {
             }
             self.next();
             let span = op.span;
-            left = match op.kind {
-                TokenKind::Keyword("IS") => {
+            left = match infix {
+                Infix::Binary(op) => {
+                    let right = self.expr_bp(bp)?;
+                    Expr::Binary {
+                        op,
+                        left: Box::new(left),
+                        right: Box::new(right),
+                        span,
+                    }
+                }
+                Infix::IsNull => {
                     let negated = self.peek().kind == TokenKind::Keyword("NOT");
                     if negated {
                         self.next();
@@ -422,15 +447,15 @@ impl Parser {
                         span,
                     }
                 }
-                TokenKind::Keyword("IN") => self.in_rest(left, negated, span)?,
-                TokenKind::Keyword(kw @ ("LIKE" | "ILIKE")) => Expr::Like {
+                Infix::In => self.in_rest(left, negated, span)?,
+                Infix::Like | Infix::ILike => Expr::Like {
                     expr: Box::new(left),
                     pattern: Box::new(self.expr_bp(CMP)?),
                     negated,
-                    case_insensitive: kw == "ILIKE",
+                    case_insensitive: infix == Infix::ILike,
                     span,
                 },
-                TokenKind::Keyword("BETWEEN") => {
+                Infix::Between => {
                     let low = self.expr_bp(CMP)?;
                     self.keyword("AND")?;
                     let high = self.expr_bp(CMP)?;
@@ -439,30 +464,6 @@ impl Parser {
                         low: Box::new(low),
                         high: Box::new(high),
                         negated,
-                        span,
-                    }
-                }
-                kind => {
-                    let op = match kind {
-                        TokenKind::Keyword("OR") => BinOp::Or,
-                        TokenKind::Keyword("AND") => BinOp::And,
-                        TokenKind::Eq => BinOp::Eq,
-                        TokenKind::NotEq => BinOp::NotEq,
-                        TokenKind::Lt => BinOp::Lt,
-                        TokenKind::LtEq => BinOp::LtEq,
-                        TokenKind::Gt => BinOp::Gt,
-                        TokenKind::GtEq => BinOp::GtEq,
-                        TokenKind::Plus => BinOp::Add,
-                        TokenKind::Minus => BinOp::Sub,
-                        TokenKind::Star => BinOp::Mul,
-                        TokenKind::Slash => BinOp::Div,
-                        _ => unreachable!("every token with a binding power is handled"),
-                    };
-                    let right = self.expr_bp(bp)?;
-                    Expr::Binary {
-                        op,
-                        left: Box::new(left),
-                        right: Box::new(right),
                         span,
                     }
                 }

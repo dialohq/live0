@@ -166,29 +166,29 @@ pub fn tokenize(src: &str) -> Result<Vec<Token>, SyntaxError> {
             b'\'' => {
                 i += 1;
                 let mut value = String::new();
+                let unterminated =
+                    || SyntaxError::new("unterminated string literal", Span(start, bytes.len()));
                 loop {
-                    match bytes.get(i) {
-                        None => {
-                            return Err(SyntaxError::new(
-                                "unterminated string literal",
-                                Span(start, bytes.len()),
-                            ));
+                    let Some(ch) = char_at(src, i) else {
+                        return Err(unterminated());
+                    };
+                    match ch {
+                        '\\' => {
+                            let Some(escaped) = char_at(src, i + 1) else {
+                                return Err(unterminated());
+                            };
+                            value.push(escaped);
+                            i += 1 + escaped.len_utf8();
                         }
-                        Some(b'\\') if i + 1 < bytes.len() => {
-                            let ch = src[i + 1..].chars().next().expect("in bounds");
-                            value.push(ch);
-                            i += 1 + ch.len_utf8();
-                        }
-                        Some(b'\'') if bytes.get(i + 1) == Some(&b'\'') => {
+                        '\'' if bytes.get(i + 1) == Some(&b'\'') => {
                             value.push('\'');
                             i += 2;
                         }
-                        Some(b'\'') => {
+                        '\'' => {
                             i += 1;
                             break;
                         }
-                        Some(_) => {
-                            let ch = src[i..].chars().next().expect("in bounds");
+                        _ => {
                             value.push(ch);
                             i += ch.len_utf8();
                         }
@@ -226,7 +226,8 @@ pub fn tokenize(src: &str) -> Result<Vec<Token>, SyntaxError> {
                 });
             }
             _ => {
-                let ch = src[i..].chars().next().expect("in bounds");
+                // `i` is always on a char boundary here; the fallback is never used.
+                let ch = char_at(src, i).unwrap_or(char::REPLACEMENT_CHARACTER);
                 return Err(SyntaxError::new(
                     format!("unexpected character `{ch}`"),
                     Span(start, start + ch.len_utf8()),
@@ -239,6 +240,10 @@ pub fn tokenize(src: &str) -> Result<Vec<Token>, SyntaxError> {
         span: Span(src.len(), src.len()),
     });
     Ok(tokens)
+}
+
+fn char_at(src: &str, i: usize) -> Option<char> {
+    src.get(i..)?.chars().next()
 }
 
 fn param(src: &str, start: usize) -> Result<(TokenKind, usize), SyntaxError> {
