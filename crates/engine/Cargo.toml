@@ -1,0 +1,11 @@
+[package]
+edition = "2024"
+name = "engine"
+version = "0.1.0"
+
+[[bin]]
+name = "engine"
+path = "src/main.rs"
+
+[dependencies]
+parser.workspace = true
