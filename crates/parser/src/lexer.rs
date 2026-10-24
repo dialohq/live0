@@ -3,13 +3,12 @@ use crate::error::{Span, SyntaxError};
 pub const KEYWORDS: &[&str] = &[
     "SELECT", "FROM", "WHERE", "GROUP", "BY", "HAVING", "ORDER", "LIMIT", "JOIN", "UNION", "AS",
     "AND", "OR", "NOT", "IS", "IN", "NULL", "TRUE", "FALSE", "LIKE", "ILIKE", "BETWEEN", "EXISTS",
-    "FINAL", "ALL",
 ];
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum TokenKind {
     Keyword(&'static str),
-    Ident(String),
+    Ident { name: String, quoted: bool },
     Number(String),
     String(String),
     Param { name: String, ty: String },
@@ -35,7 +34,7 @@ impl TokenKind {
     pub fn describe(&self) -> String {
         match self {
             TokenKind::Keyword(k) => k.to_string(),
-            TokenKind::Ident(i) => format!("identifier `{i}`"),
+            TokenKind::Ident { name, .. } => format!("identifier `{name}`"),
             TokenKind::Number(n) => format!("number `{n}`"),
             TokenKind::String(v) => format!("string '{v}'"),
             TokenKind::Param { name, ty } => format!("parameter {{{name}:{ty}}}"),
@@ -148,7 +147,10 @@ pub fn tokenize(src: &str) -> Result<Vec<Token>, SyntaxError> {
                     return Err(SyntaxError::new("empty quoted identifier", Span(start, i)));
                 }
                 tokens.push(Token {
-                    kind: TokenKind::Ident(name.to_string()),
+                    kind: TokenKind::Ident {
+                        name: name.to_string(),
+                        quoted: true,
+                    },
                     span: Span(start, i),
                 });
             }
@@ -213,7 +215,10 @@ pub fn tokenize(src: &str) -> Result<Vec<Token>, SyntaxError> {
                 let upper = word.to_ascii_uppercase();
                 let kind = match KEYWORDS.iter().find(|k| **k == upper) {
                     Some(k) => TokenKind::Keyword(k),
-                    None => TokenKind::Ident(word.to_string()),
+                    None => TokenKind::Ident {
+                        name: word.to_string(),
+                        quoted: false,
+                    },
                 };
                 tokens.push(Token {
                     kind,
@@ -291,6 +296,20 @@ fn param(src: &str, start: usize) -> Result<(TokenKind, usize), SyntaxError> {
 mod tests {
     use super::*;
 
+    fn ident(name: &str) -> TokenKind {
+        TokenKind::Ident {
+            name: name.into(),
+            quoted: false,
+        }
+    }
+
+    fn quoted(name: &str) -> TokenKind {
+        TokenKind::Ident {
+            name: name.into(),
+            quoted: true,
+        }
+    }
+
     fn kinds(src: &str) -> Vec<TokenKind> {
         tokenize(src).unwrap().into_iter().map(|t| t.kind).collect()
     }
@@ -303,7 +322,7 @@ mod tests {
                 TokenKind::Keyword("SELECT"),
                 TokenKind::Star,
                 TokenKind::Keyword("FROM"),
-                TokenKind::Ident("Events".into()),
+                ident("Events"),
                 TokenKind::Eof
             ]
         );
@@ -317,12 +336,13 @@ mod tests {
                 TokenKind::Keyword("SELECT"),
                 TokenKind::Star,
                 TokenKind::Keyword("FROM"),
-                TokenKind::Ident("select".into()),
+                quoted("select"),
                 TokenKind::Semicolon,
                 TokenKind::Eof
             ]
         );
-        assert_eq!(kinds("`my table`")[0], TokenKind::Ident("my table".into()));
+        assert_eq!(kinds("`my table`")[0], quoted("my table"));
+        assert_eq!(kinds("final ALL")[..2], [ident("final"), ident("ALL")]);
     }
 
     #[test]
@@ -330,7 +350,7 @@ mod tests {
         assert_eq!(
             kinds("a = 1 != 2 <> 3 < <= > >= - -- comment\n+ /"),
             [
-                TokenKind::Ident("a".into()),
+                ident("a"),
                 TokenKind::Eq,
                 TokenKind::Number("1".into()),
                 TokenKind::NotEq,
@@ -385,7 +405,7 @@ mod tests {
         assert_eq!(
             kinds("id = {id:UUID}"),
             [
-                TokenKind::Ident("id".into()),
+                ident("id"),
                 TokenKind::Eq,
                 TokenKind::Param {
                     name: "id".into(),

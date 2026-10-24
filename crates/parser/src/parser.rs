@@ -1,9 +1,17 @@
 use crate::ast::{
-    BoolExpr, CallArg, Direction, LiteralValue, NullsOrder, Order, OrderItem, SelectItem,
+    BinOp, CallArg, ColumnRef, Direction, Expr, Literal, LiteralValue, NullsOrder, Order,
+    OrderItem, Projection, Query, SelectItem, TableRef, UnaryOp,
 };
-use crate::ast::{CmpOp, ColumnRef, Expr, Literal, Projection, Query, TableRef};
 use crate::error::{Span, SyntaxError};
 use crate::lexer::{Token, TokenKind};
+
+const OR: u8 = 1;
+const AND: u8 = 2;
+const NOT: u8 = 3;
+const CMP: u8 = 4;
+const SUM: u8 = 5;
+const PRODUCT: u8 = 6;
+const NEG: u8 = 7;
 
 pub fn parse(tokens: Vec<Token>) -> Result<Query, SyntaxError> {
     let mut p = Parser { tokens, pos: 0 };
@@ -19,6 +27,10 @@ struct Parser {
 impl Parser {
     fn peek(&self) -> &Token {
         &self.tokens[self.pos]
+    }
+
+    fn lookahead(&self) -> Option<&TokenKind> {
+        self.tokens.get(self.pos + 1).map(|t| &t.kind)
     }
 
     fn next(&mut self) -> Token {
@@ -52,7 +64,6 @@ impl Parser {
         Ok(query)
     }
 
-    /// A query without what may follow it (the end, or a sub-query's `)`).
     fn query_body(&mut self) -> Result<Query, SyntaxError> {
         self.keyword("SELECT")?;
         let projection = self.projection()?;
@@ -60,7 +71,7 @@ impl Parser {
         let from = self.table()?;
         let predicate = if self.peek().kind == TokenKind::Keyword("WHERE") {
             self.next();
-            Some(self.or_expr()?)
+            Some(self.condition()?)
         } else {
             None
         };
@@ -110,108 +121,59 @@ impl Parser {
         })
     }
 
-    fn group_key(&mut self) -> Result<ColumnRef, SyntaxError> {
-        let t = self.peek().clone();
-        match &t.kind {
-            TokenKind::Number(_) => Err(SyntaxError::new(
-                "grouping by position is not supported yet; name the column",
-                t.span,
-            )),
-            TokenKind::Keyword("ALL") => Err(SyntaxError::new(
-                "GROUP BY ALL is not supported yet; name the columns",
-                t.span,
-            )),
-            TokenKind::Ident(_) => {
-                let c = self.column()?;
-                match self.peek().kind {
-                    TokenKind::Plus | TokenKind::Minus | TokenKind::Star | TokenKind::Slash => {
-                        Err(SyntaxError::new(
-                            "grouping by expressions is not supported yet; name a column",
-                            self.peek().span,
-                        ))
-                    }
-                    _ => Ok(c),
-                }
+    fn projection(&mut self) -> Result<Projection, SyntaxError> {
+        if self.peek().kind == TokenKind::Star {
+            self.next();
+            if self.peek().kind == TokenKind::Comma {
+                return Err(SyntaxError::new(
+                    "cannot mix * with column names",
+                    self.peek().span,
+                ));
             }
-            TokenKind::Eof | TokenKind::Semicolon => Err(self.expected("a column name")),
-            _ => Err(SyntaxError::new(
-                "grouping by expressions is not supported yet; name a column",
-                t.span,
-            )),
+            return Ok(Projection::Wildcard);
         }
+        let mut items = vec![self.select_item()?];
+        while self.peek().kind == TokenKind::Comma {
+            self.next();
+            if self.peek().kind == TokenKind::Star {
+                return Err(SyntaxError::new(
+                    "cannot mix * with column names",
+                    self.peek().span,
+                ));
+            }
+            items.push(self.select_item()?);
+        }
+        Ok(Projection::Items(items))
     }
 
     fn select_item(&mut self) -> Result<SelectItem, SyntaxError> {
+        if !self.starts_expr() {
+            return Err(self.expected(
+                if self.pos > 0 && self.tokens[self.pos - 1].kind == TokenKind::Comma {
+                    "a column name"
+                } else {
+                    "`*` or a column name"
+                },
+            ));
+        }
         let expr = self.expr()?;
+
+        if !matches!(expr, Expr::Column(_) | Expr::Literal(_) | Expr::Call { .. }) {
+            return Err(SyntaxError::new(
+                "expressions are not supported yet; list column names",
+                expr.span(),
+            ));
+        }
+
+        check_supported(&expr)?;
         self.alias_for(expr)
-    }
-
-    fn expr(&mut self) -> Result<Expr, SyntaxError> {
-        let t = self.peek().clone();
-        Ok(
-            match (&t.kind, &self.tokens.get(self.pos + 1).map(|t| &t.kind)) {
-                (
-                    TokenKind::Number(_)
-                    | TokenKind::String(_)
-                    | TokenKind::Minus
-                    | TokenKind::Keyword("TRUE" | "FALSE" | "NULL")
-                    | TokenKind::Param { .. },
-                    _,
-                ) => Expr::Literal(self.literal()?),
-
-                (TokenKind::Ident(name), Some(TokenKind::LParen)) => {
-                    self.next();
-                    self.next();
-                    let arg = match self.peek().kind.clone() {
-                        TokenKind::RParen => None,
-                        TokenKind::Star => {
-                            self.next();
-                            Some(CallArg::Star)
-                        }
-                        TokenKind::Ident(_) => {
-                            if self.tokens.get(self.pos + 1).map(|t| &t.kind)
-                                == Some(&TokenKind::LParen)
-                            {
-                                return Err(SyntaxError::new(
-                                    "nested functions are not supported yet",
-                                    self.peek().span,
-                                ));
-                            }
-                            Some(CallArg::Column(self.column()?))
-                        }
-                        _ => {
-                            return Err(SyntaxError::new(
-                                "function arguments other than a column are not supported yet",
-                                self.peek().span,
-                            ));
-                        }
-                    };
-                    if self.peek().kind == TokenKind::Comma {
-                        return Err(SyntaxError::new(
-                            "functions with more than one argument are not supported yet",
-                            self.peek().span,
-                        ));
-                    }
-                    if self.peek().kind != TokenKind::RParen {
-                        return Err(self.expected("`)`"));
-                    }
-                    self.next();
-                    Expr::Call {
-                        name: name.clone(),
-                        arg,
-                        span: t.span,
-                    }
-                }
-                _ => Expr::Column(self.column()?),
-            },
-        )
     }
 
     fn alias_for(&mut self, expr: Expr) -> Result<SelectItem, SyntaxError> {
         let alias = if self.peek().kind == TokenKind::Keyword("AS") {
             self.next();
             match self.peek().kind.clone() {
-                TokenKind::Ident(a) => {
+                TokenKind::Ident { name: a, .. } => {
                     self.next();
                     Some(a)
                 }
@@ -223,49 +185,43 @@ impl Parser {
         Ok(SelectItem { expr, alias })
     }
 
-    fn count(&mut self, what: &str) -> Result<(u64, Span), SyntaxError> {
+    fn condition(&mut self) -> Result<Expr, SyntaxError> {
+        let expr = self.expr()?;
+        check_supported(&expr)?;
+        Ok(expr)
+    }
+
+    fn group_key(&mut self) -> Result<ColumnRef, SyntaxError> {
         let t = self.peek().clone();
-        let value = match &t.kind {
-            TokenKind::Number(n) => n.parse::<u64>().ok(),
-            _ => None,
-        };
-        let Some(value) = value else {
+        if self.at_word("ALL") {
             return Err(SyntaxError::new(
-                format!("{what} needs a non-negative whole number"),
+                "GROUP BY ALL is not supported yet; name the columns",
                 t.span,
             ));
-        };
-        self.next();
-        Ok((value, t.span))
-    }
-
-    fn limit(&mut self) -> Result<(u64, Span), SyntaxError> {
-        let limit = self.count("LIMIT")?;
-        let next = self.peek().clone();
-        if self.at_word("WITH") {
-            return Err(SyntaxError::new(
-                "LIMIT … WITH TIES is not supported yet",
-                next.span,
-            ));
         }
-        if next.kind == TokenKind::Keyword("BY") {
-            return Err(SyntaxError::new(
-                "LIMIT … BY is not supported yet",
-                next.span,
-            ));
+        if !self.starts_expr() {
+            return Err(self.expected("a column name"));
         }
-        Ok(limit)
+        let expr = self.expr()?;
+        check_supported(&expr)?;
+        match expr {
+            Expr::Column(col) => Ok(col),
+            Expr::Literal(Literal {
+                value: LiteralValue::Numeric(_),
+                span,
+            }) => Err(SyntaxError::new(
+                "grouping by position is not supported yet; name the column",
+                span,
+            )),
+            _ => Err(SyntaxError::new(
+                "grouping by expressions is not supported yet; name a column",
+                expr.span(),
+            )),
+        }
     }
 
-    /// Is the next token the (unreserved) word `word`? ASC, DESC, NULLS, FIRST, LAST and ALL
-    /// are only special here, so they stay usable as column names elsewhere.
-    fn at_word(&self, word: &str) -> bool {
-        matches!(&self.peek().kind, TokenKind::Ident(w) if w.eq_ignore_ascii_case(word))
-    }
-
-    /// `ALL [dir] [nulls]` or `item (, item)*`.
     fn order(&mut self) -> Result<Order, SyntaxError> {
-        if self.peek().kind == TokenKind::Keyword("ALL") {
+        if self.at_word("ALL") {
             let span = self.next().span;
             let (direction, nulls) = self.order_modifiers()?;
             if self.peek().kind == TokenKind::Comma {
@@ -289,32 +245,27 @@ impl Parser {
     }
 
     fn order_item(&mut self) -> Result<OrderItem, SyntaxError> {
-        let t = self.peek().clone();
-        match &t.kind {
-            TokenKind::Number(_) => {
+        if !self.starts_expr() {
+            return Err(self.expected("a column name"));
+        }
+        let expr = self.expr()?;
+        match &expr {
+            Expr::Literal(Literal {
+                value: LiteralValue::Numeric(_),
+                span,
+            }) => {
                 return Err(SyntaxError::new(
                     "ordering by position is not supported yet; name the column",
-                    t.span,
+                    *span,
                 ));
             }
-            TokenKind::Ident(_) => {}
-            TokenKind::Eof | TokenKind::Semicolon => return Err(self.expected("a column name")),
+            Expr::Column(_) | Expr::Call { .. } => check_supported(&expr)?,
             _ => {
                 return Err(SyntaxError::new(
                     "ordering by expressions is not supported yet; name a column",
-                    t.span,
+                    expr.span(),
                 ));
             }
-        }
-        let expr = self.expr()?;
-        match self.peek().kind {
-            TokenKind::Plus | TokenKind::Minus | TokenKind::Star | TokenKind::Slash => {
-                return Err(SyntaxError::new(
-                    "ordering by expressions is not supported yet; name a column",
-                    self.peek().span,
-                ));
-            }
-            _ => {}
         }
         let (direction, nulls) = self.order_modifiers()?;
         Ok(OrderItem {
@@ -359,115 +310,288 @@ impl Parser {
         Ok((direction, nulls))
     }
 
-    fn or_expr(&mut self) -> Result<BoolExpr, SyntaxError> {
-        let mut left = self.and_expr()?;
-        while self.peek().kind == TokenKind::Keyword("OR") {
-            self.next();
-            let right = self.and_expr()?;
-            left = BoolExpr::Or(Box::new(left), Box::new(right));
-        }
-        Ok(left)
-    }
-
-    fn and_expr(&mut self) -> Result<BoolExpr, SyntaxError> {
-        let mut left = self.not_expr()?;
-        while self.peek().kind == TokenKind::Keyword("AND") {
-            self.next();
-            let right = self.not_expr()?;
-            left = BoolExpr::And(Box::new(left), Box::new(right));
-        }
-        Ok(left)
-    }
-
-    fn not_expr(&mut self) -> Result<BoolExpr, SyntaxError> {
-        if self.peek().kind == TokenKind::Keyword("NOT")
-            && self.tokens.get(self.pos + 1).map(|t| &t.kind) == Some(&TokenKind::Keyword("EXISTS"))
-        {
-            self.next();
-            return self.exists(true);
-        }
-        if self.peek().kind == TokenKind::Keyword("NOT") {
-            let span = self.next().span;
-            let expr = self.not_expr()?;
-            return Ok(BoolExpr::Not {
-                expr: Box::new(expr),
-                span,
-            });
-        }
-        self.predicate()
-    }
-
-    fn predicate(&mut self) -> Result<BoolExpr, SyntaxError> {
-        let left = self.operand()?;
+    fn count(&mut self, what: &str) -> Result<(u64, Span), SyntaxError> {
         let t = self.peek().clone();
-        let op = match t.kind {
-            TokenKind::Eq => Some(CmpOp::Eq),
-            TokenKind::NotEq => Some(CmpOp::NotEq),
-            TokenKind::Lt => Some(CmpOp::Lt),
-            TokenKind::LtEq => Some(CmpOp::LtEq),
-            TokenKind::Gt => Some(CmpOp::Gt),
-            TokenKind::GtEq => Some(CmpOp::GtEq),
+        let value = match &t.kind {
+            TokenKind::Number(n) => n.parse::<u64>().ok(),
             _ => None,
         };
-        if let Some(op) = op {
-            self.next();
-            let right = self.operand()?;
+        let Some(value) = value else {
+            return Err(SyntaxError::new(
+                format!("{what} needs a non-negative whole number"),
+                t.span,
+            ));
+        };
+        self.next();
+        Ok((value, t.span))
+    }
 
-            if matches!(
-                self.peek().kind,
-                TokenKind::Plus | TokenKind::Minus | TokenKind::Star | TokenKind::Slash
-            ) {
-                return Err(SyntaxError::new(
-                    "arithmetic is not supported yet",
-                    self.peek().span,
-                ));
-            }
-
-            return Ok(BoolExpr::Compare {
-                op,
-                left: Box::new(left),
-                right: Box::new(right),
-                span: t.span,
-            });
+    fn limit(&mut self) -> Result<(u64, Span), SyntaxError> {
+        let limit = self.count("LIMIT")?;
+        let next = self.peek().clone();
+        if self.at_word("WITH") {
+            return Err(SyntaxError::new(
+                "LIMIT … WITH TIES is not supported yet",
+                next.span,
+            ));
         }
-        match t.kind {
-            TokenKind::Keyword("IS") => {
+        if next.kind == TokenKind::Keyword("BY") {
+            return Err(SyntaxError::new(
+                "LIMIT … BY is not supported yet",
+                next.span,
+            ));
+        }
+        Ok(limit)
+    }
+
+    fn at_word(&self, word: &str) -> bool {
+        matches!(
+            &self.peek().kind,
+            TokenKind::Ident { name, quoted: false } if name.eq_ignore_ascii_case(word)
+        )
+    }
+
+    fn starts_expr(&self) -> bool {
+        matches!(
+            self.peek().kind,
+            TokenKind::Ident { .. }
+                | TokenKind::Number(_)
+                | TokenKind::String(_)
+                | TokenKind::Param { .. }
+                | TokenKind::Minus
+                | TokenKind::LParen
+                | TokenKind::Keyword("TRUE" | "FALSE" | "NULL" | "NOT" | "EXISTS")
+        )
+    }
+
+    /// Any expression, supported or not; the caller checks what it got.
+    fn expr(&mut self) -> Result<Expr, SyntaxError> {
+        self.expr_bp(0)
+    }
+
+    /// Precedence climbing: parses operators that bind tighter than `min_bp`.
+    fn expr_bp(&mut self, min_bp: u8) -> Result<Expr, SyntaxError> {
+        let mut left = self.prefix()?;
+        loop {
+            // `NOT` is an infix operator only in front of IN, LIKE, ILIKE and BETWEEN.
+            let negated = self.peek().kind == TokenKind::Keyword("NOT")
+                && matches!(
+                    self.lookahead(),
+                    Some(TokenKind::Keyword("IN" | "LIKE" | "ILIKE" | "BETWEEN"))
+                );
+            let op = if negated {
+                self.tokens[self.pos + 1].clone()
+            } else {
+                self.peek().clone()
+            };
+            let bp = match op.kind {
+                TokenKind::Keyword("OR") => OR,
+                TokenKind::Keyword("AND") => AND,
+                TokenKind::Eq
+                | TokenKind::NotEq
+                | TokenKind::Lt
+                | TokenKind::LtEq
+                | TokenKind::Gt
+                | TokenKind::GtEq
+                | TokenKind::Keyword("IS" | "IN" | "LIKE" | "ILIKE" | "BETWEEN") => CMP,
+                TokenKind::Plus | TokenKind::Minus => SUM,
+                TokenKind::Star | TokenKind::Slash => PRODUCT,
+                _ => break,
+            };
+            if bp <= min_bp {
+                break;
+            }
+            if negated {
                 self.next();
-                let negated = self.peek().kind == TokenKind::Keyword("NOT");
-                if negated {
+            }
+            self.next();
+            let span = op.span;
+            left = match op.kind {
+                TokenKind::Keyword("IS") => {
+                    let negated = self.peek().kind == TokenKind::Keyword("NOT");
+                    if negated {
+                        self.next();
+                    }
+                    if self.peek().kind != TokenKind::Keyword("NULL") {
+                        return Err(self.expected("NULL"));
+                    }
                     self.next();
+                    Expr::IsNull {
+                        expr: Box::new(left),
+                        negated,
+                        span,
+                    }
                 }
-                if self.peek().kind != TokenKind::Keyword("NULL") {
-                    return Err(self.expected("NULL"));
-                }
-                self.next();
-                Ok(BoolExpr::IsNull {
+                TokenKind::Keyword("IN") => self.in_rest(left, negated, span)?,
+                TokenKind::Keyword(kw @ ("LIKE" | "ILIKE")) => Expr::Like {
                     expr: Box::new(left),
+                    pattern: Box::new(self.expr_bp(CMP)?),
                     negated,
+                    case_insensitive: kw == "ILIKE",
+                    span,
+                },
+                TokenKind::Keyword("BETWEEN") => {
+                    let low = self.expr_bp(CMP)?;
+                    self.keyword("AND")?;
+                    let high = self.expr_bp(CMP)?;
+                    Expr::Between {
+                        expr: Box::new(left),
+                        low: Box::new(low),
+                        high: Box::new(high),
+                        negated,
+                        span,
+                    }
+                }
+                kind => {
+                    let op = match kind {
+                        TokenKind::Keyword("OR") => BinOp::Or,
+                        TokenKind::Keyword("AND") => BinOp::And,
+                        TokenKind::Eq => BinOp::Eq,
+                        TokenKind::NotEq => BinOp::NotEq,
+                        TokenKind::Lt => BinOp::Lt,
+                        TokenKind::LtEq => BinOp::LtEq,
+                        TokenKind::Gt => BinOp::Gt,
+                        TokenKind::GtEq => BinOp::GtEq,
+                        TokenKind::Plus => BinOp::Add,
+                        TokenKind::Minus => BinOp::Sub,
+                        TokenKind::Star => BinOp::Mul,
+                        TokenKind::Slash => BinOp::Div,
+                        _ => unreachable!("every token with a binding power is handled"),
+                    };
+                    let right = self.expr_bp(bp)?;
+                    Expr::Binary {
+                        op,
+                        left: Box::new(left),
+                        right: Box::new(right),
+                        span,
+                    }
+                }
+            };
+        }
+        Ok(left)
+    }
+
+    /// What can start an expression: values, columns, calls, `( … )`, `NOT`, unary `-` and
+    /// `[NOT] EXISTS`.
+    fn prefix(&mut self) -> Result<Expr, SyntaxError> {
+        let t = self.peek().clone();
+        match &t.kind {
+            TokenKind::Number(_)
+            | TokenKind::String(_)
+            | TokenKind::Keyword("TRUE" | "FALSE" | "NULL")
+            | TokenKind::Param { .. } => Ok(Expr::Literal(self.literal()?)),
+            TokenKind::Minus if matches!(self.lookahead(), Some(TokenKind::Number(_))) => {
+                Ok(Expr::Literal(self.literal()?))
+            }
+            TokenKind::Minus => {
+                self.next();
+                let expr = self.expr_bp(NEG)?;
+                Ok(Expr::Unary {
+                    op: UnaryOp::Neg,
+                    expr: Box::new(expr),
                     span: t.span,
                 })
             }
             TokenKind::Keyword("NOT")
-                if self.tokens[self.pos + 1].kind == TokenKind::Keyword("IN") =>
+                if self.lookahead() == Some(&TokenKind::Keyword("EXISTS")) =>
             {
                 self.next();
-                self.in_list(left, true)
+                self.exists(true)
             }
-            TokenKind::Keyword("IN") => self.in_list(left, false),
-            TokenKind::Keyword(kw @ ("LIKE" | "ILIKE" | "BETWEEN")) => Err(SyntaxError::new(
-                format!("{kw} is not supported yet"),
-                t.span,
-            )),
-            TokenKind::Plus | TokenKind::Minus | TokenKind::Star | TokenKind::Slash => {
-                Err(SyntaxError::new("arithmetic is not supported yet", t.span))
+            TokenKind::Keyword("NOT") => {
+                self.next();
+                let expr = self.expr_bp(NOT)?;
+                Ok(Expr::Unary {
+                    op: UnaryOp::Not,
+                    expr: Box::new(expr),
+                    span: t.span,
+                })
             }
-            _ => Ok(left),
+            TokenKind::Keyword("EXISTS") => self.exists(false),
+            TokenKind::LParen => {
+                self.next();
+                if self.peek().kind == TokenKind::Keyword("SELECT") {
+                    let span = self.peek().span;
+                    let query = self.query_body()?;
+                    if self.peek().kind != TokenKind::RParen {
+                        return Err(self.expected("`)` after the sub-query"));
+                    }
+                    self.next();
+                    return Ok(Expr::Subquery {
+                        query: Box::new(query),
+                        span,
+                    });
+                }
+                let inner = self.expr()?;
+                if self.peek().kind != TokenKind::RParen {
+                    return Err(self.expected("`)`"));
+                }
+                self.next();
+                Ok(inner)
+            }
+            TokenKind::Ident { name, .. } if self.lookahead() == Some(&TokenKind::LParen) => {
+                self.call(name.clone(), t.span)
+            }
+            TokenKind::Ident { .. } => Ok(Expr::Column(self.column()?)),
+            _ => Err(self.expected("an expression")),
         }
     }
 
-    /// After `[NOT]`, at `IN`.
-    fn in_list(&mut self, expr: BoolExpr, negated: bool) -> Result<BoolExpr, SyntaxError> {
-        let span = self.next().span;
+    /// At the function name, followed by `(`.
+    fn call(&mut self, name: String, span: Span) -> Result<Expr, SyntaxError> {
+        self.next();
+        self.next();
+        let mut args = Vec::new();
+        if self.peek().kind != TokenKind::RParen {
+            loop {
+                if self.peek().kind == TokenKind::Star {
+                    self.next();
+                    args.push(CallArg::Star);
+                } else {
+                    args.push(CallArg::Expr(self.expr()?));
+                }
+                if self.peek().kind != TokenKind::Comma {
+                    break;
+                }
+                self.next();
+            }
+        }
+        if self.peek().kind != TokenKind::RParen {
+            return Err(self.expected("`)`"));
+        }
+        self.next();
+        Ok(Expr::Call { name, args, span })
+    }
+
+    /// `name` or `qualifier.name`.
+    fn column(&mut self) -> Result<ColumnRef, SyntaxError> {
+        let t = self.peek().clone();
+        let TokenKind::Ident { name, .. } = t.kind else {
+            return Err(self.expected("a column name"));
+        };
+        self.next();
+        if self.peek().kind != TokenKind::Dot {
+            return Ok(ColumnRef {
+                qualifier: None,
+                name,
+                span: t.span,
+            });
+        }
+        self.next();
+        let n = self.peek().clone();
+        let TokenKind::Ident { name: field, .. } = n.kind else {
+            return Err(self.expected("a column name after `.`"));
+        };
+        self.next();
+        Ok(ColumnRef {
+            qualifier: Some(name),
+            name: field,
+            span: Span(t.span.0, n.span.1),
+        })
+    }
+
+    /// After `[NOT] IN`.
+    fn in_rest(&mut self, expr: Expr, negated: bool, span: Span) -> Result<Expr, SyntaxError> {
         if self.peek().kind != TokenKind::LParen {
             return Err(self.expected("`(`"));
         }
@@ -478,23 +602,23 @@ impl Parser {
                 return Err(self.expected("`)` after the sub-query"));
             }
             self.next();
-            return Ok(BoolExpr::InSubquery {
+            return Ok(Expr::InSubquery {
                 expr: Box::new(expr),
                 query: Box::new(query),
                 negated,
                 span,
             });
         }
-        let mut list = vec![self.literal()?];
+        let mut list = vec![self.expr()?];
         while self.peek().kind == TokenKind::Comma {
             self.next();
-            list.push(self.literal()?);
+            list.push(self.expr()?);
         }
         if self.peek().kind != TokenKind::RParen {
             return Err(self.expected("`,` or `)`"));
         }
         self.next();
-        Ok(BoolExpr::InList {
+        Ok(Expr::InList {
             expr: Box::new(expr),
             list,
             negated,
@@ -532,82 +656,8 @@ impl Parser {
         })
     }
 
-    fn operand(&mut self) -> Result<BoolExpr, SyntaxError> {
-        let t = self.peek().clone();
-        match t.kind {
-            TokenKind::Keyword("EXISTS") => self.exists(false),
-            TokenKind::LParen => {
-                self.next();
-                let inner = self.or_expr()?;
-                if self.peek().kind != TokenKind::RParen {
-                    return Err(self.expected("`)`"));
-                }
-                self.next();
-                Ok(inner)
-            }
-            TokenKind::Keyword("SELECT") => {
-                Err(SyntaxError::new("subqueries are not supported", t.span))
-            }
-            _ => Ok(BoolExpr::Expr(self.expr()?)),
-        }
-    }
-
-    fn projection(&mut self) -> Result<Projection, SyntaxError> {
-        if self.peek().kind == TokenKind::Star {
-            self.next();
-            if self.peek().kind == TokenKind::Comma {
-                return Err(SyntaxError::new(
-                    "cannot mix * with column names",
-                    self.peek().span,
-                ));
-            }
-            return Ok(Projection::Wildcard);
-        }
-        let mut items = vec![self.select_item()?];
-        while self.peek().kind == TokenKind::Comma {
-            self.next();
-            if self.peek().kind == TokenKind::Star {
-                return Err(SyntaxError::new(
-                    "cannot mix * with column names",
-                    self.peek().span,
-                ));
-            }
-            items.push(self.select_item()?);
-        }
-        Ok(Projection::Items(items))
-    }
-
-    fn column(&mut self) -> Result<ColumnRef, SyntaxError> {
-        let t = self.peek().clone();
-        let TokenKind::Ident(name) = t.kind else {
-            return Err(self.expected(
-                if self.pos > 0 && self.tokens[self.pos - 1].kind == TokenKind::Comma {
-                    "a column name"
-                } else {
-                    "`*` or a column name"
-                },
-            ));
-        };
-        if self.tokens.get(self.pos + 1).map(|t| &t.kind) == Some(&TokenKind::LParen) {
-            return Err(SyntaxError::new(
-                "expressions are not supported yet; list column names",
-                t.span,
-            ));
-        }
-        self.next();
-        if self.peek().kind == TokenKind::Dot {
-            return Err(SyntaxError::new(
-                "qualified column names are not supported yet",
-                self.peek().span,
-            ));
-        }
-        Ok(ColumnRef {
-            name: name,
-            span: t.span,
-        })
-    }
-
-    fn exists(&mut self, negated: bool) -> Result<BoolExpr, SyntaxError> {
+    /// At `EXISTS`.
+    fn exists(&mut self, negated: bool) -> Result<Expr, SyntaxError> {
         let span = self.next().span;
         if self.peek().kind != TokenKind::LParen {
             return Err(self.expected("`(` and a sub-query after EXISTS"));
@@ -621,7 +671,7 @@ impl Parser {
             return Err(self.expected("`)` after the sub-query"));
         }
         self.next();
-        Ok(BoolExpr::Exists {
+        Ok(Expr::Exists {
             query: Box::new(query),
             negated,
             span,
@@ -630,7 +680,7 @@ impl Parser {
 
     fn table(&mut self) -> Result<TableRef, SyntaxError> {
         let t = self.peek().clone();
-        let TokenKind::Ident(name) = t.kind else {
+        let TokenKind::Ident { name, .. } = t.kind else {
             return Err(self.expected("a table name"));
         };
         self.next();
@@ -649,7 +699,7 @@ impl Parser {
                     self.peek().span,
                 ));
             }
-            TokenKind::Keyword("FINAL") => {
+            _ if self.at_word("FINAL") => {
                 self.next();
                 Some(n.span)
             }
@@ -683,6 +733,90 @@ impl Parser {
     }
 }
 
+/// Checks if expression is generally unsupported in any part of a query
+fn check_supported(expr: &Expr) -> Result<(), SyntaxError> {
+    match expr {
+        Expr::Literal(_) | Expr::Exists { .. } => Ok(()),
+        Expr::Column(c) => {
+            if c.qualifier.is_some() {
+                return Err(SyntaxError::new(
+                    "qualified column names are not supported yet",
+                    c.span,
+                ));
+            }
+            Ok(())
+        }
+        Expr::Call { args, span, .. } => {
+            match args.first() {
+                None | Some(CallArg::Star) => {}
+                Some(CallArg::Expr(arg @ Expr::Column(_))) => check_supported(arg)?,
+                Some(CallArg::Expr(Expr::Call { span, .. })) => {
+                    return Err(SyntaxError::new(
+                        "nested functions are not supported yet",
+                        *span,
+                    ));
+                }
+                Some(CallArg::Expr(arg)) => {
+                    return Err(SyntaxError::new(
+                        "function arguments other than a column are not supported yet",
+                        arg.span(),
+                    ));
+                }
+            }
+            if let Some(extra) = args.get(1) {
+                return Err(SyntaxError::new(
+                    "functions with more than one argument are not supported yet",
+                    match extra {
+                        CallArg::Star => *span,
+                        CallArg::Expr(e) => e.span(),
+                    },
+                ));
+            }
+            Ok(())
+        }
+        Expr::Unary {
+            op: UnaryOp::Neg,
+            span,
+            ..
+        }
+        | Expr::Binary {
+            op: BinOp::Add | BinOp::Sub | BinOp::Mul | BinOp::Div,
+            span,
+            ..
+        } => Err(SyntaxError::new("arithmetic is not supported yet", *span)),
+        Expr::Unary { expr, .. } | Expr::IsNull { expr, .. } | Expr::InSubquery { expr, .. } => {
+            check_supported(expr)
+        }
+        Expr::Binary { left, right, .. } => {
+            check_supported(left)?;
+            check_supported(right)
+        }
+        Expr::InList { expr, list, .. } => {
+            check_supported(expr)?;
+            match list.iter().find(|e| !matches!(e, Expr::Literal(_))) {
+                Some(e) => Err(SyntaxError::new(
+                    "only values are supported in IN lists yet",
+                    e.span(),
+                )),
+                None => Ok(()),
+            }
+        }
+        Expr::Subquery { span, .. } => Err(SyntaxError::new("subqueries are not supported", *span)),
+        Expr::Like {
+            case_insensitive,
+            span,
+            ..
+        } => Err(SyntaxError::new(
+            format!(
+                "{} is not supported yet",
+                if *case_insensitive { "ILIKE" } else { "LIKE" }
+            ),
+            *span,
+        )),
+        Expr::Between { span, .. } => Err(SyntaxError::new("BETWEEN is not supported yet", *span)),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -709,6 +843,7 @@ mod tests {
 
     fn col(name: &str, start: usize) -> ColumnRef {
         ColumnRef {
+            qualifier: None,
             name: name.into(),
             span: Span(start, start + name.len()),
         }
@@ -732,7 +867,7 @@ mod tests {
         }
     }
 
-    fn where_(q: &Query) -> &BoolExpr {
+    fn where_(q: &Query) -> &Expr {
         q.predicate.as_ref().expect("has WHERE")
     }
 
@@ -799,6 +934,7 @@ mod tests {
         assert_eq!(
             items(&q)[0].expr,
             Expr::Column(ColumnRef {
+                qualifier: None,
                 name: "select".into(),
                 span: Span(7, 15),
             })
@@ -819,6 +955,48 @@ mod tests {
         assert_eq!(
             names,
             ["asc", "desc", "nulls", "first", "last", "offset", "with"]
+        );
+    }
+
+    #[test]
+    fn final_and_all_are_column_names() {
+        let q = ok("SELECT final, all FROM t WHERE all = 1 ORDER BY final");
+        assert_eq!(items(&q)[0].expr, Expr::Column(col("final", 7)));
+        assert_eq!(items(&q)[1].expr, Expr::Column(col("all", 14)));
+        assert_eq!(order_items(&q)[0].expr, Expr::Column(col("final", 48)));
+    }
+
+    #[test]
+    fn quoted_words_are_never_contextual_keywords() {
+        let q = ok("SELECT * FROM t ORDER BY \"all\" DESC");
+        assert_eq!(
+            order_items(&q)[0],
+            OrderItem {
+                expr: Expr::Column(ColumnRef {
+                    qualifier: None,
+                    name: "all".into(),
+                    span: Span(25, 30),
+                }),
+                direction: Some(Direction::Desc),
+                nulls: None,
+            }
+        );
+        let q = ok("SELECT a FROM t GROUP BY `all`");
+        assert!(matches!(
+            &q.group_by.as_ref().unwrap().0[..],
+            [ColumnRef { name, .. }] if name == "all"
+        ));
+        assert_eq!(
+            msg("SELECT * FROM t \"final\""),
+            "expected end of query, found identifier `final`"
+        );
+        assert_eq!(
+            msg("SELECT * FROM t ORDER BY a \"desc\""),
+            "expected end of query, found identifier `desc`"
+        );
+        assert_eq!(
+            msg("SELECT * FROM t \"offset\" 3"),
+            "expected end of query, found identifier `offset`"
         );
     }
 
@@ -876,10 +1054,16 @@ mod tests {
     }
 
     #[test]
-    fn minus_needs_a_number() {
+    fn negating_a_column_is_rejected() {
+        let e = err("SELECT -a FROM t");
         assert_eq!(
-            msg("SELECT -a FROM t"),
-            "expected a number after `-`, found identifier `a`"
+            e.message,
+            "expressions are not supported yet; list column names"
+        );
+        assert_eq!(e.span, Span(7, 9));
+        assert_eq!(
+            msg("SELECT * FROM t WHERE -a = 1"),
+            "arithmetic is not supported yet"
         );
     }
 
@@ -892,7 +1076,7 @@ mod tests {
             items(&q)[0].expr,
             Expr::Call {
                 name: "count".into(),
-                arg: Some(CallArg::Star),
+                args: vec![CallArg::Star],
                 span: Span(7, 12),
             }
         );
@@ -900,7 +1084,7 @@ mod tests {
             items(&q)[1].expr,
             Expr::Call {
                 name: "max".into(),
-                arg: Some(CallArg::Column(col("x", 21))),
+                args: vec![CallArg::Expr(Expr::Column(col("x", 21)))],
                 span: Span(17, 20),
             }
         );
@@ -908,7 +1092,7 @@ mod tests {
             items(&q)[2].expr,
             Expr::Call {
                 name: "now".into(),
-                arg: None,
+                args: vec![],
                 span: Span(25, 28),
             }
         );
@@ -930,7 +1114,7 @@ mod tests {
         );
         assert_eq!(msg("SELECT f(a FROM t"), "expected `)`, found FROM");
         assert_eq!(err("SELECT f(g(x)) FROM t").span, Span(9, 10));
-        assert_eq!(err("SELECT f(a, b) FROM t").span, Span(10, 11));
+        assert_eq!(err("SELECT f(a, b) FROM t").span, Span(12, 13));
     }
 
     // ---- projection errors ----
@@ -958,7 +1142,23 @@ mod tests {
     fn qualified_columns_are_rejected() {
         let e = err("SELECT t.a FROM t");
         assert_eq!(e.message, "qualified column names are not supported yet");
-        assert_eq!(e.span, Span(8, 9));
+        assert_eq!(e.span, Span(7, 10));
+        assert_eq!(
+            msg("SELECT * FROM t WHERE t.a = 1"),
+            "qualified column names are not supported yet"
+        );
+        assert_eq!(
+            msg("SELECT * FROM t ORDER BY t.a"),
+            "qualified column names are not supported yet"
+        );
+        assert_eq!(
+            msg("SELECT count(t.a) FROM t"),
+            "qualified column names are not supported yet"
+        );
+        assert_eq!(
+            msg("SELECT t. FROM t"),
+            "expected a column name after `.`, found FROM"
+        );
     }
 
     #[test]
@@ -996,6 +1196,10 @@ mod tests {
         let q = ok("SELECT * FROM t FINAL");
         assert_eq!(q.from.final_span, Some(Span(16, 21)));
         assert_eq!(q.from.span, Span(14, 15));
+        assert_eq!(
+            ok("SELECT * FROM t final").from.final_span,
+            Some(Span(16, 21))
+        );
     }
 
     #[test]
@@ -1045,23 +1249,23 @@ mod tests {
     #[test]
     fn compare_ops() {
         for (sql_op, op) in [
-            ("=", CmpOp::Eq),
-            ("!=", CmpOp::NotEq),
-            ("<>", CmpOp::NotEq),
-            ("<", CmpOp::Lt),
-            ("<=", CmpOp::LtEq),
-            (">", CmpOp::Gt),
-            (">=", CmpOp::GtEq),
+            ("=", BinOp::Eq),
+            ("!=", BinOp::NotEq),
+            ("<>", BinOp::NotEq),
+            ("<", BinOp::Lt),
+            ("<=", BinOp::LtEq),
+            (">", BinOp::Gt),
+            (">=", BinOp::GtEq),
         ] {
             let src = format!("SELECT * FROM t WHERE a {sql_op} 1");
             let q = ok(&src);
             let rhs = 25 + sql_op.len();
             assert_eq!(
                 where_(&q),
-                &BoolExpr::Compare {
+                &Expr::Binary {
                     op,
-                    left: Box::new(BoolExpr::Expr(Expr::Column(col("a", 22)))),
-                    right: Box::new(BoolExpr::Expr(Expr::Literal(num("1", rhs)))),
+                    left: Box::new(Expr::Column(col("a", 22))),
+                    right: Box::new(Expr::Literal(num("1", rhs))),
                     span: Span(24, 24 + sql_op.len()),
                 },
                 "{src}"
@@ -1072,43 +1276,66 @@ mod tests {
     #[test]
     fn bare_column_as_predicate() {
         let q = ok("SELECT * FROM t WHERE flag");
-        assert_eq!(where_(&q), &BoolExpr::Expr(Expr::Column(col("flag", 22))));
+        assert_eq!(where_(&q), &Expr::Column(col("flag", 22)));
     }
 
     #[test]
     fn and_binds_tighter_than_or() {
         let q = ok("SELECT * FROM t WHERE a OR b AND c");
-        let BoolExpr::Or(l, r) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::Or,
+            left: l,
+            right: r,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected OR at the top: {:?}", where_(&q));
         };
-        assert_eq!(**l, BoolExpr::Expr(Expr::Column(col("a", 22))));
-        assert!(matches!(**r, BoolExpr::And(..)));
+        assert_eq!(**l, Expr::Column(col("a", 22)));
+        assert!(matches!(**r, Expr::Binary { op: BinOp::And, .. }));
     }
 
     #[test]
     fn and_or_are_left_associative() {
         let q = ok("SELECT * FROM t WHERE a AND b AND c");
-        let BoolExpr::And(l, r) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::And,
+            left: l,
+            right: r,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected AND");
         };
-        assert!(matches!(**l, BoolExpr::And(..)));
-        assert_eq!(**r, BoolExpr::Expr(Expr::Column(col("c", 34))));
+        assert!(matches!(**l, Expr::Binary { op: BinOp::And, .. }));
+        assert_eq!(**r, Expr::Column(col("c", 34)));
 
         let q = ok("SELECT * FROM t WHERE a OR b OR c");
-        let BoolExpr::Or(l, r) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::Or,
+            left: l,
+            right: r,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected OR");
         };
-        assert!(matches!(**l, BoolExpr::Or(..)));
-        assert_eq!(**r, BoolExpr::Expr(Expr::Column(col("c", 32))));
+        assert!(matches!(**l, Expr::Binary { op: BinOp::Or, .. }));
+        assert_eq!(**r, Expr::Column(col("c", 32)));
     }
 
     #[test]
     fn parentheses_override_precedence() {
         let q = ok("SELECT * FROM t WHERE (a OR b) AND c");
-        let BoolExpr::And(l, _) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::And,
+            left: l,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected AND at the top: {:?}", where_(&q));
         };
-        assert!(matches!(**l, BoolExpr::Or(..)));
+        assert!(matches!(**l, Expr::Binary { op: BinOp::Or, .. }));
     }
 
     #[test]
@@ -1122,23 +1349,44 @@ mod tests {
     #[test]
     fn not_binds_tighter_than_and_and_looser_than_compare() {
         let q = ok("SELECT * FROM t WHERE NOT a = 1 AND b");
-        let BoolExpr::And(l, _) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::And,
+            left: l,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected AND at the top: {:?}", where_(&q));
         };
-        let BoolExpr::Not { expr, span } = &**l else {
+        let Expr::Unary {
+            op: UnaryOp::Not,
+            expr,
+            span,
+        } = &**l
+        else {
             panic!("expected NOT: {l:?}");
         };
         assert_eq!(*span, Span(22, 25));
-        assert!(matches!(**expr, BoolExpr::Compare { op: CmpOp::Eq, .. }));
+        assert!(matches!(**expr, Expr::Binary { op: BinOp::Eq, .. }));
     }
 
     #[test]
     fn double_not() {
         let q = ok("SELECT * FROM t WHERE NOT NOT a");
-        let BoolExpr::Not { expr, .. } = where_(&q) else {
+        let Expr::Unary {
+            op: UnaryOp::Not,
+            expr,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected NOT");
         };
-        assert!(matches!(**expr, BoolExpr::Not { .. }));
+        assert!(matches!(
+            **expr,
+            Expr::Unary {
+                op: UnaryOp::Not,
+                ..
+            }
+        ));
     }
 
     #[test]
@@ -1146,14 +1394,14 @@ mod tests {
         let q = ok("SELECT * FROM t WHERE a IS NULL");
         assert_eq!(
             where_(&q),
-            &BoolExpr::IsNull {
-                expr: Box::new(BoolExpr::Expr(Expr::Column(col("a", 22)))),
+            &Expr::IsNull {
+                expr: Box::new(Expr::Column(col("a", 22))),
                 negated: false,
                 span: Span(24, 26),
             }
         );
         let q = ok("SELECT * FROM t WHERE a IS NOT NULL");
-        assert!(matches!(where_(&q), BoolExpr::IsNull { negated: true, .. }));
+        assert!(matches!(where_(&q), Expr::IsNull { negated: true, .. }));
         assert_eq!(
             msg("SELECT * FROM t WHERE a IS 1"),
             "expected NULL, found number `1`"
@@ -1169,12 +1417,12 @@ mod tests {
         let q = ok("SELECT * FROM t WHERE a IN (1, 'x', -2)");
         assert_eq!(
             where_(&q),
-            &BoolExpr::InList {
-                expr: Box::new(BoolExpr::Expr(Expr::Column(col("a", 22)))),
+            &Expr::InList {
+                expr: Box::new(Expr::Column(col("a", 22))),
                 list: vec![
-                    num("1", 28),
-                    lit(LiteralValue::String("x".into()), 31, 34),
-                    lit(LiteralValue::Numeric("-2".into()), 36, 38),
+                    Expr::Literal(num("1", 28)),
+                    Expr::Literal(lit(LiteralValue::String("x".into()), 31, 34)),
+                    Expr::Literal(lit(LiteralValue::Numeric("-2".into()), 36, 38)),
                 ],
                 negated: false,
                 span: Span(24, 26),
@@ -1185,7 +1433,7 @@ mod tests {
     #[test]
     fn not_in_list() {
         let q = ok("SELECT * FROM t WHERE a NOT IN (1)");
-        let BoolExpr::InList { negated, span, .. } = where_(&q) else {
+        let Expr::InList { negated, span, .. } = where_(&q) else {
             panic!("expected IN list: {:?}", where_(&q));
         };
         assert!(*negated);
@@ -1200,7 +1448,7 @@ mod tests {
         );
         assert_eq!(
             msg("SELECT * FROM t WHERE a IN ()"),
-            "expected a value, found `)`"
+            "expected an expression, found `)`"
         );
         assert_eq!(
             msg("SELECT * FROM t WHERE a IN (1 2)"),
@@ -1208,14 +1456,14 @@ mod tests {
         );
         assert_eq!(
             msg("SELECT * FROM t WHERE a IN (b)"),
-            "expected a value, found identifier `b`"
+            "only values are supported in IN lists yet"
         );
     }
 
     #[test]
     fn in_subquery() {
         let q = ok("SELECT * FROM t WHERE a IN (SELECT b FROM u WHERE c = 1)");
-        let BoolExpr::InSubquery {
+        let Expr::InSubquery {
             expr,
             query,
             negated,
@@ -1224,17 +1472,14 @@ mod tests {
         else {
             panic!("expected IN sub-query: {:?}", where_(&q));
         };
-        assert_eq!(**expr, BoolExpr::Expr(Expr::Column(col("a", 22))));
+        assert_eq!(**expr, Expr::Column(col("a", 22)));
         assert!(!negated);
         assert_eq!(*span, Span(24, 26));
         assert_eq!(query.from.name, "u");
         assert!(query.predicate.is_some());
 
         let q = ok("SELECT * FROM t WHERE a NOT IN (SELECT b FROM u)");
-        assert!(matches!(
-            where_(&q),
-            BoolExpr::InSubquery { negated: true, .. }
-        ));
+        assert!(matches!(where_(&q), Expr::InSubquery { negated: true, .. }));
     }
 
     #[test]
@@ -1252,7 +1497,7 @@ mod tests {
     #[test]
     fn exists() {
         let q = ok("SELECT * FROM t WHERE EXISTS (SELECT * FROM u)");
-        let BoolExpr::Exists {
+        let Expr::Exists {
             query,
             negated,
             span,
@@ -1268,7 +1513,7 @@ mod tests {
     #[test]
     fn not_exists() {
         let q = ok("SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM u)");
-        let BoolExpr::Exists { negated, span, .. } = where_(&q) else {
+        let Expr::Exists { negated, span, .. } = where_(&q) else {
             panic!("expected EXISTS: {:?}", where_(&q));
         };
         assert!(*negated);
@@ -1278,20 +1523,30 @@ mod tests {
     #[test]
     fn exists_combined_with_other_predicates() {
         let q = ok("SELECT * FROM t WHERE a = 1 AND EXISTS (SELECT * FROM u) OR b");
-        let BoolExpr::Or(l, _) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::Or,
+            left: l,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected OR at the top: {:?}", where_(&q));
         };
-        let BoolExpr::And(_, r) = &**l else {
+        let Expr::Binary {
+            op: BinOp::And,
+            right: r,
+            ..
+        } = &**l
+        else {
             panic!("expected AND: {l:?}");
         };
-        assert!(matches!(**r, BoolExpr::Exists { .. }));
+        assert!(matches!(**r, Expr::Exists { .. }));
     }
 
     #[test]
     fn subquery_may_have_all_clauses() {
         let q = ok("SELECT * FROM t WHERE EXISTS \
              (SELECT a FROM u WHERE b = 1 GROUP BY a ORDER BY a LIMIT 1 OFFSET 2)");
-        let BoolExpr::Exists { query, .. } = where_(&q) else {
+        let Expr::Exists { query, .. } = where_(&q) else {
             panic!("expected EXISTS");
         };
         assert!(query.predicate.is_some());
@@ -1305,10 +1560,10 @@ mod tests {
     fn nested_subqueries() {
         let q = ok("SELECT * FROM t WHERE EXISTS \
              (SELECT * FROM u WHERE a IN (SELECT b FROM v))");
-        let BoolExpr::Exists { query, .. } = where_(&q) else {
+        let Expr::Exists { query, .. } = where_(&q) else {
             panic!("expected EXISTS");
         };
-        assert!(matches!(query.predicate, Some(BoolExpr::InSubquery { .. })));
+        assert!(matches!(query.predicate, Some(Expr::InSubquery { .. })));
     }
 
     #[test]
@@ -1366,21 +1621,21 @@ mod tests {
     #[test]
     fn where_with_literals_and_params() {
         let q = ok("SELECT * FROM t WHERE id = {id:UUID} AND name != 'bob' AND x = NULL");
-        assert!(matches!(where_(&q), BoolExpr::And(..)));
+        assert!(matches!(where_(&q), Expr::Binary { op: BinOp::And, .. }));
         let q = ok("SELECT * FROM t WHERE 1 = a");
-        let BoolExpr::Compare { left, .. } = where_(&q) else {
+        let Expr::Binary { left, .. } = where_(&q) else {
             panic!("expected comparison");
         };
-        assert_eq!(**left, BoolExpr::Expr(Expr::Literal(num("1", 22))));
+        assert_eq!(**left, Expr::Literal(num("1", 22)));
     }
 
     #[test]
     fn where_call() {
         let q = ok("SELECT * FROM t WHERE length(s) > 3");
-        let BoolExpr::Compare { left, .. } = where_(&q) else {
+        let Expr::Binary { left, .. } = where_(&q) else {
             panic!("expected comparison");
         };
-        assert!(matches!(**left, BoolExpr::Expr(Expr::Call { .. })));
+        assert!(matches!(**left, Expr::Call { .. }));
     }
 
     #[test]
@@ -1428,13 +1683,12 @@ mod tests {
         assert_eq!(e.span, Span(25, 26));
         assert_eq!(
             msg("SELECT a FROM t GROUP BY a + 1"),
-            "grouping by expressions is not supported yet; name a column"
+            "arithmetic is not supported yet"
         );
         assert_eq!(
-            msg("SELECT a FROM t GROUP BY (a)"),
+            msg("SELECT a FROM t GROUP BY f(a)"),
             "grouping by expressions is not supported yet; name a column"
         );
-        assert!(parse_sql("SELECT a FROM t GROUP BY f(a)").is_err());
     }
 
     #[test]
@@ -1523,6 +1777,13 @@ mod tests {
                 span: Span(25, 28),
             })
         );
+        assert!(matches!(
+            ok("SELECT * FROM t ORDER BY all desc").order,
+            Some(Order::All {
+                direction: Some(Direction::Desc),
+                ..
+            })
+        ));
         assert_eq!(
             msg("SELECT * FROM t ORDER BY ALL, a"),
             "ORDER BY ALL can't be combined with other columns"
@@ -1554,7 +1815,7 @@ mod tests {
             "ordering by expressions is not supported yet; name a column"
         );
         assert_eq!(
-            msg("SELECT * FROM t ORDER BY (a)"),
+            msg("SELECT * FROM t ORDER BY a = 1"),
             "ordering by expressions is not supported yet; name a column"
         );
         assert_eq!(
@@ -1681,11 +1942,17 @@ mod tests {
         assert_eq!(items(&q).len(), 2);
         assert_eq!(q.from.name, "events");
         assert!(q.from.final_span.is_some());
-        let BoolExpr::And(l, r) = where_(&q) else {
+        let Expr::Binary {
+            op: BinOp::And,
+            left: l,
+            right: r,
+            ..
+        } = where_(&q)
+        else {
             panic!("expected AND at the top");
         };
-        assert!(matches!(**l, BoolExpr::Or(..)));
-        assert!(matches!(**r, BoolExpr::InList { negated: true, .. }));
+        assert!(matches!(**l, Expr::Binary { op: BinOp::Or, .. }));
+        assert!(matches!(**r, Expr::InList { negated: true, .. }));
         assert_eq!(q.group_by.as_ref().map(|g| g.0.len()), Some(1));
         assert_eq!(order_items(&q)[0].direction, Some(Direction::Desc));
         assert_eq!(q.limit.map(|l| l.0), Some(10));
@@ -1705,5 +1972,120 @@ mod tests {
             ok("SELECT * -- everything\nFROM t\n\t;").projection,
             Projection::Wildcard
         );
+    }
+
+    // ---- general expressions ----
+
+    #[test]
+    fn parentheses_around_keys_are_transparent() {
+        assert_eq!(
+            ok("SELECT a FROM t GROUP BY (a)").group_by,
+            Some((vec![col("a", 26)], Span(16, 21)))
+        );
+        assert_eq!(
+            order_items(&ok("SELECT * FROM t ORDER BY ((a)) DESC"))[0].expr,
+            Expr::Column(col("a", 27))
+        );
+    }
+
+    #[test]
+    fn product_binds_tighter_than_sum() {
+        // Arithmetic is parsed before it's rejected, so the error points at the operator
+        // that ends up at the top of the tree.
+        let e = err("SELECT * FROM t WHERE a + b * c = 1");
+        assert_eq!(e.message, "arithmetic is not supported yet");
+        assert_eq!(e.span, Span(24, 25));
+        let e = err("SELECT * FROM t WHERE a * b + c = 1");
+        assert_eq!(e.span, Span(28, 29));
+    }
+
+    #[test]
+    fn arithmetic_after_a_value_is_rejected() {
+        let e = err("SELECT * FROM t WHERE a = 1 - 2");
+        assert_eq!(e.message, "arithmetic is not supported yet");
+        assert_eq!(e.span, Span(28, 29));
+    }
+
+    #[test]
+    fn comparisons_bind_tighter_than_not() {
+        let q = ok("SELECT * FROM t WHERE NOT a = 1 AND b IS NULL");
+        let Expr::Binary {
+            op: BinOp::And,
+            left,
+            right,
+            ..
+        } = where_(&q)
+        else {
+            panic!("expected AND at the top: {:?}", where_(&q));
+        };
+        assert!(matches!(
+            &**left,
+            Expr::Unary { op: UnaryOp::Not, expr, .. }
+                if matches!(**expr, Expr::Binary { op: BinOp::Eq, .. })
+        ));
+        assert!(matches!(**right, Expr::IsNull { negated: false, .. }));
+    }
+
+    #[test]
+    fn between_and_does_not_split_the_condition() {
+        let e = err("SELECT * FROM t WHERE x = 1 AND a BETWEEN 1 AND 2 AND y = 2");
+        assert_eq!(e.message, "BETWEEN is not supported yet");
+        assert_eq!(e.span, Span(34, 41));
+        assert_eq!(
+            msg("SELECT * FROM t WHERE a NOT BETWEEN 1 AND 2"),
+            "BETWEEN is not supported yet"
+        );
+        assert_eq!(
+            msg("SELECT * FROM t WHERE a BETWEEN 1"),
+            "expected AND, found end of input"
+        );
+    }
+
+    #[test]
+    fn not_like() {
+        let e = err("SELECT * FROM t WHERE a NOT LIKE 'x%'");
+        assert_eq!(e.message, "LIKE is not supported yet");
+        assert_eq!(e.span, Span(28, 32));
+        assert_eq!(
+            msg("SELECT * FROM t WHERE a NOT ILIKE 'x%'"),
+            "ILIKE is not supported yet"
+        );
+    }
+
+    #[test]
+    fn conditions_are_rejected_in_the_projection() {
+        let e = err("SELECT a = 1 FROM t");
+        assert_eq!(
+            e.message,
+            "expressions are not supported yet; list column names"
+        );
+        assert_eq!(e.span, Span(7, 12));
+        assert_eq!(
+            msg("SELECT a + 1 FROM t"),
+            "expressions are not supported yet; list column names"
+        );
+    }
+
+    #[test]
+    fn empty_where_expects_an_expression() {
+        assert_eq!(
+            msg("SELECT * FROM t WHERE"),
+            "expected an expression, found end of input"
+        );
+        assert_eq!(
+            msg("SELECT * FROM t WHERE a = ORDER BY a"),
+            "expected an expression, found ORDER"
+        );
+    }
+
+    #[test]
+    fn expr_span_covers_the_whole_expression() {
+        // Closing parentheses aren't in the tree, so the extent ends at the last element.
+        let q = ok("SELECT * FROM t WHERE a = 1 AND b IN (1, 2)");
+        assert_eq!(where_(&q).span(), Span(22, 42));
+        let Expr::Binary { span, .. } = where_(&q) else {
+            panic!("expected AND");
+        };
+        assert_eq!(*span, Span(28, 31));
     }
 }
