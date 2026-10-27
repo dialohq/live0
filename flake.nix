@@ -12,21 +12,13 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-darwin" ];
 
-      imports = [ inputs.dnvr.flakeModule ];
+      imports = [
+        inputs.dnvr.flakeModule
+        ./nix/dev-shell.nix
+      ];
 
-      perSystem = { config, pkgs, ... }: {
+      perSystem = { pkgs, ... }: {
         formatter = pkgs.nixfmt;
-
-        dnvr.shells.default = {
-          packages = with pkgs; [
-            cargo
-            rustc
-            clippy
-            rust-analyzer
-            rustfmt
-            nixfmt
-          ];
-        };
       };
     };
 }
