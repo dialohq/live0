@@ -1,0 +1,33 @@
+{"type":"JSON","case":"empty","event":"{}","accepted":true,"history":{}}
+{"type":"JSON","case":"int","event":"{\"a\": 1}","accepted":true,"history":{"a":"1"}}
+{"type":"JSON","case":"negative","event":"{\"a\": -1}","accepted":true,"history":{"a":"-1"}}
+{"type":"JSON","case":"float","event":"{\"a\": 1.5}","accepted":true,"history":{"a":1.5}}
+{"type":"JSON","case":"string","event":"{\"a\": \"x\"}","accepted":true,"history":{"a":"x"}}
+{"type":"JSON","case":"bool","event":"{\"a\": true}","accepted":true,"history":{"a":true}}
+{"type":"JSON","case":"null_field","event":"{\"a\": null}","accepted":true,"history":{}}
+{"type":"JSON","case":"nested","event":"{\"a\": {\"b\": {\"c\": 1}}}","accepted":true,"history":{"a":{"b":{"c":"1"}}}}
+{"type":"JSON","case":"empty_nested","event":"{\"a\": {}}","accepted":true,"history":{}}
+{"type":"JSON","case":"dotted_key","event":"{\"a.b\": 1}","accepted":true,"history":{"a":{"b":"1"}}}
+{"type":"JSON","case":"dotted_and_nested","event":"{\"a\": {\"b\": 1}, \"a.c\": 2}","accepted":true,"history":{"a":{"b":"1","c":"2"}}}
+{"type":"JSON","case":"key_order","event":"{\"b\": 1, \"a\": 2}","accepted":true,"history":{"a":"2","b":"1"}}
+{"type":"JSON","case":"duplicate_key","event":"{\"a\": 1, \"a\": 2}","accepted":true,"history":{"a":"2"}}
+{"type":"JSON","case":"empty_key","event":"{\"\": 1}","accepted":true,"history":{"":"1"}}
+{"type":"JSON","case":"unicode_key","event":"{\"zażółć\": 1}","accepted":true,"history":{"zażółć":"1"}}
+{"type":"JSON","case":"int_array","event":"{\"a\": [1, 2]}","accepted":true,"history":{"a":["1","2"]}}
+{"type":"JSON","case":"mixed_array","event":"{\"a\": [1, \"x\", null]}","accepted":true,"history":{"a":["1","x",null]}}
+{"type":"JSON","case":"object_array","event":"{\"a\": [{\"b\": 1}]}","accepted":true,"history":{"a":[{"b":"1"}]}}
+{"type":"JSON","case":"empty_array_field","event":"{\"a\": []}","accepted":true,"history":{"a":[]}}
+{"type":"JSON","case":"u64_max","event":"{\"a\": 18446744073709551615}","accepted":true,"history":{"a":"-1"}}
+{"type":"JSON","case":"beyond_u64","event":"{\"a\": 18446744073709551616}","accepted":true,"history":{"a":"0"}}
+{"type":"JSON","case":"i64_min","event":"{\"a\": -9223372036854775808}","accepted":true,"history":{"a":"-9223372036854775808"}}
+{"type":"JSON","case":"float_whole","event":"{\"a\": 1.0}","accepted":true,"history":{"a":1}}
+{"type":"JSON","case":"exponent","event":"{\"a\": 1e2}","accepted":true,"history":{"a":100}}
+{"type":"JSON","case":"mixed_types_per_path","event":"{\"a\": 1, \"b\": \"1\"}","accepted":true,"history":{"a":"1","b":"1"}}
+{"type":"JSON","case":"string_of_json","event":"\"{\\\"a\\\": 1}\"","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
+{"type":"JSON","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
+{"type":"JSON","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
+{"type":"JSON","case":"null","event":"null","accepted":true,"history":{}}
+{"type":"JSON","case":"absent","event":null,"accepted":true,"history":{}}
+{"type":"JSON","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
+{"type":"JSON","case":"array_of_objects","event":"[{\"a\": 1}]","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
+{"type":"JSON","case":"invalid_nan_field","event":"{\"a\": NaN}","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}

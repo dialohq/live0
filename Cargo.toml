@@ -4,6 +4,10 @@ members = ["crates/*"]
 
 [workspace.dependencies]
 parser = { path = "crates/parser" }
+types = { path = "crates/types" }
+thiserror = "2.0.21"
+serde = "1.0.229"
+serde_json = "1.0.154"
 
 [workspace.lints.clippy]
 expect_used = "deny"

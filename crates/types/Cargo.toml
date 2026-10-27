@@ -1,0 +1,14 @@
+[package]
+edition = "2024"
+name = "types"
+version = "0.1.0"
+
+[lib]
+
+[lints]
+workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json = { workspace = true, features = ["arbitrary_precision"] }
+thiserror.workspace = true

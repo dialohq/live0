@@ -1,0 +1,5 @@
+{
+  "clickhouse": "26.8.7.19",
+  "clickhouse_sink": "v1.7.0",
+  "kafka_connect": "4.3.1"
+}

@@ -1,0 +1,30 @@
+{
+  "types": ["Bool", "Nullable(Bool)"],
+  "cases": [
+    {"name": "true", "value": "true"},
+    {"name": "false", "value": "false"},
+    {"name": "zero", "value": "0"},
+    {"name": "one", "value": "1"},
+    {"name": "two", "value": "2"},
+    {"name": "minus_one", "value": "-1"},
+    {"name": "float_one", "value": "1.0"},
+    {"name": "float_zero", "value": "0.0"},
+    {"name": "exponent_one", "value": "1e0"},
+    {"name": "string_true", "value": "\"true\""},
+    {"name": "string_false", "value": "\"false\""},
+    {"name": "string_upper_true", "value": "\"TRUE\""},
+    {"name": "string_capital_true", "value": "\"True\""},
+    {"name": "string_one", "value": "\"1\""},
+    {"name": "string_zero", "value": "\"0\""},
+    {"name": "string_yes", "value": "\"yes\""},
+    {"name": "string_t", "value": "\"t\""},
+    {"name": "string_on", "value": "\"on\""},
+    {"name": "string_empty", "value": "\"\""},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "array", "value": "[1]"},
+    {"name": "empty_object", "value": "{}"},
+    {"name": "object", "value": "{\"a\": 1}"}
+  ]
+}

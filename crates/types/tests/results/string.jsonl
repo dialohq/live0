@@ -1,0 +1,120 @@
+{"type":"String","case":"empty","event":"\"\"","accepted":true,"history":""}
+{"type":"String","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"String","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
+{"type":"String","case":"emoji","event":"\"crab 🦀\"","accepted":true,"history":"crab 🦀"}
+{"type":"String","case":"escaped_latin","event":"\"\\u00e9\"","accepted":true,"history":"é"}
+{"type":"String","case":"escaped_surrogate_pair","event":"\"\\ud83e\\udd80\"","accepted":true,"history":"🦀"}
+{"type":"String","case":"escaped_lone_surrogate","event":"\"\\ud800\"","accepted":false,"error":"java.io.IOException: Code: 25. DB::Exception: Cannot parse escape sequence: missing second part of surrogate pair. In JSON input formats you can disable setting input_format_json_throw_on_bad_escape_sequence to save bad escape sequences as is: (while reading the value of key v): (at row 1)"}
+{"type":"String","case":"newline","event":"\"a\\nb\"","accepted":true,"history":"a\nb"}
+{"type":"String","case":"tab","event":"\"a\\tb\"","accepted":true,"history":"a\tb"}
+{"type":"String","case":"quote","event":"\"say \\\"hi\\\"\"","accepted":true,"history":"say \"hi\""}
+{"type":"String","case":"backslash","event":"\"back\\\\slash\"","accepted":true,"history":"back\\slash"}
+{"type":"String","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"String","case":"escaped_slash","event":"\"a\\/b\"","accepted":true,"history":"a/b"}
+{"type":"String","case":"leading_trailing_space","event":"\"  padded  \"","accepted":true,"history":"  padded  "}
+{"type":"String","case":"integer","event":"123","accepted":true,"history":"123"}
+{"type":"String","case":"float_trailing_zero","event":"1.50","accepted":true,"history":"1.5"}
+{"type":"String","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"String","case":"exponent","event":"1e2","accepted":true,"history":"100.0"}
+{"type":"String","case":"big_integer","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"String","case":"true","event":"true","accepted":true,"history":"true"}
+{"type":"String","case":"false","event":"false","accepted":true,"history":"false"}
+{"type":"String","case":"null","event":"null","accepted":true,"history":""}
+{"type":"String","case":"absent","event":null,"accepted":true,"history":""}
+{"type":"String","case":"empty_array","event":"[]","accepted":true,"history":"[]"}
+{"type":"String","case":"array","event":"[1, \"a\", null]","accepted":true,"history":"[1,\"a\",null]"}
+{"type":"String","case":"empty_object","event":"{}","accepted":true,"history":"{}"}
+{"type":"String","case":"object","event":"{\"b\": 1, \"a\": [true, null]}","accepted":true,"history":"{\"a\":[true,null],\"b\":1}"}
+{"type":"String","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
+{"type":"String","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"String","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"Nullable(String)","case":"empty","event":"\"\"","accepted":true,"history":""}
+{"type":"Nullable(String)","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"Nullable(String)","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
+{"type":"Nullable(String)","case":"emoji","event":"\"crab 🦀\"","accepted":true,"history":"crab 🦀"}
+{"type":"Nullable(String)","case":"escaped_latin","event":"\"\\u00e9\"","accepted":true,"history":"é"}
+{"type":"Nullable(String)","case":"escaped_surrogate_pair","event":"\"\\ud83e\\udd80\"","accepted":true,"history":"🦀"}
+{"type":"Nullable(String)","case":"escaped_lone_surrogate","event":"\"\\ud800\"","accepted":false,"error":"java.io.IOException: Code: 25. DB::Exception: Cannot parse escape sequence: missing second part of surrogate pair. In JSON input formats you can disable setting input_format_json_throw_on_bad_escape_sequence to save bad escape sequences as is: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(String)","case":"newline","event":"\"a\\nb\"","accepted":true,"history":"a\nb"}
+{"type":"Nullable(String)","case":"tab","event":"\"a\\tb\"","accepted":true,"history":"a\tb"}
+{"type":"Nullable(String)","case":"quote","event":"\"say \\\"hi\\\"\"","accepted":true,"history":"say \"hi\""}
+{"type":"Nullable(String)","case":"backslash","event":"\"back\\\\slash\"","accepted":true,"history":"back\\slash"}
+{"type":"Nullable(String)","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"Nullable(String)","case":"escaped_slash","event":"\"a\\/b\"","accepted":true,"history":"a/b"}
+{"type":"Nullable(String)","case":"leading_trailing_space","event":"\"  padded  \"","accepted":true,"history":"  padded  "}
+{"type":"Nullable(String)","case":"integer","event":"123","accepted":true,"history":"123"}
+{"type":"Nullable(String)","case":"float_trailing_zero","event":"1.50","accepted":true,"history":"1.5"}
+{"type":"Nullable(String)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Nullable(String)","case":"exponent","event":"1e2","accepted":true,"history":"100.0"}
+{"type":"Nullable(String)","case":"big_integer","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Nullable(String)","case":"true","event":"true","accepted":true,"history":"true"}
+{"type":"Nullable(String)","case":"false","event":"false","accepted":true,"history":"false"}
+{"type":"Nullable(String)","case":"null","event":"null","accepted":true,"history":null}
+{"type":"Nullable(String)","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"Nullable(String)","case":"empty_array","event":"[]","accepted":true,"history":"[]"}
+{"type":"Nullable(String)","case":"array","event":"[1, \"a\", null]","accepted":true,"history":"[1,\"a\",null]"}
+{"type":"Nullable(String)","case":"empty_object","event":"{}","accepted":true,"history":"{}"}
+{"type":"Nullable(String)","case":"object","event":"{\"b\": 1, \"a\": [true, null]}","accepted":true,"history":"{\"a\":[true,null],\"b\":1}"}
+{"type":"Nullable(String)","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
+{"type":"Nullable(String)","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"Nullable(String)","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"LowCardinality(String)","case":"empty","event":"\"\"","accepted":true,"history":""}
+{"type":"LowCardinality(String)","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"LowCardinality(String)","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
+{"type":"LowCardinality(String)","case":"emoji","event":"\"crab 🦀\"","accepted":true,"history":"crab 🦀"}
+{"type":"LowCardinality(String)","case":"escaped_latin","event":"\"\\u00e9\"","accepted":true,"history":"é"}
+{"type":"LowCardinality(String)","case":"escaped_surrogate_pair","event":"\"\\ud83e\\udd80\"","accepted":true,"history":"🦀"}
+{"type":"LowCardinality(String)","case":"escaped_lone_surrogate","event":"\"\\ud800\"","accepted":false,"error":"java.io.IOException: Code: 25. DB::Exception: Cannot parse escape sequence: missing second part of surrogate pair. In JSON input formats you can disable setting input_format_json_throw_on_bad_escape_sequence to save bad escape sequences as is: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(String)","case":"newline","event":"\"a\\nb\"","accepted":true,"history":"a\nb"}
+{"type":"LowCardinality(String)","case":"tab","event":"\"a\\tb\"","accepted":true,"history":"a\tb"}
+{"type":"LowCardinality(String)","case":"quote","event":"\"say \\\"hi\\\"\"","accepted":true,"history":"say \"hi\""}
+{"type":"LowCardinality(String)","case":"backslash","event":"\"back\\\\slash\"","accepted":true,"history":"back\\slash"}
+{"type":"LowCardinality(String)","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"LowCardinality(String)","case":"escaped_slash","event":"\"a\\/b\"","accepted":true,"history":"a/b"}
+{"type":"LowCardinality(String)","case":"leading_trailing_space","event":"\"  padded  \"","accepted":true,"history":"  padded  "}
+{"type":"LowCardinality(String)","case":"integer","event":"123","accepted":true,"history":"123"}
+{"type":"LowCardinality(String)","case":"float_trailing_zero","event":"1.50","accepted":true,"history":"1.5"}
+{"type":"LowCardinality(String)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"LowCardinality(String)","case":"exponent","event":"1e2","accepted":true,"history":"100.0"}
+{"type":"LowCardinality(String)","case":"big_integer","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"LowCardinality(String)","case":"true","event":"true","accepted":true,"history":"true"}
+{"type":"LowCardinality(String)","case":"false","event":"false","accepted":true,"history":"false"}
+{"type":"LowCardinality(String)","case":"null","event":"null","accepted":true,"history":""}
+{"type":"LowCardinality(String)","case":"absent","event":null,"accepted":true,"history":""}
+{"type":"LowCardinality(String)","case":"empty_array","event":"[]","accepted":true,"history":"[]"}
+{"type":"LowCardinality(String)","case":"array","event":"[1, \"a\", null]","accepted":true,"history":"[1,\"a\",null]"}
+{"type":"LowCardinality(String)","case":"empty_object","event":"{}","accepted":true,"history":"{}"}
+{"type":"LowCardinality(String)","case":"object","event":"{\"b\": 1, \"a\": [true, null]}","accepted":true,"history":"{\"a\":[true,null],\"b\":1}"}
+{"type":"LowCardinality(String)","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
+{"type":"LowCardinality(String)","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"LowCardinality(String)","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"LowCardinality(Nullable(String))","case":"empty","event":"\"\"","accepted":true,"history":""}
+{"type":"LowCardinality(Nullable(String))","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"LowCardinality(Nullable(String))","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
+{"type":"LowCardinality(Nullable(String))","case":"emoji","event":"\"crab 🦀\"","accepted":true,"history":"crab 🦀"}
+{"type":"LowCardinality(Nullable(String))","case":"escaped_latin","event":"\"\\u00e9\"","accepted":true,"history":"é"}
+{"type":"LowCardinality(Nullable(String))","case":"escaped_surrogate_pair","event":"\"\\ud83e\\udd80\"","accepted":true,"history":"🦀"}
+{"type":"LowCardinality(Nullable(String))","case":"escaped_lone_surrogate","event":"\"\\ud800\"","accepted":false,"error":"java.io.IOException: Code: 25. DB::Exception: Cannot parse escape sequence: missing second part of surrogate pair. In JSON input formats you can disable setting input_format_json_throw_on_bad_escape_sequence to save bad escape sequences as is: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(Nullable(String))","case":"newline","event":"\"a\\nb\"","accepted":true,"history":"a\nb"}
+{"type":"LowCardinality(Nullable(String))","case":"tab","event":"\"a\\tb\"","accepted":true,"history":"a\tb"}
+{"type":"LowCardinality(Nullable(String))","case":"quote","event":"\"say \\\"hi\\\"\"","accepted":true,"history":"say \"hi\""}
+{"type":"LowCardinality(Nullable(String))","case":"backslash","event":"\"back\\\\slash\"","accepted":true,"history":"back\\slash"}
+{"type":"LowCardinality(Nullable(String))","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"LowCardinality(Nullable(String))","case":"escaped_slash","event":"\"a\\/b\"","accepted":true,"history":"a/b"}
+{"type":"LowCardinality(Nullable(String))","case":"leading_trailing_space","event":"\"  padded  \"","accepted":true,"history":"  padded  "}
+{"type":"LowCardinality(Nullable(String))","case":"integer","event":"123","accepted":true,"history":"123"}
+{"type":"LowCardinality(Nullable(String))","case":"float_trailing_zero","event":"1.50","accepted":true,"history":"1.5"}
+{"type":"LowCardinality(Nullable(String))","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"LowCardinality(Nullable(String))","case":"exponent","event":"1e2","accepted":true,"history":"100.0"}
+{"type":"LowCardinality(Nullable(String))","case":"big_integer","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"LowCardinality(Nullable(String))","case":"true","event":"true","accepted":true,"history":"true"}
+{"type":"LowCardinality(Nullable(String))","case":"false","event":"false","accepted":true,"history":"false"}
+{"type":"LowCardinality(Nullable(String))","case":"null","event":"null","accepted":true,"history":null}
+{"type":"LowCardinality(Nullable(String))","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"LowCardinality(Nullable(String))","case":"empty_array","event":"[]","accepted":true,"history":"[]"}
+{"type":"LowCardinality(Nullable(String))","case":"array","event":"[1, \"a\", null]","accepted":true,"history":"[1,\"a\",null]"}
+{"type":"LowCardinality(Nullable(String))","case":"empty_object","event":"{}","accepted":true,"history":"{}"}
+{"type":"LowCardinality(Nullable(String))","case":"object","event":"{\"b\": 1, \"a\": [true, null]}","accepted":true,"history":"{\"a\":[true,null],\"b\":1}"}
+{"type":"LowCardinality(Nullable(String))","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
+{"type":"LowCardinality(Nullable(String))","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"LowCardinality(Nullable(String))","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}

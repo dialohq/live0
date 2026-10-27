@@ -1,0 +1,135 @@
+{"type":"Float32","case":"zero","event":"0","accepted":true,"history":0}
+{"type":"Float32","case":"minus_zero","event":"-0","accepted":true,"history":0}
+{"type":"Float32","case":"zero_point_zero","event":"0.0","accepted":true,"history":0}
+{"type":"Float32","case":"minus_zero_point_zero","event":"-0.0","accepted":true,"history":0}
+{"type":"Float32","case":"one","event":"1","accepted":true,"history":1}
+{"type":"Float32","case":"minus_one","event":"-1","accepted":true,"history":-1}
+{"type":"Float32","case":"fraction","event":"1.5","accepted":true,"history":1.5}
+{"type":"Float32","case":"tenth","event":"0.1","accepted":true,"history":0.1}
+{"type":"Float32","case":"tenth_long","event":"0.1000000000000000055511151231257827","accepted":true,"history":0.1}
+{"type":"Float32","case":"exponent","event":"1e10","accepted":true,"history":10000000000}
+{"type":"Float32","case":"exponent_negative_upper","event":"1E-7","accepted":true,"history":1e-7}
+{"type":"Float32","case":"f64_max","event":"1.7976931348623157e308","accepted":true,"history":"inf"}
+{"type":"Float32","case":"beyond_f64_max","event":"1e400","accepted":true,"history":"inf"}
+{"type":"Float32","case":"beyond_f64_min","event":"-1e400","accepted":true,"history":"-inf"}
+{"type":"Float32","case":"f64_min_subnormal","event":"4.9e-324","accepted":true,"history":0}
+{"type":"Float32","case":"below_f64_subnormal","event":"1e-400","accepted":true,"history":0}
+{"type":"Float32","case":"f32_max","event":"3.4028235e38","accepted":true,"history":3.4028235e+38}
+{"type":"Float32","case":"beyond_f32_max","event":"3.5e38","accepted":true,"history":"inf"}
+{"type":"Float32","case":"f32_precision_limit","event":"16777217","accepted":true,"history":16777216}
+{"type":"Float32","case":"f64_precision_limit","event":"9007199254740993","accepted":true,"history":9007199000000000}
+{"type":"Float32","case":"huge_integer","event":"123456789012345678901234567890","accepted":true,"history":-4362896200000000000}
+{"type":"Float32","case":"u64_max","event":"18446744073709551615","accepted":true,"history":-1}
+{"type":"Float32","case":"string_number","event":"\"1.5\"","accepted":true,"history":1.5}
+{"type":"Float32","case":"string_nan_lower","event":"\"nan\"","accepted":true,"history":"nan"}
+{"type":"Float32","case":"string_nan","event":"\"NaN\"","accepted":true,"history":"nan"}
+{"type":"Float32","case":"string_inf","event":"\"inf\"","accepted":true,"history":"inf"}
+{"type":"Float32","case":"string_minus_inf","event":"\"-inf\"","accepted":true,"history":"-inf"}
+{"type":"Float32","case":"string_infinity","event":"\"Infinity\"","accepted":true,"history":"inf"}
+{"type":"Float32","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"string_empty","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"string_leading_space","event":"\" 1.5\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"true","event":"true","accepted":true,"history":1}
+{"type":"Float32","case":"false","event":"false","accepted":true,"history":0}
+{"type":"Float32","case":"null","event":"null","accepted":true,"history":0}
+{"type":"Float32","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Float32","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float32","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Float32","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Float32","case":"invalid_minus_infinity","event":"-Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token '-Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Float32","case":"invalid_leading_dot","event":".5","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('.' (code 46)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"Float32","case":"invalid_trailing_dot","event":"1.","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)) in numeric value: Decimal point not followed by a digit"}
+{"type":"Float32","case":"invalid_leading_zero","event":"01.5","accepted":true,"history":1.5}
+{"type":"Float64","case":"zero","event":"0","accepted":true,"history":0}
+{"type":"Float64","case":"minus_zero","event":"-0","accepted":true,"history":0}
+{"type":"Float64","case":"zero_point_zero","event":"0.0","accepted":true,"history":0}
+{"type":"Float64","case":"minus_zero_point_zero","event":"-0.0","accepted":true,"history":0}
+{"type":"Float64","case":"one","event":"1","accepted":true,"history":1}
+{"type":"Float64","case":"minus_one","event":"-1","accepted":true,"history":-1}
+{"type":"Float64","case":"fraction","event":"1.5","accepted":true,"history":1.5}
+{"type":"Float64","case":"tenth","event":"0.1","accepted":true,"history":0.1}
+{"type":"Float64","case":"tenth_long","event":"0.1000000000000000055511151231257827","accepted":true,"history":0.1}
+{"type":"Float64","case":"exponent","event":"1e10","accepted":true,"history":10000000000}
+{"type":"Float64","case":"exponent_negative_upper","event":"1E-7","accepted":true,"history":1e-7}
+{"type":"Float64","case":"f64_max","event":"1.7976931348623157e308","accepted":true,"history":1.7976931348623157e+308}
+{"type":"Float64","case":"beyond_f64_max","event":"1e400","accepted":true,"history":"inf"}
+{"type":"Float64","case":"beyond_f64_min","event":"-1e400","accepted":true,"history":"-inf"}
+{"type":"Float64","case":"f64_min_subnormal","event":"4.9e-324","accepted":true,"history":5e-324}
+{"type":"Float64","case":"below_f64_subnormal","event":"1e-400","accepted":true,"history":0}
+{"type":"Float64","case":"f32_max","event":"3.4028235e38","accepted":true,"history":3.4028235e+38}
+{"type":"Float64","case":"beyond_f32_max","event":"3.5e38","accepted":true,"history":3.5e+38}
+{"type":"Float64","case":"f32_precision_limit","event":"16777217","accepted":true,"history":16777217}
+{"type":"Float64","case":"f64_precision_limit","event":"9007199254740993","accepted":true,"history":9007199254740992}
+{"type":"Float64","case":"huge_integer","event":"123456789012345678901234567890","accepted":true,"history":-4362896299872286000}
+{"type":"Float64","case":"u64_max","event":"18446744073709551615","accepted":true,"history":-1}
+{"type":"Float64","case":"string_number","event":"\"1.5\"","accepted":true,"history":1.5}
+{"type":"Float64","case":"string_nan_lower","event":"\"nan\"","accepted":true,"history":"nan"}
+{"type":"Float64","case":"string_nan","event":"\"NaN\"","accepted":true,"history":"nan"}
+{"type":"Float64","case":"string_inf","event":"\"inf\"","accepted":true,"history":"inf"}
+{"type":"Float64","case":"string_minus_inf","event":"\"-inf\"","accepted":true,"history":"-inf"}
+{"type":"Float64","case":"string_infinity","event":"\"Infinity\"","accepted":true,"history":"inf"}
+{"type":"Float64","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"string_empty","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"string_leading_space","event":"\" 1.5\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"true","event":"true","accepted":true,"history":1}
+{"type":"Float64","case":"false","event":"false","accepted":true,"history":0}
+{"type":"Float64","case":"null","event":"null","accepted":true,"history":0}
+{"type":"Float64","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Float64","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Float64","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Float64","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Float64","case":"invalid_minus_infinity","event":"-Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token '-Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Float64","case":"invalid_leading_dot","event":".5","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('.' (code 46)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"Float64","case":"invalid_trailing_dot","event":"1.","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)) in numeric value: Decimal point not followed by a digit"}
+{"type":"Float64","case":"invalid_leading_zero","event":"01.5","accepted":true,"history":1.5}
+{"type":"Nullable(Float64)","case":"zero","event":"0","accepted":true,"history":0}
+{"type":"Nullable(Float64)","case":"minus_zero","event":"-0","accepted":true,"history":0}
+{"type":"Nullable(Float64)","case":"zero_point_zero","event":"0.0","accepted":true,"history":0}
+{"type":"Nullable(Float64)","case":"minus_zero_point_zero","event":"-0.0","accepted":true,"history":0}
+{"type":"Nullable(Float64)","case":"one","event":"1","accepted":true,"history":1}
+{"type":"Nullable(Float64)","case":"minus_one","event":"-1","accepted":true,"history":-1}
+{"type":"Nullable(Float64)","case":"fraction","event":"1.5","accepted":true,"history":1.5}
+{"type":"Nullable(Float64)","case":"tenth","event":"0.1","accepted":true,"history":0.1}
+{"type":"Nullable(Float64)","case":"tenth_long","event":"0.1000000000000000055511151231257827","accepted":true,"history":0.1}
+{"type":"Nullable(Float64)","case":"exponent","event":"1e10","accepted":true,"history":10000000000}
+{"type":"Nullable(Float64)","case":"exponent_negative_upper","event":"1E-7","accepted":true,"history":1e-7}
+{"type":"Nullable(Float64)","case":"f64_max","event":"1.7976931348623157e308","accepted":true,"history":1.7976931348623157e+308}
+{"type":"Nullable(Float64)","case":"beyond_f64_max","event":"1e400","accepted":true,"history":"inf"}
+{"type":"Nullable(Float64)","case":"beyond_f64_min","event":"-1e400","accepted":true,"history":"-inf"}
+{"type":"Nullable(Float64)","case":"f64_min_subnormal","event":"4.9e-324","accepted":true,"history":5e-324}
+{"type":"Nullable(Float64)","case":"below_f64_subnormal","event":"1e-400","accepted":true,"history":0}
+{"type":"Nullable(Float64)","case":"f32_max","event":"3.4028235e38","accepted":true,"history":3.4028235e+38}
+{"type":"Nullable(Float64)","case":"beyond_f32_max","event":"3.5e38","accepted":true,"history":3.5e+38}
+{"type":"Nullable(Float64)","case":"f32_precision_limit","event":"16777217","accepted":true,"history":16777217}
+{"type":"Nullable(Float64)","case":"f64_precision_limit","event":"9007199254740993","accepted":true,"history":9007199254740992}
+{"type":"Nullable(Float64)","case":"huge_integer","event":"123456789012345678901234567890","accepted":true,"history":-4362896299872286000}
+{"type":"Nullable(Float64)","case":"u64_max","event":"18446744073709551615","accepted":true,"history":-1}
+{"type":"Nullable(Float64)","case":"string_number","event":"\"1.5\"","accepted":true,"history":1.5}
+{"type":"Nullable(Float64)","case":"string_nan_lower","event":"\"nan\"","accepted":true,"history":"nan"}
+{"type":"Nullable(Float64)","case":"string_nan","event":"\"NaN\"","accepted":true,"history":"nan"}
+{"type":"Nullable(Float64)","case":"string_inf","event":"\"inf\"","accepted":true,"history":"inf"}
+{"type":"Nullable(Float64)","case":"string_minus_inf","event":"\"-inf\"","accepted":true,"history":"-inf"}
+{"type":"Nullable(Float64)","case":"string_infinity","event":"\"Infinity\"","accepted":true,"history":"inf"}
+{"type":"Nullable(Float64)","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"string_empty","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"string_leading_space","event":"\" 1.5\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"true","event":"true","accepted":true,"history":1}
+{"type":"Nullable(Float64)","case":"false","event":"false","accepted":true,"history":0}
+{"type":"Nullable(Float64)","case":"null","event":"null","accepted":true,"history":null}
+{"type":"Nullable(Float64)","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"Nullable(Float64)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Float64)","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(Float64)","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(Float64)","case":"invalid_minus_infinity","event":"-Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token '-Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(Float64)","case":"invalid_leading_dot","event":".5","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('.' (code 46)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"Nullable(Float64)","case":"invalid_trailing_dot","event":"1.","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)) in numeric value: Decimal point not followed by a digit"}
+{"type":"Nullable(Float64)","case":"invalid_leading_zero","event":"01.5","accepted":true,"history":1.5}

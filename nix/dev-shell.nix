@@ -169,6 +169,17 @@
             '';
           };
 
+          scripts.decoder-cases = {
+            description = "run the types crate's decoder cases through the running stack, rewriting its tests/results";
+            runtimeInputs = [ pkgs.curl ];
+            text = ''
+              export REDPANDA_CONTAINER=${redpandaContainer}
+              export CONNECT_URL=http://127.0.0.1:${toString connectPort}
+              cd "$DNVR_ROOT"
+              exec cargo run -q -p decoder-cases
+            '';
+          };
+
           processes.connectors = {
             env = {
               CONNECT_URL = "dnvr://kafka-connect/url";
