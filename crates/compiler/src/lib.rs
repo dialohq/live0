@@ -1,16 +1,22 @@
-use serde_json::{Map, Value};
+pub use crate::access::{Access, Grant, Params};
+pub use crate::error::Error;
+pub use crate::expr::{AggregateFunction, CompareOp, EvalError, Expr, Function};
+pub use crate::history::{HistoryQueries, HistorySql};
+pub use crate::plan::{Aggregate, Fingerprint, Plan, Shape, SortKey, Source, SourceId, TimeBound};
 
-pub use crate::plan::Plan;
-use crate::{bind::bind, plan::plan};
-
+mod access;
 mod bind;
+mod error;
+mod expr;
+mod history;
 mod plan;
 
-#[derive(Debug)]
-pub enum Error {}
-
-pub fn compile(query: parser::Query, params: Map<String, Value>) -> Result<Plan, Error> {
-    let bound = bind(query, params).unwrap();
-    let plan = plan(bound).unwrap();
-    Ok(plan)
+pub fn compile(
+    query: &parser::Query,
+    catalog: &catalog::Catalog,
+    params: &Params,
+    access: &Access,
+) -> Result<Plan, Error> {
+    let bound = bind::bind(query, catalog, params, access)?;
+    plan::plan(bound)
 }

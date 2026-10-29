@@ -6,10 +6,18 @@ version = "0.1.0"
 [lib]
 
 [dependencies]
-parser.workspace = true
+catalog.workspace = true
 compiler.workspace = true
-serde_json.workspace = true
 config.workspace = true
+io.workspace = true
+parser.workspace = true
+qstate.workspace = true
+snapshot.workspace = true
+thiserror.workspace = true
+types.workspace = true
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 
 [lints]
 workspace = true

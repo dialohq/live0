@@ -1,10 +1,15 @@
-use serde_json::{Map, Value};
+use catalog::Catalog;
 
-#[derive(Debug, thiserror::Error)]
-pub enum Error {}
+use crate::{Access, Error, Params};
 
-pub struct BoundQuery {}
+/// The query with names resolved, types checked, parameters bound, security applied and normalized.
+pub(crate) struct BoundQuery {}
 
-pub fn bind(parsed: parser::ast::Query, params: Map<String, Value>) -> Result<BoundQuery, Error> {
+pub(crate) fn bind(
+    query: &parser::Query,
+    catalog: &Catalog,
+    params: &Params,
+    access: &Access,
+) -> Result<BoundQuery, Error> {
     todo!()
 }

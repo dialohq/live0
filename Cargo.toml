@@ -9,6 +9,9 @@ io = { path = "crates/io" }
 snapshot = { path = "crates/snapshot" }
 compiler = { path = "crates/compiler" }
 config = { path = "crates/config" }
+catalog = { path = "crates/catalog" }
+qstate = { path = "crates/qstate" }
+async-trait = "0.1.92"
 thiserror = "2.0.21"
 serde = "1.0.229"
 serde_json = "1.0.154"

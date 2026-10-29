@@ -2,7 +2,7 @@ use serde_json::{Map, Value as Json};
 
 use crate::data_types::{DataType, HistoryError};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Value {
     Null,
     String(String),

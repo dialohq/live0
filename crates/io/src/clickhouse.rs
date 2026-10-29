@@ -1,48 +1,66 @@
 use async_trait::async_trait;
 use serde_json::Value as Json;
-use types::{DataType, DecodeError, DecodeSpec, Row};
+use types::{DataType, DecodeError, Row, Schema};
 
-use crate::{DescribedTable, HISTORY_FORMAT, HISTORY_SETTINGS, HistorySource};
+use crate::{ColumnDefault, DescribedColumn, Error, HistorySource, Statement, TableDescription};
+
+pub const HISTORY_FORMAT: &str = "JSONCompactEachRowWithNamesAndTypes";
+pub const HISTORY_SETTINGS: &[(&str, &str)] = &[
+    ("output_format_json_quote_64bit_integers", "1"),
+    ("output_format_json_quote_denormals", "1"),
+];
 
 #[derive(Debug, thiserror::Error)]
-pub enum Error {
+pub enum ClickhouseError {
     #[error("HTTP request error: {0}")]
     RequestError(#[from] reqwest::Error),
     #[error("ClickHouse returned {status}: {body}")]
     ServerError { status: u16, body: String },
     #[error("malformed response line: {0}")]
     ResponseError(#[from] serde_json::Error),
-    #[error("column `{column}` has an unsupported type `{ty}`")]
-    UnsupportedType { column: String, ty: String },
     #[error(transparent)]
     DecodeError(#[from] DecodeError),
 }
 
-pub struct ClickhouseHistory {
+/// A ClickHouse HTTP connection, also used by `snapshot` for clone DDL.
+#[derive(Clone)]
+pub struct ClickhouseClient {
     client: reqwest::Client,
-    host: String,
-    port: u16,
+    url: String,
     user: String,
     password: String,
     database: String,
 }
 
-impl ClickhouseHistory {
-    pub fn new(host: String, port: u16, user: String, password: String, database: String) -> Self {
+impl ClickhouseClient {
+    pub fn new(config: &config::ClickhouseConfig) -> Self {
         Self {
             client: reqwest::Client::new(),
-            host,
-            port,
-            user,
-            password,
-            database,
+            url: config.url.clone(),
+            user: config.user.clone(),
+            password: config.password.clone(),
+            database: config.database.clone(),
         }
     }
 
-    async fn query(&self, sql: &str, format: &str) -> Result<String, Error> {
+    pub fn database(&self) -> &str {
+        &self.database
+    }
+
+    /// Runs `statement` and returns the whole response body in `format`.
+    pub async fn query(
+        &self,
+        statement: &Statement,
+        format: &str,
+    ) -> Result<String, ClickhouseError> {
+        let params: Vec<(String, &str)> = statement
+            .params
+            .iter()
+            .map(|(name, value)| (format!("param_{name}"), value.as_str()))
+            .collect();
         let resp = self
             .client
-            .post(format!("http://{}:{}/", self.host, self.port))
+            .post(&self.url)
             .header("X-ClickHouse-User", &self.user)
             .header("X-ClickHouse-Key", &self.password)
             .query(&[
@@ -52,99 +70,119 @@ impl ClickhouseHistory {
                 ("wait_end_of_query", "1"),
             ])
             .query(HISTORY_SETTINGS)
-            .body(sql.to_owned())
+            .query(&params)
+            .body(statement.sql.clone())
             .send()
             .await?;
         let status = resp.status();
         let body = resp.text().await?;
         if !status.is_success() {
-            return Err(Error::ServerError {
+            return Err(ClickhouseError::ServerError {
                 status: status.as_u16(),
                 body: body.trim().to_owned(),
             });
         }
         Ok(body)
     }
+
+    /// Runs a statement without a result, such as DDL.
+    pub async fn execute(&self, statement: &Statement) -> Result<(), ClickhouseError> {
+        self.query(statement, "TabSeparated").await.map(drop)
+    }
+}
+
+pub struct ClickhouseHistory {
+    client: ClickhouseClient,
+}
+
+impl ClickhouseHistory {
+    pub fn new(client: ClickhouseClient) -> Self {
+        Self { client }
+    }
 }
 
 #[async_trait]
 impl HistorySource for ClickhouseHistory {
-    type Error = Error;
-
-    async fn fetch(&self, spec: DecodeSpec, sql: &str) -> Result<Vec<Row>, Error> {
-        decode_rows(&self.query(sql, HISTORY_FORMAT).await?, &spec)
+    async fn describe(&self, table: &str) -> Result<TableDescription, Error> {
+        let columns = Statement {
+            sql: "DESCRIBE TABLE {table:Identifier}".to_owned(),
+            params: vec![("table".to_owned(), table.to_owned())],
+        };
+        let body = self.client.query(&columns, "JSONEachRow").await?;
+        Ok(TableDescription {
+            columns: decode_columns(&body)?,
+            engine: todo!("get the table engine from `system.tables` as well"),
+        })
     }
 
-    async fn describe(&self, table: &str) -> Result<DescribedTable, Error> {
-        let body = self
-            .query(&format!("DESCRIBE TABLE {table}"), "JSONEachRow")
-            .await?;
-        decode_describe(&body)
+    async fn fetch(&self, statement: &Statement, schema: &Schema) -> Result<Vec<Row>, Error> {
+        Ok(decode_rows(
+            &self.client.query(statement, HISTORY_FORMAT).await?,
+            schema,
+        )?)
     }
 }
 
-fn decode_rows(body: &str, spec: &DecodeSpec) -> Result<Vec<Row>, Error> {
-    // Skips the names and types lines; the spec already says how to decode each column.
+fn decode_rows(body: &str, schema: &Schema) -> Result<Vec<Row>, ClickhouseError> {
+    // Skips the names and types lines; the schema already says how to decode each column.
     body.lines()
         .filter(|l| !l.is_empty())
         .skip(2)
-        .map(|line| Ok(types::decode_history(&serde_json::from_str(line)?, spec)?))
+        .map(|line| Ok(types::decode_history(&serde_json::from_str(line)?, schema)?))
         .collect()
 }
 
-fn decode_describe(body: &str) -> Result<DescribedTable, Error> {
-    let mut spec = DecodeSpec::new();
-    for line in body.lines().filter(|l| !l.is_empty()) {
-        let row: Json = serde_json::from_str(line)?;
-        let field = |key: &str| row[key].as_str().unwrap_or_default().to_owned();
-        // Neither selected by `SELECT *` nor written by inserts.
-        if matches!(
-            field("default_type").as_str(),
-            "MATERIALIZED" | "ALIAS" | "EPHEMERAL"
-        ) {
-            continue;
-        }
-        let (name, ty) = (field("name"), field("type"));
-        match DataType::parse(&ty) {
-            DataType::Other(_) => return Err(Error::UnsupportedType { column: name, ty }),
-            parsed => spec.push((name, parsed)),
-        }
-    }
-
-    Ok(DescribedTable {
-        columns: spec,
-        engine: todo!("get the table engine from `system.tables` as well"),
-    })
+fn decode_columns(body: &str) -> Result<Vec<DescribedColumn>, ClickhouseError> {
+    body.lines()
+        .filter(|l| !l.is_empty())
+        .map(|line| {
+            let row: Json = serde_json::from_str(line)?;
+            let field = |key: &str| row[key].as_str().unwrap_or_default();
+            Ok(DescribedColumn {
+                name: field("name").to_owned(),
+                ty: DataType::parse(field("type")),
+                default: match field("default_type") {
+                    "DEFAULT" => ColumnDefault::Default,
+                    "MATERIALIZED" => ColumnDefault::Materialized,
+                    "ALIAS" => ColumnDefault::Alias,
+                    "EPHEMERAL" => ColumnDefault::Ephemeral,
+                    _ => ColumnDefault::None,
+                },
+            })
+        })
+        .collect()
 }
 
 #[cfg(test)]
 mod tests {
-    use types::Value;
+    use types::{Column, Value};
 
     use super::*;
 
-    fn spec(columns: &[(&str, &str)]) -> DecodeSpec {
-        columns
-            .iter()
-            .map(|(name, ty)| ((*name).to_owned(), DataType::parse(ty)))
-            .collect()
+    fn schema(columns: &[(&str, &str)]) -> Schema {
+        Schema {
+            columns: columns
+                .iter()
+                .map(|(name, ty)| Column::new(*name, DataType::parse(ty)))
+                .collect(),
+        }
     }
 
     #[test]
-    fn decodes_rows_by_spec() {
+    fn decodes_rows_by_schema() {
         let body = concat!(
             "[\"id\", \"name\", \"score\"]\n",
             "[\"UInt64\", \"LowCardinality(String)\", \"Nullable(Float64)\"]\n",
             "[\"18446744073709551615\", \"a\", 1.5]\n",
             "[\"0\", \"\", null]\n",
         );
-        let spec = spec(&[
+        let schema = schema(&[
             ("id", "UInt64"),
             ("name", "LowCardinality(String)"),
             ("score", "Nullable(Float64)"),
         ]);
         assert_eq!(
-            decode_rows(body, &spec).unwrap(),
+            decode_rows(body, &schema).unwrap(),
             vec![
                 vec![
                     Value::Int(u64::MAX.into()),
@@ -158,41 +196,43 @@ mod tests {
 
     #[test]
     fn no_rows() {
-        let spec = spec(&[("a", "Int8")]);
+        let schema = schema(&[("a", "Int8")]);
         assert_eq!(
-            decode_rows("[\"a\"]\n[\"Int8\"]\n", &spec).unwrap(),
+            decode_rows("[\"a\"]\n[\"Int8\"]\n", &schema).unwrap(),
             Vec::<Row>::new()
         );
-        assert_eq!(decode_rows("", &spec).unwrap(), Vec::<Row>::new());
+        assert_eq!(decode_rows("", &schema).unwrap(), Vec::<Row>::new());
     }
 
     #[test]
     fn invalid_history_row() {
-        let spec = spec(&[("a", "Int8")]);
-        let err = decode_rows("[\"a\"]\n[\"Int8\"]\n[300]\n", &spec).unwrap_err();
-        assert!(matches!(err, Error::DecodeError(DecodeError::Value { .. })));
+        let schema = schema(&[("a", "Int8")]);
+        let err = decode_rows("[\"a\"]\n[\"Int8\"]\n[300]\n", &schema).unwrap_err();
+        assert!(matches!(
+            err,
+            ClickhouseError::DecodeError(DecodeError::Value { .. })
+        ));
     }
 
     #[test]
-    fn describe_skips_unstored_columns() {
+    fn describe_keeps_every_column() {
         let body = concat!(
-            "{\"name\":\"id\",\"type\":\"UInt64\",\"default_type\":\"\"}\n",
+            "{\"name\":\"id\",\"type\":\"UUID\",\"default_type\":\"\"}\n",
             "{\"name\":\"name\",\"type\":\"LowCardinality(Nullable(String))\",\"default_type\":\"DEFAULT\"}\n",
             "{\"name\":\"upper\",\"type\":\"String\",\"default_type\":\"MATERIALIZED\"}\n",
-            "{\"name\":\"alias\",\"type\":\"String\",\"default_type\":\"ALIAS\"}\n",
         );
+        let column = |name: &str, ty: &str, default| DescribedColumn {
+            name: name.to_owned(),
+            ty: DataType::parse(ty),
+            default,
+        };
         assert_eq!(
-            decode_describe(body).unwrap(),
-            spec(&[("id", "UInt64"), ("name", "Nullable(String)")])
+            decode_columns(body).unwrap(),
+            vec![
+                column("id", "UUID", ColumnDefault::None),
+                column("name", "Nullable(String)", ColumnDefault::Default),
+                column("upper", "String", ColumnDefault::Materialized),
+            ]
         );
-    }
-
-    #[test]
-    fn describe_unsupported_type() {
-        let body = "{\"name\":\"id\",\"type\":\"UUID\",\"default_type\":\"\"}\n";
-        assert!(matches!(
-            decode_describe(body),
-            Err(Error::UnsupportedType { column, ty }) if column == "id" && ty == "UUID"
-        ));
     }
 }

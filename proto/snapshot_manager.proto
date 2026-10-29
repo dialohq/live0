@@ -1,4 +1,79 @@
 syntax = "proto3";
 package snapshot_manager;
 
-service SnapshotManager {}
+service SnapshotManager {
+  // The table's current clone, or one taken past `newer_than`; waits while the clone is being taken.
+  rpc Acquire(AcquireRequest) returns (AcquireResponse);
+  // Must be called within the lease's ttl, or the lease expires.
+  rpc Renew(RenewRequest) returns (RenewResponse);
+  rpc Release(ReleaseRequest) returns (ReleaseResponse);
+  rpc Status(StatusRequest) returns (StatusResponse);
+}
+
+// Per topic and partition, the next offset not in the clone.
+message Watermark {
+  repeated TopicOffsets topics = 1;
+}
+
+message TopicOffsets {
+  string topic = 1;
+  map<int32, int64> partitions = 2;
+}
+
+message AcquireRequest {
+  string table = 1;
+  optional Watermark newer_than = 2;
+  // Who holds the lease, for the status page.
+  string holder = 3;
+}
+
+message AcquireResponse {
+  Lease lease = 1;
+}
+
+message Lease {
+  string id = 1;
+  string table = 2;
+  string clone = 3;
+  Watermark watermark = 4;
+  // Unix milliseconds.
+  int64 taken_at_ms = 5;
+  uint64 ttl_ms = 6;
+}
+
+message RenewRequest {
+  string lease_id = 1;
+}
+
+message RenewResponse {
+  uint64 ttl_ms = 1;
+}
+
+message ReleaseRequest {
+  string lease_id = 1;
+}
+
+message ReleaseResponse {}
+
+message StatusRequest {}
+
+message StatusResponse {
+  repeated TableStatus tables = 1;
+}
+
+message TableStatus {
+  string table = 1;
+  optional CloneStatus current = 2;
+  repeated CloneStatus retired = 3;
+  bool refreshing = 4;
+  optional string last_error = 5;
+}
+
+message CloneStatus {
+  string name = 1;
+  Watermark watermark = 2;
+  // Unix milliseconds.
+  int64 taken_at_ms = 3;
+  uint64 took_ms = 4;
+  uint64 leases = 5;
+}

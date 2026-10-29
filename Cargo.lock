@@ -67,6 +67,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc652a48c352aef3ea3aed32080501cf3ef6ed5da78602a020c991775b0aff04"
 
 [[package]]
+name = "catalog"
+version = "0.1.0"
+dependencies = [
+ "config",
+ "io",
+ "thiserror",
+ "types",
+]
+
+[[package]]
 name = "cc"
 version = "1.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -124,14 +134,20 @@ dependencies = [
 name = "compiler"
 version = "0.1.0"
 dependencies = [
+ "catalog",
+ "io",
  "parser",
  "serde_json",
  "thiserror",
+ "types",
 ]
 
 [[package]]
 name = "config"
 version = "0.1.0"
+dependencies = [
+ "thiserror",
+]
 
 [[package]]
 name = "core-foundation"
@@ -218,10 +234,16 @@ dependencies = [
 name = "engine"
 version = "0.1.0"
 dependencies = [
+ "catalog",
  "compiler",
  "config",
+ "io",
  "parser",
- "serde_json",
+ "qstate",
+ "snapshot",
+ "thiserror",
+ "tokio",
+ "types",
 ]
 
 [[package]]
@@ -568,6 +590,7 @@ name = "io"
 version = "0.1.0"
 dependencies = [
  "async-trait",
+ "config",
  "reqwest",
  "serde_json",
  "thiserror",
@@ -1168,11 +1191,19 @@ checksum = "d0d5d4b1981b8bbbb7aed204cae5726d683d5d6ac7e74ec54122ea28f315e7c8"
 [[package]]
 name = "snapshot"
 version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "config",
+ "io",
+ "thiserror",
+ "types",
+]
 
 [[package]]
 name = "snapshot-manager"
 version = "0.1.0"
 dependencies = [
+ "config",
  "snapshot",
  "tokio",
 ]

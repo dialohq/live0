@@ -3,7 +3,7 @@ use serde_json::Value as Json;
 use crate::data_types::HistoryError;
 use crate::data_types::sink::{SinkNumber, java_double};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct FloatType {
     pub(crate) width: u8,
 }

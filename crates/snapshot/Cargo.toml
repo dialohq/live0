@@ -5,5 +5,15 @@ version = "0.1.0"
 
 [lib]
 
+[features]
+service = []
+
 [lints]
 workspace = true
+
+[dependencies]
+async-trait.workspace = true
+config.workspace = true
+io.workspace = true
+thiserror.workspace = true
+types.workspace = true

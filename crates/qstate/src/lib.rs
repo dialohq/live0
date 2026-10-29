@@ -1,31 +1,10 @@
-use compiler::Plan;
-use types::{Diff, Event, Snapshot, Watermark};
+pub use crate::checkpoint::Checkpoint;
+pub use crate::error::Error;
+pub use crate::fetch::{Answer, Fetch, FetchId, Freshness};
+pub use crate::state::{Live, Needs, QState, Starting, Step, start};
 
-pub enum Error {}
-
-pub struct Live {}
-pub struct AwaitingSnapshot {}
-pub enum QState {
-    Live(Live),
-    AwaitingSnapshot(AwaitingSnapshot),
-}
-
-pub struct Fetch {}
-
-impl QState {
-    pub fn new(plan: Plan, resume: Option<Watermark>) -> Result<Self, Error> {
-        todo!()
-    }
-}
-
-impl AwaitingSnapshot {
-    pub fn feed(rows: Snapshot) -> Result<Live, Error> {
-        todo!()
-    }
-}
-
-impl Live {
-    pub fn feed(events: Vec<Event>) -> Vec<Diff> {
-        todo!()
-    }
-}
+mod checkpoint;
+mod error;
+mod fetch;
+mod shapes;
+mod state;

@@ -1,24 +1,9 @@
-use std::{net::SocketAddr, time::Duration};
+pub use crate::load::{ENV_PREFIX, Error, Sources, load};
+pub use crate::sections::{
+    ClickhouseConfig, ColumnRule, Config, KafkaConfig, ManagerConfig, PauseConfig, PostgresConfig,
+    ProviderConfig, RemoteConfig, RowRule, SecurityConfig, ServerConfig, SnapshotManagerConfig,
+    SnapshotsConfig, TableConfig, TablesConfig, WorkOsConfig,
+};
 
-pub struct Config {
-    server: ServerConfig,
-    clickhouse: ClickhouseConfig,
-    kafka: KafkaConfig,
-}
-
-pub struct ServerConfig {
-    listen: SocketAddr,
-}
-
-pub struct ClickhouseConfig {
-    /// Clickhouse HTTP URL
-    url: String,
-    user: String,
-    password: Option<String>,
-    password_env: Option<String>,
-}
-
-pub struct KafkaConfig {
-    pub brokers: String,
-    pub metadata_refresh: Duration,
-}
+mod load;
+mod sections;

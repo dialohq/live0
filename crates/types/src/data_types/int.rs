@@ -3,7 +3,7 @@ use serde_json::Value as Json;
 use crate::data_types::HistoryError;
 use crate::data_types::sink::{SinkNumber, wrapping_digits};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct IntType {
     pub(crate) signed: bool,
     pub(crate) width: u8,

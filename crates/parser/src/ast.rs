@@ -11,6 +11,13 @@ pub struct Query {
     pub offset: Option<(u64, Span)>,              // OFFSET ...
 }
 
+impl Query {
+    /// Every table the query reads, its own and its subqueries', each once.
+    pub fn tables(&self) -> Vec<&str> {
+        todo!()
+    }
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub enum Projection {
     Wildcard,

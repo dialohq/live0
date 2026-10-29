@@ -30,7 +30,7 @@ impl HistoryError {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum DataType {
     Nullable(Box<DataType>),
     String(StringType),

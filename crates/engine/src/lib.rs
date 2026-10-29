@@ -1,36 +1,9 @@
-use compiler::Plan;
-use serde_json::{Map, Value};
+pub use crate::cursor::Cursor;
+pub use crate::engine::{Engine, Query};
+pub use crate::error::Error;
+pub use crate::subscription::{Iteration, Output, Subscription};
 
-#[derive(Debug)]
-pub enum Error {}
-
-// for security, probably doesn't belong here
-struct RowFilter {}
-
-pub struct Engine {}
-
-pub struct Subscription {}
-
-impl Engine {
-    pub async fn new(config: config::Config) -> Result<Self, Error> {
-        todo!()
-    }
-
-    pub async fn explain(&self, sql: &str, params: Map<String, Value>) -> Plan {
-        let parsed = parser::parse(sql).unwrap();
-        let plan = compiler::compile(parsed, params).unwrap();
-        plan
-    }
-
-    pub async fn subscribe(
-        &self,
-        sql: &str,
-        params: Map<String, Value>,
-        filters: Vec<RowFilter>,
-    ) -> Subscription {
-        let plan = self.explain(sql, params).await;
-        todo!()
-    }
-}
-
-impl Subscription {}
+mod cursor;
+mod engine;
+mod error;
+mod subscription;

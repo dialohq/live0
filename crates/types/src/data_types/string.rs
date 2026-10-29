@@ -2,7 +2,7 @@ use serde_json::Value as Json;
 
 use crate::data_types::{HistoryError, sink};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct StringType;
 
 impl StringType {

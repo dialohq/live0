@@ -3,7 +3,7 @@ use serde_json::{Map, Number, Value as Json};
 use crate::data_types::HistoryError;
 use crate::data_types::sink::SinkNumber;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct JsonType;
 
 impl JsonType {

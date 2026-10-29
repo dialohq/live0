@@ -1,26 +1,15 @@
 pub use crate::data_types::{DataType, HistoryError};
+pub use crate::diff::{Diff, Snapshot};
 pub use crate::event::Event;
 pub use crate::row::{DecodeError, Row, decode_event, decode_history};
+pub use crate::schema::{Column, Schema};
 pub use crate::value::Value;
-pub use crate::watermark::Watermark;
+pub use crate::watermark::{Offset, Partition, Watermark};
 
 mod data_types;
+mod diff;
 mod event;
 mod row;
+mod schema;
 mod value;
 mod watermark;
-
-pub type DecodeSpec = Vec<(String, DataType)>;
-
-pub struct Snapshot {
-    rows: Vec<Row>,
-}
-
-pub struct Insert {
-    position: usize,
-    row: Row,
-}
-
-pub enum Diff {
-    Insert(Insert),
-}
