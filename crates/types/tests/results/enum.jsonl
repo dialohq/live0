@@ -25,6 +25,16 @@
 {"type":"Enum8('a' = 1, 'b' = 2)","case":"absent","event":null,"accepted":true,"history":"a"}
 {"type":"Enum8('a' = 1, 'b' = 2)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
 {"type":"Enum8('a' = 1, 'b' = 2)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"name_backslash","event":"\"back\\\\slash\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'back\\slash' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"string_negative","event":"\"-128\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '-128' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"string_leading_zero","event":"\"01\"","accepted":true,"history":"a"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"string_plus","event":"\"+1\"","accepted":true,"history":"a"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"string_wrap","event":"\"257\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '257' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"string_spaces","event":"\" 1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element ' 1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"string_fraction","event":"\"1.0\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '1.0' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"u16_wrap","event":"66536","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -24 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"negative_wrap","event":"-255","accepted":true,"history":"a"}
+{"type":"Enum8('a' = 1, 'b' = 2)","case":"beyond_u64","event":"18446744073709551617","accepted":true,"history":"a"}
 {"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"name_a","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'a' for enum: (while reading the value of key v): (at row 1)"}
 {"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"name_b","event":"\"b\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'b' for enum: (while reading the value of key v): (at row 1)"}
 {"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"upper_a","event":"\"A\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'A' for enum: (while reading the value of key v): (at row 1)"}
@@ -52,6 +62,16 @@
 {"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"absent","event":null,"accepted":true,"history":"neg"}
 {"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"name_backslash","event":"\"back\\\\slash\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'back\\slash' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"string_negative","event":"\"-128\"","accepted":true,"history":"neg"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"string_leading_zero","event":"\"01\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '01' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"string_plus","event":"\"+1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '+1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"string_wrap","event":"\"257\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '257' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"string_spaces","event":"\" 1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element ' 1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"string_fraction","event":"\"1.0\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '1.0' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"u16_wrap","event":"66536","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -24 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"negative_wrap","event":"-255","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 1 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)","case":"beyond_u64","event":"18446744073709551617","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 1 in enum: (while reading the value of key v): (at row 1)"}
 {"type":"Enum16('x' = 1000, 'y' = -1000)","case":"name_a","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'a' for enum, maybe you meant: ['y']: (while reading the value of key v): (at row 1)"}
 {"type":"Enum16('x' = 1000, 'y' = -1000)","case":"name_b","event":"\"b\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'b' for enum, maybe you meant: ['y']: (while reading the value of key v): (at row 1)"}
 {"type":"Enum16('x' = 1000, 'y' = -1000)","case":"upper_a","event":"\"A\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'A' for enum, maybe you meant: ['y']: (while reading the value of key v): (at row 1)"}
@@ -79,6 +99,16 @@
 {"type":"Enum16('x' = 1000, 'y' = -1000)","case":"absent","event":null,"accepted":true,"history":"y"}
 {"type":"Enum16('x' = 1000, 'y' = -1000)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
 {"type":"Enum16('x' = 1000, 'y' = -1000)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"name_backslash","event":"\"back\\\\slash\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'back\\slash' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"string_negative","event":"\"-128\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '-128' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"string_leading_zero","event":"\"01\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '01' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"string_plus","event":"\"+1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '+1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"string_wrap","event":"\"257\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '257' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"string_spaces","event":"\" 1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element ' 1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"string_fraction","event":"\"1.0\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '1.0' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"u16_wrap","event":"66536","accepted":true,"history":"x"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"negative_wrap","event":"-255","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -255 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum16('x' = 1000, 'y' = -1000)","case":"beyond_u64","event":"18446744073709551617","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 1 in enum: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"name_a","event":"\"a\"","accepted":true,"history":"a"}
 {"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"name_b","event":"\"b\"","accepted":true,"history":"b"}
 {"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"upper_a","event":"\"A\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'A' for enum, maybe you meant: ['a']: (while reading the value of key v): (at row 1)"}
@@ -106,3 +136,50 @@
 {"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"absent","event":null,"accepted":true,"history":null}
 {"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"name_backslash","event":"\"back\\\\slash\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'back\\slash' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"string_negative","event":"\"-128\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '-128' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"string_leading_zero","event":"\"01\"","accepted":true,"history":"a"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"string_plus","event":"\"+1\"","accepted":true,"history":"a"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"string_wrap","event":"\"257\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '257' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"string_spaces","event":"\" 1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element ' 1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"string_fraction","event":"\"1.0\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '1.0' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"u16_wrap","event":"66536","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -24 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"negative_wrap","event":"-255","accepted":true,"history":"a"}
+{"type":"Nullable(Enum8('a' = 1, 'b' = 2))","case":"beyond_u64","event":"18446744073709551617","accepted":true,"history":"a"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"name_a","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'a' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"name_b","event":"\"b\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'b' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"upper_a","event":"\"A\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'A' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"unknown_name","event":"\"c\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'c' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"spaced_name","event":"\" a\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element ' a' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"name_neg","event":"\"neg\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'neg' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"name_zero","event":"\"zero\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'zero' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"name_x","event":"\"x\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element 'x' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"one","event":"1","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"two","event":"2","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 2 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"three","event":"3","accepted":true,"history":""}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"zero","event":"0","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"i8_min","event":"-128","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -128 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"i8_max","event":"127","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 127 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"thousand","event":"1000","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -24 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"minus_thousand","event":"-1000","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 24 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"u8_wrap","event":"257","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"float_one","event":"1.0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"float_one\"}': (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"float_fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_fraction\"}': (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_one","event":"\"1\"","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_thousand","event":"\"1000\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '1000' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"empty_string","event":"\"\"","accepted":true,"history":""}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"null","event":"null","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"absent","event":null,"accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value 0 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"name_backslash","event":"\"back\\\\slash\"","accepted":true,"history":"back\\slash"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_negative","event":"\"-128\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '-128' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_leading_zero","event":"\"01\"","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_plus","event":"\"+1\"","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_wrap","event":"\"257\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '257' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_spaces","event":"\" 1\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element ' 1' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"string_fraction","event":"\"1.0\"","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unknown element '1.0' for enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"u16_wrap","event":"66536","accepted":false,"error":"java.io.IOException: Code: 691. DB::Exception: Unexpected value -24 in enum: (while reading the value of key v): (at row 1)"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"negative_wrap","event":"-255","accepted":true,"history":"ok"}
+{"type":"Enum8('ok' = 1, '' = 3, 'back\\\\slash' = 4)","case":"beyond_u64","event":"18446744073709551617","accepted":true,"history":"ok"}

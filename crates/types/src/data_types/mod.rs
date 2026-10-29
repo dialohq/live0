@@ -4,7 +4,8 @@ pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
     boolean::BoolType, date::DateType, datetime::DateTimeType, decimal::DecimalType,
-    float::FloatType, int::IntType, json::JsonType, string::StringType, uuid::UuidType,
+    enumeration::EnumType, float::FloatType, int::IntType, json::JsonType, string::StringType,
+    uuid::UuidType,
 };
 
 mod boolean;
@@ -13,6 +14,7 @@ mod cases;
 mod date;
 mod datetime;
 mod decimal;
+mod enumeration;
 mod float;
 mod int;
 mod json;
@@ -49,6 +51,7 @@ pub enum DataType {
     DateTime(DateTimeType),
     Decimal(DecimalType),
     Uuid(UuidType),
+    Enum(EnumType),
     Other(String),
 }
 
@@ -89,6 +92,7 @@ impl DataType {
             _ => DateTimeType::parse(raw)
                 .map(Self::DateTime)
                 .or_else(|| DecimalType::parse_type(raw).map(Self::Decimal))
+                .or_else(|| EnumType::parse(raw).map(Self::Enum))
                 .unwrap_or_else(|| Self::Other(raw.to_owned())),
         }
     }

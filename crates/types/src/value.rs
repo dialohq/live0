@@ -16,6 +16,8 @@ pub enum Value {
     /// The number times `10^scale` of the column's type.
     Decimal(I256),
     Uuid(u128),
+    /// The number of one of the type's names.
+    Enum(i16),
     /// Ticks of the column's precision since the epoch; the time zone is in the type.
     DateTime(i64),
 }
@@ -35,6 +37,7 @@ impl Value {
             DataType::DateTime(t) => t.decode_event(json).map(Value::DateTime),
             DataType::Decimal(d) => d.decode_event(json).map(Value::Decimal),
             DataType::Uuid(u) => u.decode_event(json).map(Value::Uuid),
+            DataType::Enum(e) => e.decode_event(json).map(Value::Enum),
             DataType::Other(_) => None,
         }
     }
@@ -52,6 +55,7 @@ impl Value {
             DataType::DateTime(t) => t.decode_history(json).map(Value::DateTime),
             DataType::Decimal(d) => d.decode_history(json).map(Value::Decimal),
             DataType::Uuid(u) => u.decode_history(json).map(Value::Uuid),
+            DataType::Enum(e) => e.decode_history(json).map(Value::Enum),
             DataType::Other(raw) => Err(HistoryError::new(raw, json)),
         }
     }
