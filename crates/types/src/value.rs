@@ -1,3 +1,5 @@
+use std::net::{Ipv4Addr, Ipv6Addr};
+
 use ethnum::{I256, U256};
 use serde_json::{Map, Value as Json};
 
@@ -21,6 +23,8 @@ pub enum Value {
     /// The number times `10^scale` of the column's type.
     Decimal(I256),
     Uuid(u128),
+    Ipv4(Ipv4Addr),
+    Ipv6(Ipv6Addr),
     /// The number of one of the type's names.
     Enum(i16),
     /// Ticks of the column's precision since the epoch; the time zone is in the type.
@@ -42,6 +46,8 @@ impl Value {
             DataType::DateTime(t) => t.decode_event(json).map(Value::DateTime),
             DataType::Decimal(d) => d.decode_event(json).map(Value::Decimal),
             DataType::Uuid(u) => u.decode_event(json).map(Value::Uuid),
+            DataType::Ipv4(ip) => ip.decode_event(json).map(Value::Ipv4),
+            DataType::Ipv6(ip) => ip.decode_event(json).map(Value::Ipv6),
             DataType::Enum(e) => e.decode_event(json).map(Value::Enum),
             DataType::FixedString(f) => f.decode_event(json).map(Value::String),
             DataType::Other(_) => None,
@@ -61,6 +67,8 @@ impl Value {
             DataType::DateTime(t) => t.decode_history(json).map(Value::DateTime),
             DataType::Decimal(d) => d.decode_history(json).map(Value::Decimal),
             DataType::Uuid(u) => u.decode_history(json).map(Value::Uuid),
+            DataType::Ipv4(ip) => ip.decode_history(json).map(Value::Ipv4),
+            DataType::Ipv6(ip) => ip.decode_history(json).map(Value::Ipv6),
             DataType::Enum(e) => e.decode_history(json).map(Value::Enum),
             DataType::FixedString(f) => f.decode_history(json).map(Value::String),
             DataType::Other(raw) => Err(HistoryError::new(raw, json)),

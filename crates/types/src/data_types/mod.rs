@@ -3,9 +3,18 @@ use serde_json::Value as Json;
 pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
-    boolean::BoolType, date::DateType, datetime::DateTimeType, decimal::DecimalType,
-    enumeration::EnumType, fixed_string::FixedStringType, float::FloatType, int::IntType,
-    json::JsonType, string::StringType, uuid::UuidType,
+    boolean::BoolType,
+    date::DateType,
+    datetime::DateTimeType,
+    decimal::DecimalType,
+    enumeration::EnumType,
+    fixed_string::FixedStringType,
+    float::FloatType,
+    int::IntType,
+    ip::{Ipv4Type, Ipv6Type},
+    json::JsonType,
+    string::StringType,
+    uuid::UuidType,
 };
 
 mod boolean;
@@ -18,6 +27,7 @@ mod enumeration;
 mod fixed_string;
 mod float;
 mod int;
+mod ip;
 mod json;
 mod sink;
 mod string;
@@ -54,6 +64,8 @@ pub enum DataType {
     Uuid(UuidType),
     Enum(EnumType),
     FixedString(FixedStringType),
+    Ipv4(Ipv4Type),
+    Ipv6(Ipv6Type),
     Other(String),
 }
 
@@ -95,6 +107,8 @@ impl DataType {
             "Date" => Self::Date(DateType { wide: false }),
             "Date32" => Self::Date(DateType { wide: true }),
             "UUID" => Self::Uuid(UuidType),
+            "IPv4" => Self::Ipv4(Ipv4Type),
+            "IPv6" => Self::Ipv6(Ipv6Type),
             _ => DateTimeType::parse(raw)
                 .map(Self::DateTime)
                 .or_else(|| DecimalType::parse_type(raw).map(Self::Decimal))
