@@ -20,6 +20,12 @@
     {"name": "null", "value": "null"},
     {"name": "absent", "value": null},
     {"name": "empty_array", "value": "[]"},
-    {"name": "empty_object", "value": "{}"}
+    {"name": "empty_object", "value": "{}"},
+    {"name": "multibyte_exact", "value": "\"aż\""},
+    {"name": "explicit_padding", "value": "\"ab\\u0000\""},
+    {"name": "too_many_nuls", "value": "\"a\\u0000\\u0000\\u0000\""},
+    {"name": "sixteen", "value": "\"0123456789abcdef\""},
+    {"name": "seventeen", "value": "\"0123456789abcdefg\""},
+    {"name": "string_of_number", "value": "\"12\""}
   ]
 }

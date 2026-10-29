@@ -18,6 +18,12 @@
 {"type":"FixedString(1)","case":"absent","event":null,"accepted":true,"history":"\u0000"}
 {"type":"FixedString(1)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
 {"type":"FixedString(1)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"multibyte_exact","event":"\"aż\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"explicit_padding","event":"\"ab\\u0000\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"too_many_nuls","event":"\"a\\u0000\\u0000\\u0000\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"sixteen","event":"\"0123456789abcdef\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"seventeen","event":"\"0123456789abcdefg\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"string_of_number","event":"\"12\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
 {"type":"FixedString(3)","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000"}
 {"type":"FixedString(3)","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000"}
 {"type":"FixedString(3)","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000"}
@@ -38,6 +44,12 @@
 {"type":"FixedString(3)","case":"absent","event":null,"accepted":true,"history":"\u0000\u0000\u0000"}
 {"type":"FixedString(3)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
 {"type":"FixedString(3)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"multibyte_exact","event":"\"aż\"","accepted":true,"history":"aż"}
+{"type":"FixedString(3)","case":"explicit_padding","event":"\"ab\\u0000\"","accepted":true,"history":"ab\u0000"}
+{"type":"FixedString(3)","case":"too_many_nuls","event":"\"a\\u0000\\u0000\\u0000\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"sixteen","event":"\"0123456789abcdef\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"seventeen","event":"\"0123456789abcdefg\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"string_of_number","event":"\"12\"","accepted":true,"history":"12\u0000"}
 {"type":"FixedString(16)","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
 {"type":"FixedString(16)","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
 {"type":"FixedString(16)","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
@@ -58,6 +70,12 @@
 {"type":"FixedString(16)","case":"absent","event":null,"accepted":true,"history":"\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
 {"type":"FixedString(16)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
 {"type":"FixedString(16)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"multibyte_exact","event":"\"aż\"","accepted":true,"history":"aż\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"explicit_padding","event":"\"ab\\u0000\"","accepted":true,"history":"ab\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"too_many_nuls","event":"\"a\\u0000\\u0000\\u0000\"","accepted":true,"history":"a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"sixteen","event":"\"0123456789abcdef\"","accepted":true,"history":"0123456789abcdef"}
+{"type":"FixedString(16)","case":"seventeen","event":"\"0123456789abcdefg\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(16): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"string_of_number","event":"\"12\"","accepted":true,"history":"12\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
 {"type":"Nullable(FixedString(3))","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000"}
 {"type":"Nullable(FixedString(3))","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000"}
 {"type":"Nullable(FixedString(3))","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000"}
@@ -78,6 +96,12 @@
 {"type":"Nullable(FixedString(3))","case":"absent","event":null,"accepted":true,"history":null}
 {"type":"Nullable(FixedString(3))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(FixedString(3))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"multibyte_exact","event":"\"aż\"","accepted":true,"history":"aż"}
+{"type":"Nullable(FixedString(3))","case":"explicit_padding","event":"\"ab\\u0000\"","accepted":true,"history":"ab\u0000"}
+{"type":"Nullable(FixedString(3))","case":"too_many_nuls","event":"\"a\\u0000\\u0000\\u0000\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"sixteen","event":"\"0123456789abcdef\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"seventeen","event":"\"0123456789abcdefg\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"string_of_number","event":"\"12\"","accepted":true,"history":"12\u0000"}
 {"type":"LowCardinality(FixedString(3))","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000"}
 {"type":"LowCardinality(FixedString(3))","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000"}
 {"type":"LowCardinality(FixedString(3))","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000"}
@@ -98,3 +122,9 @@
 {"type":"LowCardinality(FixedString(3))","case":"absent","event":null,"accepted":true,"history":"\u0000\u0000\u0000"}
 {"type":"LowCardinality(FixedString(3))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
 {"type":"LowCardinality(FixedString(3))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"multibyte_exact","event":"\"aż\"","accepted":true,"history":"aż"}
+{"type":"LowCardinality(FixedString(3))","case":"explicit_padding","event":"\"ab\\u0000\"","accepted":true,"history":"ab\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"too_many_nuls","event":"\"a\\u0000\\u0000\\u0000\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"sixteen","event":"\"0123456789abcdef\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"seventeen","event":"\"0123456789abcdefg\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"string_of_number","event":"\"12\"","accepted":true,"history":"12\u0000"}

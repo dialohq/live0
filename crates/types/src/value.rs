@@ -38,6 +38,7 @@ impl Value {
             DataType::Decimal(d) => d.decode_event(json).map(Value::Decimal),
             DataType::Uuid(u) => u.decode_event(json).map(Value::Uuid),
             DataType::Enum(e) => e.decode_event(json).map(Value::Enum),
+            DataType::FixedString(f) => f.decode_event(json).map(Value::String),
             DataType::Other(_) => None,
         }
     }
@@ -56,6 +57,7 @@ impl Value {
             DataType::Decimal(d) => d.decode_history(json).map(Value::Decimal),
             DataType::Uuid(u) => u.decode_history(json).map(Value::Uuid),
             DataType::Enum(e) => e.decode_history(json).map(Value::Enum),
+            DataType::FixedString(f) => f.decode_history(json).map(Value::String),
             DataType::Other(raw) => Err(HistoryError::new(raw, json)),
         }
     }
