@@ -1,0 +1,14 @@
+[package]
+edition = "2024"
+name = "compiler"
+version = "0.1.0"
+
+[lib]
+
+[lints]
+workspace = true
+
+[dependencies]
+thiserror.workspace = true
+parser.workspace = true
+serde_json.workspace = true

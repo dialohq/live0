@@ -1,0 +1,9 @@
+[package]
+edition = "2024"
+name = "snapshot"
+version = "0.1.0"
+
+[lib]
+
+[lints]
+workspace = true

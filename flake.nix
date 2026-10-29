@@ -3,7 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-    dnvr.url = "github:dialohq/dnvr";
+    dnvr.url = "github:dialohq/dnvr/feat/rex-runner";
     dnvr.inputs.nixpkgs.follows = "nixpkgs";
   };
 

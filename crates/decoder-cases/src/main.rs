@@ -11,8 +11,8 @@ use std::process::{Command, ExitCode, Stdio};
 use std::thread::sleep;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
+use io::{HISTORY_FORMAT, HISTORY_SETTINGS};
 use serde_json::{Map, Value as Json};
-use types::{HISTORY_FORMAT, HISTORY_SETTINGS};
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
@@ -344,13 +344,20 @@ fn fetch_history(topics: &BTreeSet<String>) -> Result<BTreeMap<String, Json>> {
         );
     }
     let mut history = BTreeMap::new();
-    for line in ch_stdin(&queries)?.lines().filter(|l| !l.trim().is_empty()) {
-        let row: Json = serde_json::from_str(line)?;
-        let topic = row["topic"]
-            .as_str()
-            .ok_or("history row without topic")?
-            .to_owned();
-        if history.insert(topic.clone(), row["v"].clone()).is_some() {
+    let output = ch_stdin(&queries)?;
+    let mut lines = output.lines().filter(|l| !l.trim().is_empty());
+    while let Some(line) = lines.next() {
+        let row: Vec<Json> = serde_json::from_str(line)?;
+        let [Json::String(topic), v] = row.as_slice() else {
+            return Err(format!("unexpected history line {line}").into());
+        };
+        // Each query's output starts with a names line and a types line.
+        if topic == "topic" {
+            lines.next();
+            continue;
+        }
+        let topic = topic.clone();
+        if history.insert(topic.clone(), v.clone()).is_some() {
             return Err(format!("{topic} has more than one row").into());
         }
     }

@@ -3,12 +3,13 @@ edition = "2024"
 name = "engine"
 version = "0.1.0"
 
-[[bin]]
-name = "engine"
-path = "src/main.rs"
+[lib]
 
 [dependencies]
 parser.workspace = true
+compiler.workspace = true
+serde_json.workspace = true
+config.workspace = true
 
 [lints]
 workspace = true

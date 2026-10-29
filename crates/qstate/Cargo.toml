@@ -1,0 +1,14 @@
+[package]
+edition = "2024"
+name = "qstate"
+version = "0.1.0"
+
+[lib]
+
+[lints]
+workspace = true
+
+[dependencies]
+thiserror.workspace = true
+compiler.workspace = true
+types.workspace = true

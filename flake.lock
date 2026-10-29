@@ -7,15 +7,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1788881743,
-        "narHash": "sha256-MO1hFC6FpF0FvXrB+WYQLod43RSvkaDB8ZvB6DwCC0U=",
+        "lastModified": 1793191459,
+        "narHash": "sha256-xFwnx+ZCVp0RJii+No5713nAZPhIItb1Dn7Jes1djgU=",
         "owner": "dialohq",
         "repo": "dnvr",
-        "rev": "a66c2bbabb67293812a5c39855ab0ecf6af21d41",
+        "rev": "e3c66358bbf17b4ef93e75778a755f32e1d215b0",
         "type": "github"
       },
       "original": {
         "owner": "dialohq",
+        "ref": "feat/rex-runner",
         "repo": "dnvr",
         "type": "github"
       }

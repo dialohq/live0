@@ -1,0 +1,15 @@
+[package]
+edition = "2024"
+name = "snapshot-manager"
+version = "0.1.0"
+
+[[bin]]
+name = "snapshot-manager"
+path = "src/main.rs"
+
+[dependencies]
+snapshot.workspace = true
+tokio = { version = "1", features = ["rt-multi-thread","macros"] }
+
+[lints]
+workspace = true

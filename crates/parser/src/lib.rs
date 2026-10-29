@@ -1,7 +1,8 @@
-use crate::{ast::Query, error::SyntaxError, lexer::tokenize};
+use crate::{error::SyntaxError, lexer::tokenize};
+pub use ast::Query;
 
-mod ast;
-mod error;
+pub mod ast;
+pub mod error;
 mod lexer;
 mod parser;
 

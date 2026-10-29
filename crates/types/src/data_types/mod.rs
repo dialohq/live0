@@ -42,7 +42,7 @@ pub enum DataType {
 }
 
 impl DataType {
-    pub(crate) fn parse(raw: &str) -> Self {
+    pub fn parse(raw: &str) -> Self {
         let parsed = if let Some(inner) = unwrap(raw, "LowCardinality") {
             Self::parse(inner)
         } else if let Some(inner) = unwrap(raw, "Nullable") {

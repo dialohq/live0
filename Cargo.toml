@@ -5,6 +5,10 @@ members = ["crates/*"]
 [workspace.dependencies]
 parser = { path = "crates/parser" }
 types = { path = "crates/types" }
+io = { path = "crates/io" }
+snapshot = { path = "crates/snapshot" }
+compiler = { path = "crates/compiler" }
+config = { path = "crates/config" }
 thiserror = "2.0.21"
 serde = "1.0.229"
 serde_json = "1.0.154"

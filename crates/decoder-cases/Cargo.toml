@@ -8,4 +8,5 @@ workspace = true
 
 [dependencies]
 serde_json.workspace = true
+io.workspace = true
 types.workspace = true
