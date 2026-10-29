@@ -29,7 +29,6 @@ const FAMILIES: &[&str] = &[
     "uuid",
     "enum",
     "fixed_string",
-    "wide_int",
     "array",
     "map",
     "tuple",

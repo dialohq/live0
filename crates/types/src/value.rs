@@ -1,4 +1,4 @@
-use ethnum::I256;
+use ethnum::{I256, U256};
 use serde_json::{Map, Value as Json};
 
 use crate::data_types::{DataType, HistoryError};
@@ -8,7 +8,12 @@ pub enum Value {
     Null,
     String(String),
     Json(Map<String, Json>),
+    /// Integers up to 64 bits.
     Int(i128),
+    /// `Int128`, `UInt128` and `Int256`.
+    BigInt(I256),
+    /// `UInt256`.
+    BigUInt(U256),
     Float(f64),
     Bool(bool),
     /// Days since the epoch.
@@ -30,7 +35,7 @@ impl Value {
             DataType::Nullable(inner) => Value::from_event(json, inner),
             DataType::String(s) => s.decode_event(json).map(Value::String),
             DataType::Json(j) => j.decode_event(json).map(Value::Json),
-            DataType::Int(i) => i.decode_event(json).map(Value::Int),
+            DataType::Int(i) => i.decode_event(json),
             DataType::Float(f) => f.decode_event(json).map(Value::Float),
             DataType::Bool(b) => b.decode_event(json).map(Value::Bool),
             DataType::Date(d) => d.decode_event(json).map(Value::Date),
@@ -49,7 +54,7 @@ impl Value {
             DataType::Nullable(inner) => Value::from_history(json, inner),
             DataType::String(s) => s.decode_history(json).map(Value::String),
             DataType::Json(j) => j.decode_history(json).map(Value::Json),
-            DataType::Int(i) => i.decode_history(json).map(Value::Int),
+            DataType::Int(i) => i.decode_history(json),
             DataType::Float(f) => f.decode_history(json).map(Value::Float),
             DataType::Bool(b) => b.decode_history(json).map(Value::Bool),
             DataType::Date(d) => d.decode_history(json).map(Value::Date),

@@ -64,6 +64,40 @@
 {"type":"Int8","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
 {"type":"Int8","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"Int8","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Int8","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":-1}
+{"type":"Int8","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Int8","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Int8","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":-1}
+{"type":"Int8","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":-1}
+{"type":"Int8","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"Int8","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":-1}
+{"type":"Int8","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"Int8","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":-1}
+{"type":"Int8","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"Int8","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"Int8","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"Int8","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"Int8","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Int8","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Int8","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":-1}
+{"type":"Int8","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"Int8","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"Int8","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int8","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Int8","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Int16","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Int16","case":"one","event":"1","accepted":true,"history":1}
 {"type":"Int16","case":"minus_one","event":"-1","accepted":true,"history":-1}
@@ -130,6 +164,40 @@
 {"type":"Int16","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
 {"type":"Int16","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"Int16","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Int16","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":-1}
+{"type":"Int16","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Int16","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Int16","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":-1}
+{"type":"Int16","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":-1}
+{"type":"Int16","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"Int16","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":-1}
+{"type":"Int16","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"Int16","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":-1}
+{"type":"Int16","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"Int16","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"Int16","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"Int16","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"Int16","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Int16","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Int16","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":-1}
+{"type":"Int16","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"Int16","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"Int16","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int16","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Int16","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Int32","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Int32","case":"one","event":"1","accepted":true,"history":1}
 {"type":"Int32","case":"minus_one","event":"-1","accepted":true,"history":-1}
@@ -196,6 +264,40 @@
 {"type":"Int32","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
 {"type":"Int32","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"Int32","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Int32","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":-1}
+{"type":"Int32","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Int32","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Int32","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":-1}
+{"type":"Int32","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":-1}
+{"type":"Int32","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"Int32","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":-1}
+{"type":"Int32","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"Int32","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":-1}
+{"type":"Int32","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"Int32","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"Int32","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"Int32","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"Int32","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Int32","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Int32","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":-1}
+{"type":"Int32","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"Int32","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"Int32","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int32","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Int32","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Int64","case":"zero","event":"0","accepted":true,"history":"0"}
 {"type":"Int64","case":"one","event":"1","accepted":true,"history":"1"}
 {"type":"Int64","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
@@ -262,6 +364,40 @@
 {"type":"Int64","case":"negative_leading_zero","event":"-01","accepted":true,"history":"-1"}
 {"type":"Int64","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
 {"type":"Int64","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Int64","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":"-1"}
+{"type":"Int64","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Int64","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Int64","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":"-1"}
+{"type":"Int64","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":"-1"}
+{"type":"Int64","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"Int64","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":"-1"}
+{"type":"Int64","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"Int64","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":"-1"}
+{"type":"Int64","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"Int64","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"Int64","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int64","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Int64","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Int64","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":"-1"}
+{"type":"Int64","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"Int64","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"Int64","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int64","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Int64","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"UInt8","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"UInt8","case":"one","event":"1","accepted":true,"history":1}
 {"type":"UInt8","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -328,6 +464,40 @@
 {"type":"UInt8","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"UInt8","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"UInt8","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"UInt8","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"UInt8","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"UInt8","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"UInt8","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"UInt8","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"UInt8","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"UInt8","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":255}
+{"type":"UInt8","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":255}
+{"type":"UInt8","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"UInt8","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":255}
+{"type":"UInt8","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"UInt8","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":255}
+{"type":"UInt8","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"UInt8","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":255}
+{"type":"UInt8","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":255}
+{"type":"UInt8","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"UInt8","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"UInt8","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"UInt8","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"UInt8","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"UInt8","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"UInt8","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"UInt8","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"UInt16","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"UInt16","case":"one","event":"1","accepted":true,"history":1}
 {"type":"UInt16","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -394,6 +564,40 @@
 {"type":"UInt16","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"UInt16","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"UInt16","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"UInt16","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"UInt16","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"UInt16","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"UInt16","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"UInt16","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"UInt16","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"UInt16","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":65535}
+{"type":"UInt16","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":65535}
+{"type":"UInt16","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"UInt16","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":65535}
+{"type":"UInt16","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"UInt16","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":65535}
+{"type":"UInt16","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"UInt16","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":65535}
+{"type":"UInt16","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":65535}
+{"type":"UInt16","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"UInt16","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"UInt16","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"UInt16","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"UInt16","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"UInt16","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"UInt16","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"UInt16","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"UInt32","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"UInt32","case":"one","event":"1","accepted":true,"history":1}
 {"type":"UInt32","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -460,6 +664,40 @@
 {"type":"UInt32","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"UInt32","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"UInt32","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"UInt32","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"UInt32","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"UInt32","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"UInt32","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"UInt32","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"UInt32","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"UInt32","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":4294967295}
+{"type":"UInt32","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":4294967295}
+{"type":"UInt32","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"UInt32","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":4294967295}
+{"type":"UInt32","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"UInt32","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":4294967295}
+{"type":"UInt32","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"UInt32","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":4294967295}
+{"type":"UInt32","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":4294967295}
+{"type":"UInt32","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"UInt32","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"UInt32","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"UInt32","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"UInt32","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"UInt32","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"UInt32","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"UInt32","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"UInt64","case":"zero","event":"0","accepted":true,"history":"0"}
 {"type":"UInt64","case":"one","event":"1","accepted":true,"history":"1"}
 {"type":"UInt64","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -526,6 +764,40 @@
 {"type":"UInt64","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"UInt64","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
 {"type":"UInt64","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"UInt64","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"UInt64","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"UInt64","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"UInt64","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"UInt64","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"UInt64","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"UInt64","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt64","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt64","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"0"}
+{"type":"UInt64","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt64","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"0"}
+{"type":"UInt64","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt64","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"0"}
+{"type":"UInt64","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt64","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt64","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"UInt64","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"0"}
+{"type":"UInt64","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"UInt64","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"UInt64","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"UInt64","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"UInt64","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"UInt64","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Int8)","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Nullable(Int8)","case":"one","event":"1","accepted":true,"history":1}
 {"type":"Nullable(Int8)","case":"minus_one","event":"-1","accepted":true,"history":-1}
@@ -592,6 +864,40 @@
 {"type":"Nullable(Int8)","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
 {"type":"Nullable(Int8)","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
 {"type":"Nullable(Int8)","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Nullable(Int8)","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Nullable(Int8)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Nullable(Int8)","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":1}
+{"type":"Nullable(Int8)","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":7}
+{"type":"Nullable(Int8)","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int8)","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(UInt64)","case":"zero","event":"0","accepted":true,"history":"0"}
 {"type":"Nullable(UInt64)","case":"one","event":"1","accepted":true,"history":"1"}
 {"type":"Nullable(UInt64)","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -658,3 +964,537 @@
 {"type":"Nullable(UInt64)","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(UInt64)","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
 {"type":"Nullable(UInt64)","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Nullable(UInt64)","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"Nullable(UInt64)","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Nullable(UInt64)","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Nullable(UInt64)","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Nullable(UInt64)","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Nullable(UInt64)","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Nullable(UInt64)","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Nullable(UInt64)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Nullable(UInt64)","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"Nullable(UInt64)","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"Nullable(UInt64)","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Int128","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Int128","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Int128","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Int128","case":"i8_max","event":"127","accepted":true,"history":"127"}
+{"type":"Int128","case":"i8_max_plus_one","event":"128","accepted":true,"history":"128"}
+{"type":"Int128","case":"i8_min","event":"-128","accepted":true,"history":"-128"}
+{"type":"Int128","case":"i8_min_minus_one","event":"-129","accepted":true,"history":"-129"}
+{"type":"Int128","case":"u8_max","event":"255","accepted":true,"history":"255"}
+{"type":"Int128","case":"u8_max_plus_one","event":"256","accepted":true,"history":"256"}
+{"type":"Int128","case":"i16_max","event":"32767","accepted":true,"history":"32767"}
+{"type":"Int128","case":"i16_max_plus_one","event":"32768","accepted":true,"history":"32768"}
+{"type":"Int128","case":"i16_min","event":"-32768","accepted":true,"history":"-32768"}
+{"type":"Int128","case":"i16_min_minus_one","event":"-32769","accepted":true,"history":"-32769"}
+{"type":"Int128","case":"u16_max","event":"65535","accepted":true,"history":"65535"}
+{"type":"Int128","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"65536"}
+{"type":"Int128","case":"i32_max","event":"2147483647","accepted":true,"history":"2147483647"}
+{"type":"Int128","case":"i32_max_plus_one","event":"2147483648","accepted":true,"history":"2147483648"}
+{"type":"Int128","case":"i32_min","event":"-2147483648","accepted":true,"history":"-2147483648"}
+{"type":"Int128","case":"i32_min_minus_one","event":"-2147483649","accepted":true,"history":"-2147483649"}
+{"type":"Int128","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"Int128","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296"}
+{"type":"Int128","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"Int128","case":"i64_max_plus_one","event":"9223372036854775808","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int128","case":"i64_min","event":"-9223372036854775808","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int128","case":"i64_min_minus_one","event":"-9223372036854775809","accepted":true,"history":"9223372036854775807"}
+{"type":"Int128","case":"u64_max","event":"18446744073709551615","accepted":true,"history":"-1"}
+{"type":"Int128","case":"u64_max_plus_one","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Int128","case":"huge","event":"100000000000000000000000000000","accepted":true,"history":"7886392056514347008"}
+{"type":"Int128","case":"float_whole","event":"1.0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"float_whole\"}': (at row 1)"}
+{"type":"Int128","case":"float_fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_fraction\"}': (at row 1)"}
+{"type":"Int128","case":"float_negative_fraction","event":"-1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_negative_fraction\"}': (at row 1)"}
+{"type":"Int128","case":"float_almost_two","event":"1.9999","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.9999,\"case\":\"float_almost_two\"}': (at row 1)"}
+{"type":"Int128","case":"exponent","event":"1e2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
+{"type":"Int128","case":"exponent_upper","event":"1E2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_upper\"}': (at row 1)"}
+{"type":"Int128","case":"exponent_negative","event":"1e-2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.01,\"case\":\"exponent_negative\"}': (at row 1)"}
+{"type":"Int128","case":"exponent_fraction","event":"2.5e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_fraction\"}': (at row 1)"}
+{"type":"Int128","case":"string_number","event":"\"5\"","accepted":true,"history":"5"}
+{"type":"Int128","case":"string_negative","event":"\"-5\"","accepted":true,"history":"-5"}
+{"type":"Int128","case":"string_plus","event":"\"+5\"","accepted":true,"history":"5"}
+{"type":"Int128","case":"string_leading_space","event":"\" 5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 5\",\"case\":\"string_leading_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"string_trailing_space","event":"\"5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"string_empty","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Int128","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"string_word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"string_float","event":"\"1.5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.5\",\"case\":\"string_float\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"string_exponent","event":"\"1e2\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'e2\",\"case\":\"string_exponent\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"string_out_of_range","event":"\"300\"","accepted":true,"history":"300"}
+{"type":"Int128","case":"true","event":"true","accepted":true,"history":"1"}
+{"type":"Int128","case":"false","event":"false","accepted":true,"history":"0"}
+{"type":"Int128","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Int128","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"Int128","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
+{"type":"Int128","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[1],\"case\":\"array\"}': (at row 1)"}
+{"type":"Int128","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Int128","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{\"a\":1},\"case\":\"object\"}': (at row 1)"}
+{"type":"Int128","case":"invalid_leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"Int128","case":"invalid_plus","event":"+1","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('+' (code 43)) in numeric value: JSON spec does not allow numbers to have plus signs: enable `JsonReadFeature.ALLOW_LEADING_PLUS_SIGN_FOR_NUMBERS` to allow"}
+{"type":"Int128","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
+{"type":"Int128","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int128","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int128","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"Int128","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"Int128","case":"negative_leading_zero","event":"-01","accepted":true,"history":"-1"}
+{"type":"Int128","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"Int128","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Int128","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":"-1"}
+{"type":"Int128","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Int128","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Int128","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":"-1"}
+{"type":"Int128","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":"-1"}
+{"type":"Int128","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"Int128","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":"-1"}
+{"type":"Int128","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"Int128","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":"-1"}
+{"type":"Int128","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"Int128","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"Int128","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"Int128","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int128","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Int128","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"18446744073709551616"}
+{"type":"Int128","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"Int128","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":"-170141183460469231731687303715884105728"}
+{"type":"Int128","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"-170141183460469231731687303715884105728"}
+{"type":"Int128","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"Int128","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"-1"}
+{"type":"Int128","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"0"}
+{"type":"Int128","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"-1"}
+{"type":"Int128","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":"0"}
+{"type":"Int128","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"-1"}
+{"type":"Int128","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"Int128","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"90411678444145931806260122977541554176"}
+{"type":"Int128","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Int128","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Int128","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":"-1"}
+{"type":"Int128","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"Int128","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"Int128","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int128","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Int128","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"UInt128","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"UInt128","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"UInt128","case":"i8_max","event":"127","accepted":true,"history":"127"}
+{"type":"UInt128","case":"i8_max_plus_one","event":"128","accepted":true,"history":"128"}
+{"type":"UInt128","case":"i8_min","event":"-128","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i8_min_minus_one","event":"-129","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u8_max","event":"255","accepted":true,"history":"255"}
+{"type":"UInt128","case":"u8_max_plus_one","event":"256","accepted":true,"history":"256"}
+{"type":"UInt128","case":"i16_max","event":"32767","accepted":true,"history":"32767"}
+{"type":"UInt128","case":"i16_max_plus_one","event":"32768","accepted":true,"history":"32768"}
+{"type":"UInt128","case":"i16_min","event":"-32768","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i16_min_minus_one","event":"-32769","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u16_max","event":"65535","accepted":true,"history":"65535"}
+{"type":"UInt128","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"65536"}
+{"type":"UInt128","case":"i32_max","event":"2147483647","accepted":true,"history":"2147483647"}
+{"type":"UInt128","case":"i32_max_plus_one","event":"2147483648","accepted":true,"history":"2147483648"}
+{"type":"UInt128","case":"i32_min","event":"-2147483648","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i32_min_minus_one","event":"-2147483649","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"UInt128","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296"}
+{"type":"UInt128","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt128","case":"i64_max_plus_one","event":"9223372036854775808","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i64_min","event":"-9223372036854775808","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i64_min_minus_one","event":"-9223372036854775809","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt128","case":"u64_max","event":"18446744073709551615","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u64_max_plus_one","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"UInt128","case":"huge","event":"100000000000000000000000000000","accepted":true,"history":"7886392056514347008"}
+{"type":"UInt128","case":"float_whole","event":"1.0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"float_whole\"}': (at row 1)"}
+{"type":"UInt128","case":"float_fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_fraction\"}': (at row 1)"}
+{"type":"UInt128","case":"float_negative_fraction","event":"-1.5","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"float_almost_two","event":"1.9999","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.9999,\"case\":\"float_almost_two\"}': (at row 1)"}
+{"type":"UInt128","case":"exponent","event":"1e2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
+{"type":"UInt128","case":"exponent_upper","event":"1E2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_upper\"}': (at row 1)"}
+{"type":"UInt128","case":"exponent_negative","event":"1e-2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.01,\"case\":\"exponent_negative\"}': (at row 1)"}
+{"type":"UInt128","case":"exponent_fraction","event":"2.5e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_fraction\"}': (at row 1)"}
+{"type":"UInt128","case":"string_number","event":"\"5\"","accepted":true,"history":"5"}
+{"type":"UInt128","case":"string_negative","event":"\"-5\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_plus","event":"\"+5\"","accepted":true,"history":"5"}
+{"type":"UInt128","case":"string_leading_space","event":"\" 5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 5\",\"case\":\"string_leading_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_trailing_space","event":"\"5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_empty","event":"\"\"","accepted":true,"history":"0"}
+{"type":"UInt128","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"string_word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_float","event":"\"1.5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.5\",\"case\":\"string_float\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_exponent","event":"\"1e2\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'e2\",\"case\":\"string_exponent\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_out_of_range","event":"\"300\"","accepted":true,"history":"300"}
+{"type":"UInt128","case":"true","event":"true","accepted":true,"history":"1"}
+{"type":"UInt128","case":"false","event":"false","accepted":true,"history":"0"}
+{"type":"UInt128","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"UInt128","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"UInt128","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
+{"type":"UInt128","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[1],\"case\":\"array\"}': (at row 1)"}
+{"type":"UInt128","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"UInt128","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{\"a\":1},\"case\":\"object\"}': (at row 1)"}
+{"type":"UInt128","case":"invalid_leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"UInt128","case":"invalid_plus","event":"+1","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('+' (code 43)) in numeric value: JSON spec does not allow numbers to have plus signs: enable `JsonReadFeature.ALLOW_LEADING_PLUS_SIGN_FOR_NUMBERS` to allow"}
+{"type":"UInt128","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
+{"type":"UInt128","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt128","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt128","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"UInt128","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"UInt128","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"UInt128","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"UInt128","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"UInt128","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"UInt128","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"UInt128","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"UInt128","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"UInt128","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"UInt128","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt128","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt128","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"18446744073709551616"}
+{"type":"UInt128","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"UInt128","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"170141183460469231731687303715884105728"}
+{"type":"UInt128","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"340282366920938463463374607431768211455"}
+{"type":"UInt128","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"0"}
+{"type":"UInt128","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"340282366920938463463374607431768211455"}
+{"type":"UInt128","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"340282366920938463463374607431768211455"}
+{"type":"UInt128","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"UInt128","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"90411678444145931806260122977541554176"}
+{"type":"UInt128","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"UInt128","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"UInt128","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"UInt128","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"UInt128","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt128","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"UInt128","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Int256","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Int256","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Int256","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Int256","case":"i8_max","event":"127","accepted":true,"history":"127"}
+{"type":"Int256","case":"i8_max_plus_one","event":"128","accepted":true,"history":"128"}
+{"type":"Int256","case":"i8_min","event":"-128","accepted":true,"history":"-128"}
+{"type":"Int256","case":"i8_min_minus_one","event":"-129","accepted":true,"history":"-129"}
+{"type":"Int256","case":"u8_max","event":"255","accepted":true,"history":"255"}
+{"type":"Int256","case":"u8_max_plus_one","event":"256","accepted":true,"history":"256"}
+{"type":"Int256","case":"i16_max","event":"32767","accepted":true,"history":"32767"}
+{"type":"Int256","case":"i16_max_plus_one","event":"32768","accepted":true,"history":"32768"}
+{"type":"Int256","case":"i16_min","event":"-32768","accepted":true,"history":"-32768"}
+{"type":"Int256","case":"i16_min_minus_one","event":"-32769","accepted":true,"history":"-32769"}
+{"type":"Int256","case":"u16_max","event":"65535","accepted":true,"history":"65535"}
+{"type":"Int256","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"65536"}
+{"type":"Int256","case":"i32_max","event":"2147483647","accepted":true,"history":"2147483647"}
+{"type":"Int256","case":"i32_max_plus_one","event":"2147483648","accepted":true,"history":"2147483648"}
+{"type":"Int256","case":"i32_min","event":"-2147483648","accepted":true,"history":"-2147483648"}
+{"type":"Int256","case":"i32_min_minus_one","event":"-2147483649","accepted":true,"history":"-2147483649"}
+{"type":"Int256","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"Int256","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296"}
+{"type":"Int256","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"Int256","case":"i64_max_plus_one","event":"9223372036854775808","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int256","case":"i64_min","event":"-9223372036854775808","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int256","case":"i64_min_minus_one","event":"-9223372036854775809","accepted":true,"history":"9223372036854775807"}
+{"type":"Int256","case":"u64_max","event":"18446744073709551615","accepted":true,"history":"-1"}
+{"type":"Int256","case":"u64_max_plus_one","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Int256","case":"huge","event":"100000000000000000000000000000","accepted":true,"history":"7886392056514347008"}
+{"type":"Int256","case":"float_whole","event":"1.0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"float_whole\"}': (at row 1)"}
+{"type":"Int256","case":"float_fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_fraction\"}': (at row 1)"}
+{"type":"Int256","case":"float_negative_fraction","event":"-1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_negative_fraction\"}': (at row 1)"}
+{"type":"Int256","case":"float_almost_two","event":"1.9999","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.9999,\"case\":\"float_almost_two\"}': (at row 1)"}
+{"type":"Int256","case":"exponent","event":"1e2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
+{"type":"Int256","case":"exponent_upper","event":"1E2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_upper\"}': (at row 1)"}
+{"type":"Int256","case":"exponent_negative","event":"1e-2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.01,\"case\":\"exponent_negative\"}': (at row 1)"}
+{"type":"Int256","case":"exponent_fraction","event":"2.5e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_fraction\"}': (at row 1)"}
+{"type":"Int256","case":"string_number","event":"\"5\"","accepted":true,"history":"5"}
+{"type":"Int256","case":"string_negative","event":"\"-5\"","accepted":true,"history":"-5"}
+{"type":"Int256","case":"string_plus","event":"\"+5\"","accepted":true,"history":"5"}
+{"type":"Int256","case":"string_leading_space","event":"\" 5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 5\",\"case\":\"string_leading_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"string_trailing_space","event":"\"5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"string_empty","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Int256","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"string_word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"string_float","event":"\"1.5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.5\",\"case\":\"string_float\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"string_exponent","event":"\"1e2\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'e2\",\"case\":\"string_exponent\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"string_out_of_range","event":"\"300\"","accepted":true,"history":"300"}
+{"type":"Int256","case":"true","event":"true","accepted":true,"history":"1"}
+{"type":"Int256","case":"false","event":"false","accepted":true,"history":"0"}
+{"type":"Int256","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Int256","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"Int256","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
+{"type":"Int256","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[1],\"case\":\"array\"}': (at row 1)"}
+{"type":"Int256","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Int256","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{\"a\":1},\"case\":\"object\"}': (at row 1)"}
+{"type":"Int256","case":"invalid_leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"Int256","case":"invalid_plus","event":"+1","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('+' (code 43)) in numeric value: JSON spec does not allow numbers to have plus signs: enable `JsonReadFeature.ALLOW_LEADING_PLUS_SIGN_FOR_NUMBERS` to allow"}
+{"type":"Int256","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
+{"type":"Int256","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int256","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int256","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"Int256","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"Int256","case":"negative_leading_zero","event":"-01","accepted":true,"history":"-1"}
+{"type":"Int256","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"Int256","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Int256","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":"-1"}
+{"type":"Int256","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Int256","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Int256","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":"-1"}
+{"type":"Int256","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":"-1"}
+{"type":"Int256","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"Int256","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":"-1"}
+{"type":"Int256","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"Int256","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":"-1"}
+{"type":"Int256","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"Int256","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"Int256","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"Int256","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":"-9223372036854775808"}
+{"type":"Int256","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Int256","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"18446744073709551616"}
+{"type":"Int256","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"Int256","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":"-170141183460469231731687303715884105728"}
+{"type":"Int256","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"170141183460469231731687303715884105728"}
+{"type":"Int256","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":"-170141183460469231731687303715884105729"}
+{"type":"Int256","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"340282366920938463463374607431768211455"}
+{"type":"Int256","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"340282366920938463463374607431768211456"}
+{"type":"Int256","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"57896044618658097711785492504343953926634992332820282019728792003956564819967"}
+{"type":"Int256","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":"-57896044618658097711785492504343953926634992332820282019728792003956564819968"}
+{"type":"Int256","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"-1"}
+{"type":"Int256","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"Int256","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"40742928783159115327653092672600753108246198157444187682264599045391414984704"}
+{"type":"Int256","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Int256","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Int256","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":"-1"}
+{"type":"Int256","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"Int256","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"Int256","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Int256","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Int256","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"UInt256","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"UInt256","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"UInt256","case":"i8_max","event":"127","accepted":true,"history":"127"}
+{"type":"UInt256","case":"i8_max_plus_one","event":"128","accepted":true,"history":"128"}
+{"type":"UInt256","case":"i8_min","event":"-128","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i8_min_minus_one","event":"-129","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u8_max","event":"255","accepted":true,"history":"255"}
+{"type":"UInt256","case":"u8_max_plus_one","event":"256","accepted":true,"history":"256"}
+{"type":"UInt256","case":"i16_max","event":"32767","accepted":true,"history":"32767"}
+{"type":"UInt256","case":"i16_max_plus_one","event":"32768","accepted":true,"history":"32768"}
+{"type":"UInt256","case":"i16_min","event":"-32768","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i16_min_minus_one","event":"-32769","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u16_max","event":"65535","accepted":true,"history":"65535"}
+{"type":"UInt256","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"65536"}
+{"type":"UInt256","case":"i32_max","event":"2147483647","accepted":true,"history":"2147483647"}
+{"type":"UInt256","case":"i32_max_plus_one","event":"2147483648","accepted":true,"history":"2147483648"}
+{"type":"UInt256","case":"i32_min","event":"-2147483648","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i32_min_minus_one","event":"-2147483649","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"UInt256","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296"}
+{"type":"UInt256","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt256","case":"i64_max_plus_one","event":"9223372036854775808","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i64_min","event":"-9223372036854775808","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i64_min_minus_one","event":"-9223372036854775809","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt256","case":"u64_max","event":"18446744073709551615","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u64_max_plus_one","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"UInt256","case":"huge","event":"100000000000000000000000000000","accepted":true,"history":"7886392056514347008"}
+{"type":"UInt256","case":"float_whole","event":"1.0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"float_whole\"}': (at row 1)"}
+{"type":"UInt256","case":"float_fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_fraction\"}': (at row 1)"}
+{"type":"UInt256","case":"float_negative_fraction","event":"-1.5","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"float_almost_two","event":"1.9999","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.9999,\"case\":\"float_almost_two\"}': (at row 1)"}
+{"type":"UInt256","case":"exponent","event":"1e2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
+{"type":"UInt256","case":"exponent_upper","event":"1E2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_upper\"}': (at row 1)"}
+{"type":"UInt256","case":"exponent_negative","event":"1e-2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.01,\"case\":\"exponent_negative\"}': (at row 1)"}
+{"type":"UInt256","case":"exponent_fraction","event":"2.5e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_fraction\"}': (at row 1)"}
+{"type":"UInt256","case":"string_number","event":"\"5\"","accepted":true,"history":"5"}
+{"type":"UInt256","case":"string_negative","event":"\"-5\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_plus","event":"\"+5\"","accepted":true,"history":"5"}
+{"type":"UInt256","case":"string_leading_space","event":"\" 5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 5\",\"case\":\"string_leading_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_trailing_space","event":"\"5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_empty","event":"\"\"","accepted":true,"history":"0"}
+{"type":"UInt256","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"string_word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_float","event":"\"1.5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.5\",\"case\":\"string_float\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_exponent","event":"\"1e2\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'e2\",\"case\":\"string_exponent\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_out_of_range","event":"\"300\"","accepted":true,"history":"300"}
+{"type":"UInt256","case":"true","event":"true","accepted":true,"history":"1"}
+{"type":"UInt256","case":"false","event":"false","accepted":true,"history":"0"}
+{"type":"UInt256","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"UInt256","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"UInt256","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
+{"type":"UInt256","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[1],\"case\":\"array\"}': (at row 1)"}
+{"type":"UInt256","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"UInt256","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{\"a\":1},\"case\":\"object\"}': (at row 1)"}
+{"type":"UInt256","case":"invalid_leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"UInt256","case":"invalid_plus","event":"+1","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('+' (code 43)) in numeric value: JSON spec does not allow numbers to have plus signs: enable `JsonReadFeature.ALLOW_LEADING_PLUS_SIGN_FOR_NUMBERS` to allow"}
+{"type":"UInt256","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
+{"type":"UInt256","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt256","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt256","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"UInt256","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"UInt256","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"UInt256","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"UInt256","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"UInt256","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"UInt256","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"UInt256","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"UInt256","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"UInt256","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"UInt256","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"UInt256","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"UInt256","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"18446744073709551616"}
+{"type":"UInt256","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"UInt256","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"170141183460469231731687303715884105728"}
+{"type":"UInt256","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"340282366920938463463374607431768211455"}
+{"type":"UInt256","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"340282366920938463463374607431768211456"}
+{"type":"UInt256","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"57896044618658097711785492504343953926634992332820282019728792003956564819967"}
+{"type":"UInt256","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"115792089237316195423570985008687907853269984665640564039457584007913129639935"}
+{"type":"UInt256","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"UInt256","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"40742928783159115327653092672600753108246198157444187682264599045391414984704"}
+{"type":"UInt256","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"UInt256","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"UInt256","case":"string_minus_one","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"UInt256","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"UInt256","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"UInt256","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"UInt256","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Nullable(Int128)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"i8_max","event":"127","accepted":true,"history":"127"}
+{"type":"Nullable(Int128)","case":"i8_max_plus_one","event":"128","accepted":true,"history":"128"}
+{"type":"Nullable(Int128)","case":"i8_min","event":"-128","accepted":true,"history":"-128"}
+{"type":"Nullable(Int128)","case":"i8_min_minus_one","event":"-129","accepted":true,"history":"-129"}
+{"type":"Nullable(Int128)","case":"u8_max","event":"255","accepted":true,"history":"255"}
+{"type":"Nullable(Int128)","case":"u8_max_plus_one","event":"256","accepted":true,"history":"256"}
+{"type":"Nullable(Int128)","case":"i16_max","event":"32767","accepted":true,"history":"32767"}
+{"type":"Nullable(Int128)","case":"i16_max_plus_one","event":"32768","accepted":true,"history":"32768"}
+{"type":"Nullable(Int128)","case":"i16_min","event":"-32768","accepted":true,"history":"-32768"}
+{"type":"Nullable(Int128)","case":"i16_min_minus_one","event":"-32769","accepted":true,"history":"-32769"}
+{"type":"Nullable(Int128)","case":"u16_max","event":"65535","accepted":true,"history":"65535"}
+{"type":"Nullable(Int128)","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"65536"}
+{"type":"Nullable(Int128)","case":"i32_max","event":"2147483647","accepted":true,"history":"2147483647"}
+{"type":"Nullable(Int128)","case":"i32_max_plus_one","event":"2147483648","accepted":true,"history":"2147483648"}
+{"type":"Nullable(Int128)","case":"i32_min","event":"-2147483648","accepted":true,"history":"-2147483648"}
+{"type":"Nullable(Int128)","case":"i32_min_minus_one","event":"-2147483649","accepted":true,"history":"-2147483649"}
+{"type":"Nullable(Int128)","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"Nullable(Int128)","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296"}
+{"type":"Nullable(Int128)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"Nullable(Int128)","case":"i64_max_plus_one","event":"9223372036854775808","accepted":true,"history":"-9223372036854775808"}
+{"type":"Nullable(Int128)","case":"i64_min","event":"-9223372036854775808","accepted":true,"history":"-9223372036854775808"}
+{"type":"Nullable(Int128)","case":"i64_min_minus_one","event":"-9223372036854775809","accepted":true,"history":"9223372036854775807"}
+{"type":"Nullable(Int128)","case":"u64_max","event":"18446744073709551615","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"u64_max_plus_one","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"huge","event":"100000000000000000000000000000","accepted":true,"history":"7886392056514347008"}
+{"type":"Nullable(Int128)","case":"float_whole","event":"1.0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"float_whole\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"float_fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_fraction\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"float_negative_fraction","event":"-1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"float_negative_fraction\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"float_almost_two","event":"1.9999","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.9999,\"case\":\"float_almost_two\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"exponent","event":"1e2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"exponent_upper","event":"1E2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_upper\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"exponent_negative","event":"1e-2","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.01,\"case\":\"exponent_negative\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"exponent_fraction","event":"2.5e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent_fraction\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_number","event":"\"5\"","accepted":true,"history":"5"}
+{"type":"Nullable(Int128)","case":"string_negative","event":"\"-5\"","accepted":true,"history":"-5"}
+{"type":"Nullable(Int128)","case":"string_plus","event":"\"+5\"","accepted":true,"history":"5"}
+{"type":"Nullable(Int128)","case":"string_leading_space","event":"\" 5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 5\",\"case\":\"string_leading_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_trailing_space","event":"\"5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_empty","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"string_word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"string_word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_float","event":"\"1.5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.5\",\"case\":\"string_float\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_exponent","event":"\"1e2\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'e2\",\"case\":\"string_exponent\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_out_of_range","event":"\"300\"","accepted":true,"history":"300"}
+{"type":"Nullable(Int128)","case":"true","event":"true","accepted":true,"history":"1"}
+{"type":"Nullable(Int128)","case":"false","event":"false","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"null","event":"null","accepted":true,"history":null}
+{"type":"Nullable(Int128)","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"Nullable(Int128)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[1],\"case\":\"array\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{\"a\":1},\"case\":\"object\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"invalid_leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"Nullable(Int128)","case":"invalid_plus","event":"+1","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('+' (code 43)) in numeric value: JSON spec does not allow numbers to have plus signs: enable `JsonReadFeature.ALLOW_LEADING_PLUS_SIGN_FOR_NUMBERS` to allow"}
+{"type":"Nullable(Int128)","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
+{"type":"Nullable(Int128)","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(Int128)","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(Int128)","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"Nullable(Int128)","case":"negative_leading_zero","event":"-01","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"i128_max","event":"170141183460469231731687303715884105727","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"i128_min","event":"-170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"i128_max_plus_one","event":"170141183460469231731687303715884105728","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"i128_min_minus_one","event":"-170141183460469231731687303715884105729","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"u128_max","event":"340282366920938463463374607431768211455","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"u128_max_plus_one","event":"340282366920938463463374607431768211456","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"i256_max","event":"57896044618658097711785492504343953926634992332820282019728792003956564819967","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"i256_min","event":"-57896044618658097711785492504343953926634992332820282019728792003956564819968","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"u256_max","event":"115792089237316195423570985008687907853269984665640564039457584007913129639935","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"u256_max_plus_one","event":"115792089237316195423570985008687907853269984665640564039457584007913129639936","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"hundred_digits","event":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"string_i64_max","event":"\"9223372036854775807\"","accepted":true,"history":"9223372036854775807"}
+{"type":"Nullable(Int128)","case":"string_i64_min","event":"\"-9223372036854775808\"","accepted":true,"history":"-9223372036854775808"}
+{"type":"Nullable(Int128)","case":"string_u64_max","event":"\"18446744073709551615\"","accepted":true,"history":"18446744073709551615"}
+{"type":"Nullable(Int128)","case":"string_u64_max_plus_one","event":"\"18446744073709551616\"","accepted":true,"history":"18446744073709551616"}
+{"type":"Nullable(Int128)","case":"string_i128_max","event":"\"170141183460469231731687303715884105727\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"Nullable(Int128)","case":"string_i128_min","event":"\"-170141183460469231731687303715884105728\"","accepted":true,"history":"-170141183460469231731687303715884105728"}
+{"type":"Nullable(Int128)","case":"string_i128_max_plus_one","event":"\"170141183460469231731687303715884105728\"","accepted":true,"history":"-170141183460469231731687303715884105728"}
+{"type":"Nullable(Int128)","case":"string_i128_min_minus_one","event":"\"-170141183460469231731687303715884105729\"","accepted":true,"history":"170141183460469231731687303715884105727"}
+{"type":"Nullable(Int128)","case":"string_u128_max","event":"\"340282366920938463463374607431768211455\"","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"string_u128_max_plus_one","event":"\"340282366920938463463374607431768211456\"","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"string_i256_max","event":"\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"string_i256_min","event":"\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"string_u256_max","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"string_u256_max_plus_one","event":"\"115792089237316195423570985008687907853269984665640564039457584007913129639936\"","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"string_hundred_digits","event":"\"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"","accepted":true,"history":"90411678444145931806260122977541554176"}
+{"type":"Nullable(Int128)","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"fraction\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0E30,\"case\":\"exponent_30\"}': (at row 1)"}
+{"type":"Nullable(Int128)","case":"string_minus_one","event":"\"-1\"","accepted":true,"history":"-1"}
+{"type":"Nullable(Int128)","case":"string_plus_one","event":"\"+1\"","accepted":true,"history":"1"}
+{"type":"Nullable(Int128)","case":"string_leading_zero","event":"\"007\"","accepted":true,"history":"7"}
+{"type":"Nullable(Int128)","case":"string_spaces","event":"\" 1 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Int128)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Nullable(Int128)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}

@@ -85,6 +85,10 @@ impl DataType {
             "UInt16" => Self::int(false, 16),
             "UInt32" => Self::int(false, 32),
             "UInt64" => Self::int(false, 64),
+            "Int128" => Self::int(true, 128),
+            "UInt128" => Self::int(false, 128),
+            "Int256" => Self::int(true, 256),
+            "UInt256" => Self::int(false, 256),
             "Float32" => Self::Float(FloatType { width: 32 }),
             "Float64" => Self::Float(FloatType { width: 64 }),
             "Bool" => Self::Bool(BoolType),
@@ -109,7 +113,7 @@ impl DataType {
         }
     }
 
-    fn int(signed: bool, width: u8) -> Self {
+    fn int(signed: bool, width: u16) -> Self {
         Self::Int(IntType { signed, width })
     }
 

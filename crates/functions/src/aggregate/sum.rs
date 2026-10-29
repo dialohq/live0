@@ -160,6 +160,7 @@ impl Total {
     pub(super) fn bind(function: &'static str, args: &[DataType]) -> Result<(Total, bool), Error> {
         let zero = match args {
             [arg] => match nullable(arg) {
+                (DataType::Int(i), _) if i.width() > 64 => None,
                 (DataType::Int(i), nullable) if i.is_signed() => Some((Total::Int(0), nullable)),
                 (DataType::Int(_), nullable) => Some((Total::UInt(0), nullable)),
                 (DataType::Float(_), nullable) => Some((Total::Float(0.0), nullable)),
