@@ -1,0 +1,13 @@
+[package]
+edition = "2024"
+name = "functions"
+version = "0.1.0"
+
+[lib]
+
+[lints]
+workspace = true
+
+[dependencies]
+thiserror.workspace = true
+types.workspace = true

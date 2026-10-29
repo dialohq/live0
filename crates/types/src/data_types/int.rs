@@ -10,6 +10,10 @@ pub struct IntType {
 }
 
 impl IntType {
+    pub fn is_signed(&self) -> bool {
+        self.signed
+    }
+
     pub(crate) fn decode_event(&self, json: Option<&Json>) -> Option<i128> {
         let n = match json {
             None | Some(Json::Null) => 0,

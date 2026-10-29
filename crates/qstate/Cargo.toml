@@ -10,5 +10,6 @@ workspace = true
 
 [dependencies]
 compiler.workspace = true
+functions.workspace = true
 thiserror.workspace = true
 types.workspace = true

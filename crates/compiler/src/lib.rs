@@ -1,6 +1,6 @@
 pub use crate::access::{Access, Grant, Params};
 pub use crate::error::Error;
-pub use crate::expr::{AggregateFunction, CompareOp, EvalError, Expr, Function};
+pub use crate::expr::{CompareOp, Expr, Function};
 pub use crate::history::{HistoryQueries, HistorySql};
 pub use crate::plan::{Aggregate, Fingerprint, Plan, Shape, SortKey, Source, SourceId, TimeBound};
 

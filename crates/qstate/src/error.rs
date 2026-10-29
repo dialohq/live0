@@ -1,4 +1,5 @@
-use compiler::{EvalError, Fingerprint};
+use compiler::Fingerprint;
+use functions::EvalError;
 
 use crate::FetchId;
 

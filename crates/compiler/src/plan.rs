@@ -1,8 +1,8 @@
-use std::{fmt, time::Duration};
+use std::{fmt, sync::Arc, time::Duration};
 
 use types::Schema;
 
-use crate::{AggregateFunction, CompareOp, Error, Expr, HistoryQueries, bind::BoundQuery};
+use crate::{CompareOp, Error, Expr, HistoryQueries, bind::BoundQuery};
 
 /// A source's position in the plan's `sources`; the outer query reads source 0.
 pub type SourceId = usize;
@@ -24,7 +24,7 @@ pub struct Source {
     pub schema: Schema,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone)]
 pub struct Plan {
     fingerprint: Fingerprint,
     schema: Schema,
@@ -36,7 +36,7 @@ pub struct Plan {
 }
 
 /// How a query's state is kept; `qstate` builds one private implementation per variant.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone)]
 pub enum Shape {
     /// Unordered, unlimited.
     Append,
@@ -88,9 +88,9 @@ pub struct SortKey {
     pub nulls_first: bool,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone)]
 pub struct Aggregate {
-    pub function: AggregateFunction,
+    pub function: Arc<dyn functions::Aggregate>,
     pub args: Vec<Expr>,
 }
 
