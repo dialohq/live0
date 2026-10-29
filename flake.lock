@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793191459,
-        "narHash": "sha256-xFwnx+ZCVp0RJii+No5713nAZPhIItb1Dn7Jes1djgU=",
+        "lastModified": 1793299424,
+        "narHash": "sha256-Ds0LYl4iVLj7sfRu809G9ktxfr9pgoafbpQJhtsMjmU=",
         "owner": "dialohq",
         "repo": "dnvr",
-        "rev": "e3c66358bbf17b4ef93e75778a755f32e1d215b0",
+        "rev": "dbcf4c7fda9fd7417b063751c9cc6ec89c3ec289",
         "type": "github"
       },
       "original": {
