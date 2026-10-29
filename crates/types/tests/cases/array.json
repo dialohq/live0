@@ -1,5 +1,5 @@
 {
-  "types": ["Array(Int32)", "Array(String)", "Array(Nullable(Int32))", "Array(Array(UInt8))", "Array(LowCardinality(String))"],
+  "types": ["Array(Int32)", "Array(String)", "Array(Nullable(Int32))", "Array(Array(UInt8))", "Array(LowCardinality(String))", "Array(Date32)", "Array(Decimal(9, 2))", "Array(Nullable(String))", "Array(Array(Array(Int8)))", "Array(Array(Date32))"],
   "cases": [
     {"name": "ints", "value": "[1, 2, 3]"},
     {"name": "mixed", "value": "[1, \"2\"]"},
@@ -23,6 +23,15 @@
     {"name": "null", "value": "null"},
     {"name": "absent", "value": null},
     {"name": "empty_array", "value": "[]"},
-    {"name": "empty_object", "value": "{}"}
+    {"name": "empty_object", "value": "{}"},
+    {"name": "dates", "value": "[20023, 1730000000]"},
+    {"name": "string_date", "value": "[\"2024-10-27\"]"},
+    {"name": "decimal_strings", "value": "[\"1.239\", 2]"},
+    {"name": "empty_string_item", "value": "[\"\"]"},
+    {"name": "leading_zero_item", "value": "[\"01\"]"},
+    {"name": "null_in_nested", "value": "[[1, 2], null]"},
+    {"name": "deep", "value": "[[[1, 2]], [[3]]]"},
+    {"name": "deep_dates", "value": "[[1730000000]]"},
+    {"name": "big_array", "value": "[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]"}
   ]
 }

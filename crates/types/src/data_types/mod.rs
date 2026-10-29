@@ -3,6 +3,7 @@ use serde_json::Value as Json;
 pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
+    array::ArrayType,
     boolean::BoolType,
     date::DateType,
     datetime::DateTimeType,
@@ -17,6 +18,7 @@ use crate::data_types::{
     uuid::UuidType,
 };
 
+mod array;
 mod boolean;
 #[cfg(test)]
 mod cases;
@@ -66,6 +68,7 @@ pub enum DataType {
     FixedString(FixedStringType),
     Ipv4(Ipv4Type),
     Ipv6(Ipv6Type),
+    Array(ArrayType),
     Other(String),
 }
 
@@ -114,15 +117,21 @@ impl DataType {
                 .or_else(|| DecimalType::parse_type(raw).map(Self::Decimal))
                 .or_else(|| EnumType::parse(raw).map(Self::Enum))
                 .or_else(|| FixedStringType::parse(raw).map(Self::FixedString))
+                .or_else(|| ArrayType::parse(raw).map(Self::Array))
                 .unwrap_or_else(|| Self::Other(raw.to_owned())),
         }
     }
 
     /// How a history query selects a column of this type so that [`crate::Value::from_history`] reads it exactly.
     pub fn history_expr(&self, column: &str) -> String {
+        self.history_expr_at(column, 0)
+    }
+
+    pub(crate) fn history_expr_at(&self, column: &str, depth: usize) -> String {
         match self {
-            Self::Nullable(inner) => inner.history_expr(column),
+            Self::Nullable(inner) => inner.history_expr_at(column, depth),
             Self::Date(d) => d.history_expr(column),
+            Self::Array(a) => a.history_expr(column, depth),
             _ => column.to_owned(),
         }
     }
@@ -135,6 +144,7 @@ impl DataType {
         match self {
             Self::Other(_) => false,
             Self::Nullable(inner) => inner.is_supported(),
+            Self::Array(a) => a.item.is_supported(),
             _ => true,
         }
     }
