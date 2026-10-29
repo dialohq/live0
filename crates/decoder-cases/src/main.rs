@@ -16,7 +16,7 @@ use serde_json::{Map, Value as Json};
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-const FAMILIES: &[&str] = &["string", "json", "int", "float", "bool"];
+const FAMILIES: &[&str] = &["string", "json", "int", "float", "bool", "datetime"];
 const DATABASE: &str = "decoder_cases";
 const TOPIC_PREFIX: &str = "dc_";
 const CONNECTOR: &str = "decoder-cases";
@@ -339,7 +339,7 @@ impl Stack {
 fn fetch_history(topics: &BTreeSet<String>) -> Result<BTreeMap<String, Json>> {
     let settings = HISTORY_SETTINGS
         .iter()
-        .map(|(k, v)| format!("{k} = {v}"))
+        .map(|(k, v)| format!("{k} = '{v}'"))
         .collect::<Vec<_>>()
         .join(", ");
     let mut queries = String::new();

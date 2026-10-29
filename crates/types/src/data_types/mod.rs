@@ -3,12 +3,14 @@ use serde_json::Value as Json;
 pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
-    boolean::BoolType, float::FloatType, int::IntType, json::JsonType, string::StringType,
+    boolean::BoolType, datetime::DateTimeType, float::FloatType, int::IntType, json::JsonType,
+    string::StringType,
 };
 
 mod boolean;
 #[cfg(test)]
 mod cases;
+mod datetime;
 mod float;
 mod int;
 mod json;
@@ -40,6 +42,7 @@ pub enum DataType {
     Int(IntType),
     Float(FloatType),
     Bool(BoolType),
+    DateTime(DateTimeType),
     Other(String),
 }
 
@@ -74,7 +77,9 @@ impl DataType {
             "Float32" => Self::Float(FloatType { width: 32 }),
             "Float64" => Self::Float(FloatType { width: 64 }),
             "Bool" => Self::Bool(BoolType),
-            _ => Self::Other(raw.to_owned()),
+            _ => {
+                DateTimeType::parse(raw).map_or_else(|| Self::Other(raw.to_owned()), Self::DateTime)
+            }
         }
     }
 

@@ -1,0 +1,1048 @@
+{"type":"DateTime","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"DateTime","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"DateTime","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"millis","event":"1730000000123","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"micros","event":"1730000000123456","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"nanos","event":"1730000000123456789","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"minus_one","event":"-1","accepted":true,"history":"0"}
+{"type":"DateTime","case":"minus_day","event":"-86400","accepted":true,"history":"0"}
+{"type":"DateTime","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"year_9999","event":"253402300799","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"DateTime","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.123\",\"case\":\"string_seconds_fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800"}
+{"type":"DateTime","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980"}
+{"type":"DateTime","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645"}
+{"type":"DateTime","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"0"}
+{"type":"DateTime","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"0"}
+{"type":"DateTime","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200"}
+{"type":"DateTime","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800"}
+{"type":"DateTime","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200"}
+{"type":"DateTime","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200"}
+{"type":"DateTime","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"DateTime","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"DateTime","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999"}
+{"type":"DateTime","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.1234567891\",\"case\":\"string_long_fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400"}
+{"type":"DateTime","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639"}
+{"type":"DateTime","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200"}
+{"type":"DateTime","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000"}
+{"type":"DateTime","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000"}
+{"type":"DateTime","case":"negative_fraction","event":"-1.5","accepted":true,"history":"0"}
+{"type":"DateTime","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"0"}
+{"type":"DateTime","case":"milli_number","event":"0.001","accepted":true,"history":"0"}
+{"type":"DateTime","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0"}
+{"type":"DateTime","case":"negative_half","event":"-0.5","accepted":true,"history":"0"}
+{"type":"DateTime","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000"}
+{"type":"DateTime","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000"}
+{"type":"DateTime","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600"}
+{"type":"DateTime","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600"}
+{"type":"DateTime","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600"}
+{"type":"DateTime","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400"}
+{"type":"DateTime","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800"}
+{"type":"DateTime","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200"}
+{"type":"DateTime","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000"}
+{"type":"DateTime","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0"}
+{"type":"DateTime","case":"negative_milli","event":"-0.005","accepted":true,"history":"0"}
+{"type":"DateTime","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800"}
+{"type":"DateTime","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"DateTime('UTC')","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"millis","event":"1730000000123","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"micros","event":"1730000000123456","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"nanos","event":"1730000000123456789","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"minus_one","event":"-1","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"minus_day","event":"-86400","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"year_9999","event":"253402300799","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.123\",\"case\":\"string_seconds_fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('UTC')","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('UTC')","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800"}
+{"type":"DateTime('UTC')","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('UTC')","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980"}
+{"type":"DateTime('UTC')","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645"}
+{"type":"DateTime('UTC')","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime('UTC')","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200"}
+{"type":"DateTime('UTC')","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800"}
+{"type":"DateTime('UTC')","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200"}
+{"type":"DateTime('UTC')","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200"}
+{"type":"DateTime('UTC')","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999"}
+{"type":"DateTime('UTC')","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.1234567891\",\"case\":\"string_long_fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400"}
+{"type":"DateTime('UTC')","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('UTC')","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('UTC')","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime('UTC')","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime('UTC')","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime('UTC')","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639"}
+{"type":"DateTime('UTC')","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime('UTC')","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200"}
+{"type":"DateTime('UTC')","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000"}
+{"type":"DateTime('UTC')","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000"}
+{"type":"DateTime('UTC')","case":"negative_fraction","event":"-1.5","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"milli_number","event":"0.001","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"negative_half","event":"-0.5","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000"}
+{"type":"DateTime('UTC')","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000"}
+{"type":"DateTime('UTC')","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600"}
+{"type":"DateTime('UTC')","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('UTC')","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600"}
+{"type":"DateTime('UTC')","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600"}
+{"type":"DateTime('UTC')","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400"}
+{"type":"DateTime('UTC')","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800"}
+{"type":"DateTime('UTC')","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime('UTC')","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime('UTC')","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200"}
+{"type":"DateTime('UTC')","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime('UTC')","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime('UTC')","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000"}
+{"type":"DateTime('UTC')","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"negative_milli","event":"-0.005","accepted":true,"history":"0"}
+{"type":"DateTime('UTC')","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('UTC')","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800"}
+{"type":"DateTime('UTC')","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime('UTC')","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('UTC')","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"DateTime('Europe/Warsaw')","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"millis","event":"1730000000123","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"micros","event":"1730000000123456","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"nanos","event":"1730000000123456789","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"minus_one","event":"-1","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"minus_day","event":"-86400","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_9999","event":"253402300799","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.123\",\"case\":\"string_seconds_fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('Europe/Warsaw')","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('Europe/Warsaw')","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800"}
+{"type":"DateTime('Europe/Warsaw')","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('Europe/Warsaw')","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729996380"}
+{"type":"DateTime('Europe/Warsaw')","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704161045"}
+{"type":"DateTime('Europe/Warsaw')","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294963695"}
+{"type":"DateTime('Europe/Warsaw')","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294963696"}
+{"type":"DateTime('Europe/Warsaw')","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime('Europe/Warsaw')","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime('Europe/Warsaw')","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483225200"}
+{"type":"DateTime('Europe/Warsaw')","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711845000"}
+{"type":"DateTime('Europe/Warsaw')","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729989000"}
+{"type":"DateTime('Europe/Warsaw')","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '.1234567891\",\"case\":\"string_long_fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728079200"}
+{"type":"DateTime('Europe/Warsaw')","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('Europe/Warsaw')","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('Europe/Warsaw')","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730039600"}
+{"type":"DateTime('Europe/Warsaw')","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime('Europe/Warsaw')","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730070000"}
+{"type":"DateTime('Europe/Warsaw')","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730070000"}
+{"type":"DateTime('Europe/Warsaw')","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730346039"}
+{"type":"DateTime('Europe/Warsaw')","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727733600"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704063600"}
+{"type":"DateTime('Europe/Warsaw')","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709204400"}
+{"type":"DateTime('Europe/Warsaw')","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824328800"}
+{"type":"DateTime('Europe/Warsaw')","case":"negative_fraction","event":"-1.5","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"milli_number","event":"0.001","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"negative_half","event":"-0.5","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711846800"}
+{"type":"DateTime('Europe/Warsaw')","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729994400"}
+{"type":"DateTime('Europe/Warsaw')","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime('Europe/Warsaw')","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150050400"}
+{"type":"DateTime('Europe/Warsaw')","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25830000"}
+{"type":"DateTime('Europe/Warsaw')","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940975200"}
+{"type":"DateTime('Europe/Warsaw')","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704841200"}
+{"type":"DateTime('Europe/Warsaw')","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727733600"}
+{"type":"DateTime('Europe/Warsaw')","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729980000"}
+{"type":"DateTime('Europe/Warsaw')","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730028600"}
+{"type":"DateTime('Europe/Warsaw')","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730039600"}
+{"type":"DateTime('Europe/Warsaw')","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730039600"}
+{"type":"DateTime('Europe/Warsaw')","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730030400"}
+{"type":"DateTime('Europe/Warsaw')","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"negative_milli","event":"-0.005","accepted":true,"history":"0"}
+{"type":"DateTime('Europe/Warsaw')","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime('Europe/Warsaw')","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800"}
+{"type":"DateTime('Europe/Warsaw')","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727733600"}
+{"type":"DateTime('Europe/Warsaw')","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime('Europe/Warsaw')","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1729996400"}
+{"type":"DateTime64(3)","case":"zero","event":"0","accepted":true,"history":"0.000"}
+{"type":"DateTime64(3)","case":"one","event":"1","accepted":true,"history":"1.000"}
+{"type":"DateTime64(3)","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000.500"}
+{"type":"DateTime64(3)","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"millis","event":"1730000000123","accepted":true,"history":"1730000000123.000"}
+{"type":"DateTime64(3)","case":"micros","event":"1730000000123456","accepted":true,"history":"1730000000123456.000"}
+{"type":"DateTime64(3)","case":"nanos","event":"1730000000123456789","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(3)","case":"minus_one","event":"-1","accepted":true,"history":"-1.000"}
+{"type":"DateTime64(3)","case":"minus_day","event":"-86400","accepted":true,"history":"-86400.000"}
+{"type":"DateTime64(3)","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295.000"}
+{"type":"DateTime64(3)","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296.000"}
+{"type":"DateTime64(3)","case":"year_9999","event":"253402300799","accepted":true,"history":"253402300799.000"}
+{"type":"DateTime64(3)","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(3)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0.000"}
+{"type":"DateTime64(3)","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800.000"}
+{"type":"DateTime64(3)","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800.000"}
+{"type":"DateTime64(3)","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800.000"}
+{"type":"DateTime64(3)","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000.500"}
+{"type":"DateTime64(3)","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800.123"}
+{"type":"DateTime64(3)","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980.000"}
+{"type":"DateTime64(3)","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645.000"}
+{"type":"DateTime64(3)","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"-1.000"}
+{"type":"DateTime64(3)","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"-2208988800.000"}
+{"type":"DateTime64(3)","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"-2208988801.000"}
+{"type":"DateTime64(3)","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295.000"}
+{"type":"DateTime64(3)","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967296.000"}
+{"type":"DateTime64(3)","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"10413791999.000"}
+{"type":"DateTime64(3)","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"10413792000.000"}
+{"type":"DateTime64(3)","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200.000"}
+{"type":"DateTime64(3)","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800.000"}
+{"type":"DateTime64(3)","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200.000"}
+{"type":"DateTime64(3)","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200.000"}
+{"type":"DateTime64(3)","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"null","event":"null","accepted":true,"history":"0.000"}
+{"type":"DateTime64(3)","case":"absent","event":null,"accepted":true,"history":"0.000"}
+{"type":"DateTime64(3)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999.000"}
+{"type":"DateTime64(3)","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400.000"}
+{"type":"DateTime64(3)","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800.000"}
+{"type":"DateTime64(3)","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800.000"}
+{"type":"DateTime64(3)","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200.000"}
+{"type":"DateTime64(3)","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000.123"}
+{"type":"DateTime64(3)","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600.000"}
+{"type":"DateTime64(3)","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600.000"}
+{"type":"DateTime64(3)","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639.000"}
+{"type":"DateTime64(3)","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800.000"}
+{"type":"DateTime64(3)","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200.000"}
+{"type":"DateTime64(3)","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0.000"}
+{"type":"DateTime64(3)","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000.000"}
+{"type":"DateTime64(3)","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000.000"}
+{"type":"DateTime64(3)","case":"negative_fraction","event":"-1.5","accepted":true,"history":"-1.500"}
+{"type":"DateTime64(3)","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"-1.234"}
+{"type":"DateTime64(3)","case":"milli_number","event":"0.001","accepted":true,"history":"0.001"}
+{"type":"DateTime64(3)","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0.001"}
+{"type":"DateTime64(3)","case":"negative_half","event":"-0.5","accepted":true,"history":"0.+00"}
+{"type":"DateTime64(3)","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000.000"}
+{"type":"DateTime64(3)","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000.000"}
+{"type":"DateTime64(3)","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600.000"}
+{"type":"DateTime64(3)","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(3)","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600.000"}
+{"type":"DateTime64(3)","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600.000"}
+{"type":"DateTime64(3)","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400.000"}
+{"type":"DateTime64(3)","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800.000"}
+{"type":"DateTime64(3)","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800.000"}
+{"type":"DateTime64(3)","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200.000"}
+{"type":"DateTime64(3)","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200.000"}
+{"type":"DateTime64(3)","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200.000"}
+{"type":"DateTime64(3)","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200.000"}
+{"type":"DateTime64(3)","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000.000"}
+{"type":"DateTime64(3)","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0..+0"}
+{"type":"DateTime64(3)","case":"negative_milli","event":"-0.005","accepted":true,"history":"0.00+"}
+{"type":"DateTime64(3)","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800.000"}
+{"type":"DateTime64(3)","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800.000"}
+{"type":"DateTime64(3)","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800.000"}
+{"type":"DateTime64(3)","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(3)","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"DateTime64(6, 'UTC')","case":"zero","event":"0","accepted":true,"history":"0.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"one","event":"1","accepted":true,"history":"1.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000.500000"}
+{"type":"DateTime64(6, 'UTC')","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"millis","event":"1730000000123","accepted":true,"history":"1730000000123.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"micros","event":"1730000000123456","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(6, 'UTC')","case":"nanos","event":"1730000000123456789","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(6, 'UTC')","case":"minus_one","event":"-1","accepted":true,"history":"-1.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"minus_day","event":"-86400","accepted":true,"history":"-86400.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_9999","event":"253402300799","accepted":true,"history":"253402300799.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(6, 'UTC')","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":true,"history":"1730000000.123000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000.123000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000.123000"}
+{"type":"DateTime64(6, 'UTC')","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000.500000"}
+{"type":"DateTime64(6, 'UTC')","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000.123000"}
+{"type":"DateTime64(6, 'UTC')","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800.123000"}
+{"type":"DateTime64(6, 'UTC')","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"-1.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"-2208988800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"-2208988801.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967296.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"10413791999.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"10413792000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"null","event":"null","accepted":true,"history":"0.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"absent","event":null,"accepted":true,"history":"0.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000.123456"}
+{"type":"DateTime64(6, 'UTC')","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"negative_fraction","event":"-1.5","accepted":true,"history":"-1.500000"}
+{"type":"DateTime64(6, 'UTC')","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"-1.234500"}
+{"type":"DateTime64(6, 'UTC')","case":"milli_number","event":"0.001","accepted":true,"history":"0.001000"}
+{"type":"DateTime64(6, 'UTC')","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0.001000"}
+{"type":"DateTime64(6, 'UTC')","case":"negative_half","event":"-0.5","accepted":true,"history":"0.+00000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(6, 'UTC')","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0..+0000"}
+{"type":"DateTime64(6, 'UTC')","case":"negative_milli","event":"-0.005","accepted":true,"history":"0.00+000"}
+{"type":"DateTime64(6, 'UTC')","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(6, 'UTC')","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000.000000"}
+{"type":"DateTime64(9)","case":"zero","event":"0","accepted":true,"history":"0.000000000"}
+{"type":"DateTime64(9)","case":"one","event":"1","accepted":true,"history":"1.000000000"}
+{"type":"DateTime64(9)","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000.500000000"}
+{"type":"DateTime64(9)","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000.123456700"}
+{"type":"DateTime64(9)","case":"millis","event":"1730000000123","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"micros","event":"1730000000123456","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"nanos","event":"1730000000123456789","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"minus_one","event":"-1","accepted":true,"history":"-1.000000000"}
+{"type":"DateTime64(9)","case":"minus_day","event":"-86400","accepted":true,"history":"-86400.000000000"}
+{"type":"DateTime64(9)","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295.000000000"}
+{"type":"DateTime64(9)","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296.000000000"}
+{"type":"DateTime64(9)","case":"year_9999","event":"253402300799","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0.000000000"}
+{"type":"DateTime64(9)","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":true,"history":"1730000000.123000000"}
+{"type":"DateTime64(9)","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000.123000000"}
+{"type":"DateTime64(9)","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800.000000000"}
+{"type":"DateTime64(9)","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800.000000000"}
+{"type":"DateTime64(9)","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800.000000000"}
+{"type":"DateTime64(9)","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000.123000000"}
+{"type":"DateTime64(9)","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000.500000000"}
+{"type":"DateTime64(9)","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000.123456789"}
+{"type":"DateTime64(9)","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000.123456789"}
+{"type":"DateTime64(9)","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000.123000000"}
+{"type":"DateTime64(9)","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800.123000000"}
+{"type":"DateTime64(9)","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980.000000000"}
+{"type":"DateTime64(9)","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645.000000000"}
+{"type":"DateTime64(9)","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"-1.000000000"}
+{"type":"DateTime64(9)","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"-2208988800.000000000"}
+{"type":"DateTime64(9)","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"-2208988801.000000000"}
+{"type":"DateTime64(9)","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295.000000000"}
+{"type":"DateTime64(9)","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967296.000000000"}
+{"type":"DateTime64(9)","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Decimal math overflow: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Decimal math overflow: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"DateTime64(9)","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200.000000000"}
+{"type":"DateTime64(9)","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800.000000000"}
+{"type":"DateTime64(9)","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200.000000000"}
+{"type":"DateTime64(9)","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200.000000000"}
+{"type":"DateTime64(9)","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"null","event":"null","accepted":true,"history":"0.000000000"}
+{"type":"DateTime64(9)","case":"absent","event":null,"accepted":true,"history":"0.000000000"}
+{"type":"DateTime64(9)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999.000000000"}
+{"type":"DateTime64(9)","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000.123456000"}
+{"type":"DateTime64(9)","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000.123456789"}
+{"type":"DateTime64(9)","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":true,"history":"1730000000.123456789"}
+{"type":"DateTime64(9)","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400.000000000"}
+{"type":"DateTime64(9)","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800.000000000"}
+{"type":"DateTime64(9)","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800.000000000"}
+{"type":"DateTime64(9)","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200.000000000"}
+{"type":"DateTime64(9)","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000.123456000"}
+{"type":"DateTime64(9)","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600.000000000"}
+{"type":"DateTime64(9)","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600.000000000"}
+{"type":"DateTime64(9)","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639.000000000"}
+{"type":"DateTime64(9)","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800.000000000"}
+{"type":"DateTime64(9)","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200.000000000"}
+{"type":"DateTime64(9)","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0.000000000"}
+{"type":"DateTime64(9)","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000.000000000"}
+{"type":"DateTime64(9)","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000.000000000"}
+{"type":"DateTime64(9)","case":"negative_fraction","event":"-1.5","accepted":true,"history":"-1.500000000"}
+{"type":"DateTime64(9)","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"-1.234500000"}
+{"type":"DateTime64(9)","case":"milli_number","event":"0.001","accepted":true,"history":"0.001000000"}
+{"type":"DateTime64(9)","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0.001000000"}
+{"type":"DateTime64(9)","case":"negative_half","event":"-0.5","accepted":true,"history":"0.+00000000"}
+{"type":"DateTime64(9)","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000.000000000"}
+{"type":"DateTime64(9)","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000.000000000"}
+{"type":"DateTime64(9)","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600.000000000"}
+{"type":"DateTime64(9)","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(9)","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600.000000000"}
+{"type":"DateTime64(9)","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600.000000000"}
+{"type":"DateTime64(9)","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400.000000000"}
+{"type":"DateTime64(9)","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800.000000000"}
+{"type":"DateTime64(9)","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800.000000000"}
+{"type":"DateTime64(9)","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200.000000000"}
+{"type":"DateTime64(9)","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200.000000000"}
+{"type":"DateTime64(9)","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200.000000000"}
+{"type":"DateTime64(9)","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200.000000000"}
+{"type":"DateTime64(9)","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000.000000000"}
+{"type":"DateTime64(9)","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0..+0000000"}
+{"type":"DateTime64(9)","case":"negative_milli","event":"-0.005","accepted":true,"history":"0.00+000000"}
+{"type":"DateTime64(9)","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800.000000000"}
+{"type":"DateTime64(9)","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800.000000000"}
+{"type":"DateTime64(9)","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800.000000000"}
+{"type":"DateTime64(9)","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(9)","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000.000000000"}
+{"type":"DateTime64(0)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"DateTime64(0)","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"millis","event":"1730000000123","accepted":true,"history":"1730000000123"}
+{"type":"DateTime64(0)","case":"micros","event":"1730000000123456","accepted":true,"history":"1730000000123456"}
+{"type":"DateTime64(0)","case":"nanos","event":"1730000000123456789","accepted":true,"history":"1730000000123456789"}
+{"type":"DateTime64(0)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"DateTime64(0)","case":"minus_day","event":"-86400","accepted":true,"history":"-86400"}
+{"type":"DateTime64(0)","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295"}
+{"type":"DateTime64(0)","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296"}
+{"type":"DateTime64(0)","case":"year_9999","event":"253402300799","accepted":true,"history":"253402300799"}
+{"type":"DateTime64(0)","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"DateTime64(0)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime64(0)","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime64(0)","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800"}
+{"type":"DateTime64(0)","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime64(0)","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980"}
+{"type":"DateTime64(0)","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645"}
+{"type":"DateTime64(0)","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"-1"}
+{"type":"DateTime64(0)","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"-2208988800"}
+{"type":"DateTime64(0)","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"-2208988801"}
+{"type":"DateTime64(0)","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295"}
+{"type":"DateTime64(0)","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967296"}
+{"type":"DateTime64(0)","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"10413791999"}
+{"type":"DateTime64(0)","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"10413792000"}
+{"type":"DateTime64(0)","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200"}
+{"type":"DateTime64(0)","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800"}
+{"type":"DateTime64(0)","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200"}
+{"type":"DateTime64(0)","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200"}
+{"type":"DateTime64(0)","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999"}
+{"type":"DateTime64(0)","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400"}
+{"type":"DateTime64(0)","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime64(0)","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime64(0)","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime64(0)","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime64(0)","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600"}
+{"type":"DateTime64(0)","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639"}
+{"type":"DateTime64(0)","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime64(0)","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200"}
+{"type":"DateTime64(0)","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000"}
+{"type":"DateTime64(0)","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000"}
+{"type":"DateTime64(0)","case":"negative_fraction","event":"-1.5","accepted":true,"history":"-1"}
+{"type":"DateTime64(0)","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"-1"}
+{"type":"DateTime64(0)","case":"milli_number","event":"0.001","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"negative_half","event":"-0.5","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000"}
+{"type":"DateTime64(0)","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000"}
+{"type":"DateTime64(0)","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600"}
+{"type":"DateTime64(0)","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"DateTime64(0)","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600"}
+{"type":"DateTime64(0)","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600"}
+{"type":"DateTime64(0)","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400"}
+{"type":"DateTime64(0)","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800"}
+{"type":"DateTime64(0)","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime64(0)","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200"}
+{"type":"DateTime64(0)","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200"}
+{"type":"DateTime64(0)","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime64(0)","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200"}
+{"type":"DateTime64(0)","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000"}
+{"type":"DateTime64(0)","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"negative_milli","event":"-0.005","accepted":true,"history":"0"}
+{"type":"DateTime64(0)","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800"}
+{"type":"DateTime64(0)","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800"}
+{"type":"DateTime64(0)","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800"}
+{"type":"DateTime64(0)","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"DateTime64(0)","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000"}
+{"type":"Nullable(DateTime64(3))","case":"zero","event":"0","accepted":true,"history":"0.000"}
+{"type":"Nullable(DateTime64(3))","case":"one","event":"1","accepted":true,"history":"1.000"}
+{"type":"Nullable(DateTime64(3))","case":"seconds","event":"1730000000","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"seconds_fraction","event":"1730000000.5","accepted":true,"history":"1730000000.500"}
+{"type":"Nullable(DateTime64(3))","case":"seconds_long_fraction","event":"1730000000.123456789","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"millis","event":"1730000000123","accepted":true,"history":"1730000000123.000"}
+{"type":"Nullable(DateTime64(3))","case":"micros","event":"1730000000123456","accepted":true,"history":"1730000000123456.000"}
+{"type":"Nullable(DateTime64(3))","case":"nanos","event":"1730000000123456789","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"Nullable(DateTime64(3))","case":"minus_one","event":"-1","accepted":true,"history":"-1.000"}
+{"type":"Nullable(DateTime64(3))","case":"minus_day","event":"-86400","accepted":true,"history":"-86400.000"}
+{"type":"Nullable(DateTime64(3))","case":"u32_max","event":"4294967295","accepted":true,"history":"4294967295.000"}
+{"type":"Nullable(DateTime64(3))","case":"u32_max_plus_one","event":"4294967296","accepted":true,"history":"4294967296.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_9999","event":"253402300799","accepted":true,"history":"253402300799.000"}
+{"type":"Nullable(DateTime64(3))","case":"exponent","event":"1.73e9","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 407. DB::Exception: Numeric value is out of range for DateTime64: (while reading the value of key v): While executing ParallelParsingBlockInputFormat. (DECIMAL_OVERFLOW) (version 26.8.7.19)"}
+{"type":"Nullable(DateTime64(3))","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0.000"}
+{"type":"Nullable(DateTime64(3))","case":"string_seconds","event":"\"1730000000\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"string_seconds_fraction","event":"\"1730000000.123\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"string_millis","event":"\"1730000000123\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"space","event":"\"2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"t","event":"\"2024-10-27T03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"lower_t","event":"\"2024-10-27t03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected alphabetical character: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"z","event":"\"2024-10-27T03:33:20Z\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"offset","event":"\"2024-10-27T03:33:20+02:00\"","accepted":true,"history":"1729992800.000"}
+{"type":"Nullable(DateTime64(3))","case":"offset_compact","event":"\"2024-10-27T03:33:20+0200\"","accepted":true,"history":"1729992800.000"}
+{"type":"Nullable(DateTime64(3))","case":"negative_offset","event":"\"2024-10-27 03:33:20-05:30\"","accepted":true,"history":"1730019800.000"}
+{"type":"Nullable(DateTime64(3))","case":"utc_suffix","event":"\"2024-10-27 03:33:20 UTC\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"millis_fraction","event":"\"2024-10-27 03:33:20.123\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"one_digit_fraction","event":"\"2024-10-27 03:33:20.5\"","accepted":true,"history":"1730000000.500"}
+{"type":"Nullable(DateTime64(3))","case":"nanos_fraction","event":"\"2024-10-27 03:33:20.123456789\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"ten_digit_fraction","event":"\"2024-10-27 03:33:20.1234567891\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"fraction_and_z","event":"\"2024-10-27T03:33:20.123Z\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"fraction_and_offset","event":"\"2024-10-27T03:33:20.123+02:00\"","accepted":true,"history":"1729992800.123"}
+{"type":"Nullable(DateTime64(3))","case":"no_seconds","event":"\"2024-10-27 03:33\"","accepted":true,"history":"1729999980.000"}
+{"type":"Nullable(DateTime64(3))","case":"date_only","event":"\"2024-10-27\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"single_digit_parts","event":"\"2024-1-2 3:4:5\"","accepted":true,"history":"1704164645.000"}
+{"type":"Nullable(DateTime64(3))","case":"compact","event":"\"20241027033320\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"before_epoch","event":"\"1969-12-31 23:59:59\"","accepted":true,"history":"-1.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_1900","event":"\"1900-01-01 00:00:00\"","accepted":true,"history":"-2208988800.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_1899","event":"\"1899-12-31 23:59:59\"","accepted":true,"history":"-2208988801.000"}
+{"type":"Nullable(DateTime64(3))","case":"datetime_max","event":"\"2106-02-07 06:28:15\"","accepted":true,"history":"4294967295.000"}
+{"type":"Nullable(DateTime64(3))","case":"datetime_max_plus_one","event":"\"2106-02-07 06:28:16\"","accepted":true,"history":"4294967296.000"}
+{"type":"Nullable(DateTime64(3))","case":"datetime64_max","event":"\"2299-12-31 23:59:59\"","accepted":true,"history":"10413791999.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_2300","event":"\"2300-01-01 00:00:00\"","accepted":true,"history":"10413792000.000"}
+{"type":"Nullable(DateTime64(3))","case":"feb_30","event":"\"2024-02-30 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-2-30: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"month_13","event":"\"2024-13-01 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-13-1: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"hour_25","event":"\"2024-10-27 25:00:00\"","accepted":true,"history":"1730077200.000"}
+{"type":"Nullable(DateTime64(3))","case":"leap_second","event":"\"2016-12-31 23:59:60\"","accepted":true,"history":"1483228800.000"}
+{"type":"Nullable(DateTime64(3))","case":"dst_gap","event":"\"2024-03-31 02:30:00\"","accepted":true,"history":"1711852200.000"}
+{"type":"Nullable(DateTime64(3))","case":"dst_overlap","event":"\"2024-10-27 02:30:00\"","accepted":true,"history":"1729996200.000"}
+{"type":"Nullable(DateTime64(3))","case":"rfc2822","event":"\"Sun, 27 Oct 2024 03:33:20 GMT\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"day_first","event":"\"27/10/2024 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"month_name","event":"\"27 Oct 2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"leading_space","event":"\" 2024-10-27 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"trailing_space","event":"\"2024-10-27 03:33:20 \"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: neither Date nor Time was parsed successfully: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected word: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"null","event":"null","accepted":true,"history":null}
+{"type":"Nullable(DateTime64(3))","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"Nullable(DateTime64(3))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot parse a number for DateTime64 timestamp: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_8_digits","event":"\"20241027\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"string_9_digits","event":"\"999999999\"","accepted":true,"history":"999999999.000"}
+{"type":"Nullable(DateTime64(3))","case":"string_11_digits","event":"\"17300000001\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 11: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_12_digits","event":"\"202410270333\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 12: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_micros","event":"\"1730000000123456\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"string_nanos","event":"\"1730000000123456789\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"string_spaces_around_seconds","event":"\" 1730000000 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_spaces_around_seconds\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_long_fraction","event":"\"1730000000.1234567891\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"string_fraction_comma","event":"\"2024-10-27 03:33:20,123\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',123\",\"case\":\"string_fraction_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"slashes","event":"\"2024/10/27 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"dots_day_first","event":"\"27.10.2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"month_first","event":"\"10/27/2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"day_first_ambiguous","event":"\"05/10/2024\"","accepted":true,"history":"1728086400.000"}
+{"type":"Nullable(DateTime64(3))","case":"hour_only_offset","event":"\"2024-10-27 03:33:20+02\"","accepted":true,"history":"1729992800.000"}
+{"type":"Nullable(DateTime64(3))","case":"space_offset","event":"\"2024-10-27 03:33:20 +02:00\"","accepted":true,"history":"1729992800.000"}
+{"type":"Nullable(DateTime64(3))","case":"gmt_suffix","event":"\"2024-10-27 03:33:20 GMT\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"pm","event":"\"2024-10-27 03:33:20 PM\"","accepted":true,"history":"1730043200.000"}
+{"type":"Nullable(DateTime64(3))","case":"month_name_first","event":"\"Oct 27 2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"month_name_comma","event":"\"Oct 27, 2024 03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"full_month_name","event":"\"27 October 2024\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"micros_and_z","event":"\"2024-10-27T03:33:20.123456Z\"","accepted":true,"history":"1730000000.123"}
+{"type":"Nullable(DateTime64(3))","case":"single_digit_hour","event":"\"2024-10-27 3:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"hour_24","event":"\"2024-10-27 24:00:00\"","accepted":true,"history":"1730073600.000"}
+{"type":"Nullable(DateTime64(3))","case":"minute_60","event":"\"2024-10-27 23:60:00\"","accepted":true,"history":"1730073600.000"}
+{"type":"Nullable(DateTime64(3))","case":"all_nines","event":"\"2024-10-27 99:99:99\"","accepted":true,"history":"1730349639.000"}
+{"type":"Nullable(DateTime64(3))","case":"trailing_t","event":"\"2024-10-27T\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_month","event":"\"2024-10\"","accepted":true,"history":"1727740800.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_only","event":"\"2024\"","accepted":true,"history":"1704067200.000"}
+{"type":"Nullable(DateTime64(3))","case":"epoch_string","event":"\"1970-01-01 00:00:00\"","accepted":true,"history":"0.000"}
+{"type":"Nullable(DateTime64(3))","case":"april_31","event":"\"2024-04-31 00:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2024-4-31: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"feb_29_leap","event":"\"2024-02-29 12:00:00\"","accepted":true,"history":"1709208000.000"}
+{"type":"Nullable(DateTime64(3))","case":"feb_29_non_leap","event":"\"2023-02-29 12:00:00\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2023-2-29: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"two_digit_year","event":"\"24-10-27\"","accepted":true,"history":"1824336000.000"}
+{"type":"Nullable(DateTime64(3))","case":"negative_fraction","event":"-1.5","accepted":true,"history":"-1.500"}
+{"type":"Nullable(DateTime64(3))","case":"negative_long_fraction","event":"-1.2345","accepted":true,"history":"-1.234"}
+{"type":"Nullable(DateTime64(3))","case":"milli_number","event":"0.001","accepted":true,"history":"0.001"}
+{"type":"Nullable(DateTime64(3))","case":"tiny_exponent","event":"1e-3","accepted":true,"history":"0.001"}
+{"type":"Nullable(DateTime64(3))","case":"negative_half","event":"-0.5","accepted":true,"history":"0.+00"}
+{"type":"Nullable(DateTime64(3))","case":"string_negative_fraction","event":"\"-1.5\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected point symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"dst_gap_end","event":"\"2024-03-31 03:00:00\"","accepted":true,"history":"1711854000.000"}
+{"type":"Nullable(DateTime64(3))","case":"dst_overlap_after","event":"\"2024-10-27 03:00:00\"","accepted":true,"history":"1729998000.000"}
+{"type":"Nullable(DateTime64(3))","case":"dst_overlap_offset","event":"\"2024-10-27 02:30:00+01:00\"","accepted":true,"history":"1729992600.000"}
+{"type":"Nullable(DateTime64(3))","case":"string_3_digits","event":"\"123\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 3: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_5_digits","event":"\"12345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 5: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_6_digits","event":"\"241027\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected date: 2410-27-1: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_7_digits","event":"\"1234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 7: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_15_digits","event":"\"173000000012345\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 15: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_17_digits","event":"\"17300000001234567\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 17: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_18_digits","event":"\"173000000012345678\"","accepted":false,"error":"java.io.IOException: Code: 41. DB::Exception: Cannot read DateTime: unexpected number of decimal digits: 18: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"string_20_digits","event":"\"17300000001234567890\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"string_20_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(DateTime64(3))","case":"two_digit_year_69","event":"\"27-10-69\"","accepted":true,"history":"3150057600.000"}
+{"type":"Nullable(DateTime64(3))","case":"two_digit_year_70","event":"\"27-10-70\"","accepted":true,"history":"25833600.000"}
+{"type":"Nullable(DateTime64(3))","case":"two_digit_year_99","event":"\"27-10-99\"","accepted":true,"history":"940982400.000"}
+{"type":"Nullable(DateTime64(3))","case":"two_digit_year_slashes","event":"\"27/10/24\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"zero_month","event":"\"2024-00-10\"","accepted":true,"history":"1704844800.000"}
+{"type":"Nullable(DateTime64(3))","case":"zero_day","event":"\"2024-10-00\"","accepted":true,"history":"1727740800.000"}
+{"type":"Nullable(DateTime64(3))","case":"midnight_am","event":"\"2024-10-27 12:00:00 AM\"","accepted":true,"history":"1729987200.000"}
+{"type":"Nullable(DateTime64(3))","case":"noon_pm","event":"\"2024-10-27 12:30:00 PM\"","accepted":true,"history":"1730032200.000"}
+{"type":"Nullable(DateTime64(3))","case":"lower_pm","event":"\"2024-10-27 03:33:20 pm\"","accepted":true,"history":"1730043200.000"}
+{"type":"Nullable(DateTime64(3))","case":"pm_no_space","event":"\"2024-10-27 03:33:20PM\"","accepted":true,"history":"1730043200.000"}
+{"type":"Nullable(DateTime64(3))","case":"hour_13_pm","event":"\"2024-10-27 13:00:00 PM\"","accepted":true,"history":"1730034000.000"}
+{"type":"Nullable(DateTime64(3))","case":"negative_quarter","event":"-0.25","accepted":true,"history":"0..+0"}
+{"type":"Nullable(DateTime64(3))","case":"negative_milli","event":"-0.005","accepted":true,"history":"0.00+"}
+{"type":"Nullable(DateTime64(3))","case":"t_space_offset","event":"\"2024-10-27T03:33:20 +0200\"","accepted":true,"history":"1729992800.000"}
+{"type":"Nullable(DateTime64(3))","case":"offset_hours_three_digits","event":"\"2024-10-27 03:33:20+020\"","accepted":true,"history":"1729998800.000"}
+{"type":"Nullable(DateTime64(3))","case":"year_month_slash","event":"\"2024/10\"","accepted":true,"history":"1727740800.000"}
+{"type":"Nullable(DateTime64(3))","case":"date_space_t","event":"\"2024-10-27 T03:33:20\"","accepted":true,"history":"1730000000.000"}
+{"type":"Nullable(DateTime64(3))","case":"double_space","event":"\"2024-10-27  03:33:20\"","accepted":true,"history":"1730000000.000"}

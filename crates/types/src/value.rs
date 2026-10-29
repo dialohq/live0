@@ -10,6 +10,8 @@ pub enum Value {
     Int(i128),
     Float(f64),
     Bool(bool),
+    /// Ticks of the column's precision since the epoch; the time zone is in the type.
+    DateTime(i64),
 }
 
 impl Value {
@@ -23,6 +25,7 @@ impl Value {
             DataType::Int(i) => i.decode_event(json).map(Value::Int),
             DataType::Float(f) => f.decode_event(json).map(Value::Float),
             DataType::Bool(b) => b.decode_event(json).map(Value::Bool),
+            DataType::DateTime(t) => t.decode_event(json).map(Value::DateTime),
             DataType::Other(_) => None,
         }
     }
@@ -36,6 +39,7 @@ impl Value {
             DataType::Int(i) => i.decode_history(json).map(Value::Int),
             DataType::Float(f) => f.decode_history(json).map(Value::Float),
             DataType::Bool(b) => b.decode_history(json).map(Value::Bool),
+            DataType::DateTime(t) => t.decode_history(json).map(Value::DateTime),
             DataType::Other(raw) => Err(HistoryError::new(raw, json)),
         }
     }

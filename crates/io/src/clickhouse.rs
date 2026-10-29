@@ -8,6 +8,7 @@ pub const HISTORY_FORMAT: &str = "JSONCompactEachRowWithNamesAndTypes";
 pub const HISTORY_SETTINGS: &[(&str, &str)] = &[
     ("output_format_json_quote_64bit_integers", "1"),
     ("output_format_json_quote_denormals", "1"),
+    ("date_time_output_format", "unix_timestamp"),
 ];
 
 #[derive(Debug, thiserror::Error)]
