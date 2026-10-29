@@ -1,132 +1,231 @@
-{"type":"Date","case":"zero","event":"0","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"one","event":"1","accepted":true,"history":"1970-01-02"}
-{"type":"Date","case":"days","event":"20023","accepted":true,"history":"2024-10-27"}
+{"type":"Date","case":"zero","event":"0","accepted":true,"history":0}
+{"type":"Date","case":"one","event":"1","accepted":true,"history":1}
+{"type":"Date","case":"days","event":"20023","accepted":true,"history":20023}
 {"type":"Date","case":"days_fraction","event":"20023.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"days_fraction\"}': (at row 1)"}
-{"type":"Date","case":"u16_max","event":"65535","accepted":true,"history":"2149-06-06"}
-{"type":"Date","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"1970-01-01"}
+{"type":"Date","case":"u16_max","event":"65535","accepted":true,"history":65535}
+{"type":"Date","case":"u16_max_plus_one","event":"65536","accepted":true,"history":0}
 {"type":"Date","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"date32_min","event":"-25567","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
-{"type":"Date","case":"date32_max","event":"120529","accepted":true,"history":"2120-07-26"}
-{"type":"Date","case":"seconds","event":"1730000000","accepted":true,"history":"2096-07-06"}
-{"type":"Date","case":"millis","event":"1730000000123","accepted":true,"history":"1984-05-10"}
+{"type":"Date","case":"date32_max","event":"120529","accepted":true,"history":54993}
+{"type":"Date","case":"seconds","event":"1730000000","accepted":true,"history":46208}
+{"type":"Date","case":"millis","event":"1730000000123","accepted":true,"history":5243}
 {"type":"Date","case":"exponent","event":"2e4","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
-{"type":"Date","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"iso","event":"\"2024-10-27\"","accepted":true,"history":"2024-10-27"}
+{"type":"Date","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Date","case":"iso","event":"\"2024-10-27\"","accepted":true,"history":20023}
 {"type":"Date","case":"with_time","event":"\"2024-10-27 03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 03:33:20\",\"case\":\"with_time\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"with_t_and_offset","event":"\"2024-10-27T23:59:59+05:00\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'T23:59:59+05:00\",\"case\":\"with_t_and_offset\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"with_z","event":"\"2024-10-27T23:59:59Z\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'T23:59:59Z\",\"case\":\"with_z\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Date","case":"compact","event":"\"20241027\"","accepted":true,"history":"2024-10-27"}
+{"type":"Date","case":"compact","event":"\"20241027\"","accepted":true,"history":20023}
 {"type":"Date","case":"day_first","event":"\"27/10/2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27/10/2024: (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"dots","event":"\"27.10.2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27.10.2024: (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"month_name","event":"\"27 Oct 2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27 Oct 202: (while reading the value of key v): (at row 1)"}
-{"type":"Date","case":"single_digits","event":"\"2024-1-2\"","accepted":true,"history":"2024-01-02"}
-{"type":"Date","case":"epoch","event":"\"1970-01-01\"","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"before_epoch","event":"\"1969-12-31\"","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"date_max","event":"\"2149-06-06\"","accepted":true,"history":"2149-06-06"}
-{"type":"Date","case":"date_max_plus_one","event":"\"2149-06-07\"","accepted":true,"history":"2149-06-06"}
-{"type":"Date","case":"year_1900","event":"\"1900-01-01\"","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"year_1899","event":"\"1899-12-31\"","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"date32_max_string","event":"\"2299-12-31\"","accepted":true,"history":"2149-06-06"}
-{"type":"Date","case":"year_2300","event":"\"2300-01-01\"","accepted":true,"history":"2149-06-06"}
-{"type":"Date","case":"feb_29_leap","event":"\"2024-02-29\"","accepted":true,"history":"2024-02-29"}
-{"type":"Date","case":"feb_30","event":"\"2024-02-30\"","accepted":true,"history":"2024-03-01"}
-{"type":"Date","case":"month_13","event":"\"2024-13-01\"","accepted":true,"history":"1970-01-01"}
+{"type":"Date","case":"single_digits","event":"\"2024-1-2\"","accepted":true,"history":19724}
+{"type":"Date","case":"epoch","event":"\"1970-01-01\"","accepted":true,"history":0}
+{"type":"Date","case":"before_epoch","event":"\"1969-12-31\"","accepted":true,"history":0}
+{"type":"Date","case":"date_max","event":"\"2149-06-06\"","accepted":true,"history":65535}
+{"type":"Date","case":"date_max_plus_one","event":"\"2149-06-07\"","accepted":true,"history":65535}
+{"type":"Date","case":"year_1900","event":"\"1900-01-01\"","accepted":true,"history":0}
+{"type":"Date","case":"year_1899","event":"\"1899-12-31\"","accepted":true,"history":0}
+{"type":"Date","case":"date32_max_string","event":"\"2299-12-31\"","accepted":true,"history":65535}
+{"type":"Date","case":"year_2300","event":"\"2300-01-01\"","accepted":true,"history":65535}
+{"type":"Date","case":"feb_29_leap","event":"\"2024-02-29\"","accepted":true,"history":19782}
+{"type":"Date","case":"feb_30","event":"\"2024-02-30\"","accepted":true,"history":19783}
+{"type":"Date","case":"month_13","event":"\"2024-13-01\"","accepted":true,"history":0}
 {"type":"Date","case":"two_digit_year","event":"\"24-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 24-10-27\",: (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"string_days","event":"\"20023\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 20023\",\"ca: (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"string_seconds","event":"\"1730000000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '00\",\"case\":\"string_seconds\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"spaces","event":"\" 2024-10-27 \"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here:  2024-10-2: (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: \",\"case\":\": (while reading the value of key v): (at row 1)"}
 {"type":"Date","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: abc\",\"case: (while reading the value of key v): (at row 1)"}
-{"type":"Date","case":"true","event":"true","accepted":true,"history":"1970-01-02"}
-{"type":"Date","case":"null","event":"null","accepted":true,"history":"1970-01-01"}
-{"type":"Date","case":"absent","event":null,"accepted":true,"history":"1970-01-01"}
+{"type":"Date","case":"true","event":"true","accepted":true,"history":1}
+{"type":"Date","case":"null","event":"null","accepted":true,"history":0}
+{"type":"Date","case":"absent","event":null,"accepted":true,"history":0}
 {"type":"Date","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Date","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Date32","case":"zero","event":"0","accepted":true,"history":"1970-01-01"}
-{"type":"Date32","case":"one","event":"1","accepted":true,"history":"1970-01-02"}
-{"type":"Date32","case":"days","event":"20023","accepted":true,"history":"2024-10-27"}
+{"type":"Date","case":"day_32","event":"\"2024-01-32\"","accepted":true,"history":0}
+{"type":"Date","case":"day_0","event":"\"2024-10-00\"","accepted":true,"history":0}
+{"type":"Date","case":"month_0","event":"\"2024-00-10\"","accepted":true,"history":0}
+{"type":"Date","case":"feb_31","event":"\"2024-02-31\"","accepted":true,"history":19784}
+{"type":"Date","case":"dec_32","event":"\"2024-12-32\"","accepted":true,"history":0}
+{"type":"Date","case":"day_99","event":"\"2024-01-99\"","accepted":true,"history":0}
+{"type":"Date","case":"month_99","event":"\"2024-99-99\"","accepted":true,"history":0}
+{"type":"Date","case":"slashes","event":"\"2024/10/27\"","accepted":true,"history":20023}
+{"type":"Date","case":"dots_ymd","event":"\"2024.10.27\"","accepted":true,"history":20023}
+{"type":"Date","case":"underscores","event":"\"2024_10_27\"","accepted":true,"history":20023}
+{"type":"Date","case":"mixed_separators","event":"\"2024-10/27\"","accepted":true,"history":20023}
+{"type":"Date","case":"one_digit_day","event":"\"2024-10-2\"","accepted":true,"history":19998}
+{"type":"Date","case":"trailing_space","event":"\"2024-10-27 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"leading_space","event":"\" 2024-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here:  2024-10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"year_9999","event":"\"9999-12-31\"","accepted":true,"history":65535}
+{"type":"Date","case":"year_0000","event":"\"0000-01-01\"","accepted":true,"history":0}
+{"type":"Date","case":"year_month","event":"\"2024-10\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024-10\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"year_only","event":"\"2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024\",\"cas: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"three_digit_month","event":"\"2024-010-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024-010-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"five_digit_year","event":"\"02024-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 02024-10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"compact_month_13","event":"\"20241332\"","accepted":true,"history":0}
+{"type":"Date","case":"compact_feb_30","event":"\"20240230\"","accepted":true,"history":19783}
+{"type":"Date","case":"seven_digits","event":"\"2024102\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024102\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"nine_digits","event":"\"202410270\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"nine_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"double_separator","event":"\"2024--10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024--10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"false","event":"false","accepted":true,"history":0}
+{"type":"Date","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: -1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"i32_max","event":"2147483647","accepted":true,"history":65535}
+{"type":"Date","case":"i32_min","event":"-2147483648","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"below_i32_min","event":"-2147483649","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Date","case":"date_wrap","event":"85559","accepted":true,"history":20023}
+{"type":"Date","case":"u32_overflow","event":"4294967296","accepted":true,"history":0}
+{"type":"Date","case":"negative_big","event":"-1730000000","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"zero","event":"0","accepted":true,"history":0}
+{"type":"Date32","case":"one","event":"1","accepted":true,"history":1}
+{"type":"Date32","case":"days","event":"20023","accepted":true,"history":20023}
 {"type":"Date32","case":"days_fraction","event":"20023.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"days_fraction\"}': (at row 1)"}
-{"type":"Date32","case":"u16_max","event":"65535","accepted":true,"history":"2149-06-06"}
-{"type":"Date32","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"2149-06-07"}
-{"type":"Date32","case":"minus_one","event":"-1","accepted":true,"history":"1969-12-31"}
-{"type":"Date32","case":"date32_min","event":"-25567","accepted":true,"history":"1900-01-01"}
-{"type":"Date32","case":"date32_max","event":"120529","accepted":true,"history":"2299-12-31"}
-{"type":"Date32","case":"seconds","event":"1730000000","accepted":true,"history":"9999-12-31"}
-{"type":"Date32","case":"millis","event":"1730000000123","accepted":true,"history":"0000-01-01"}
+{"type":"Date32","case":"u16_max","event":"65535","accepted":true,"history":65535}
+{"type":"Date32","case":"u16_max_plus_one","event":"65536","accepted":true,"history":65536}
+{"type":"Date32","case":"minus_one","event":"-1","accepted":true,"history":-1}
+{"type":"Date32","case":"date32_min","event":"-25567","accepted":true,"history":-25567}
+{"type":"Date32","case":"date32_max","event":"120529","accepted":true,"history":120529}
+{"type":"Date32","case":"seconds","event":"1730000000","accepted":true,"history":1730000000}
+{"type":"Date32","case":"millis","event":"1730000000123","accepted":true,"history":-871820165}
 {"type":"Date32","case":"exponent","event":"2e4","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
-{"type":"Date32","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"1970-01-01"}
-{"type":"Date32","case":"iso","event":"\"2024-10-27\"","accepted":true,"history":"2024-10-27"}
+{"type":"Date32","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Date32","case":"iso","event":"\"2024-10-27\"","accepted":true,"history":20023}
 {"type":"Date32","case":"with_time","event":"\"2024-10-27 03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 03:33:20\",\"case\":\"with_time\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"with_t_and_offset","event":"\"2024-10-27T23:59:59+05:00\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'T23:59:59+05:00\",\"case\":\"with_t_and_offset\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"with_z","event":"\"2024-10-27T23:59:59Z\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'T23:59:59Z\",\"case\":\"with_z\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Date32","case":"compact","event":"\"20241027\"","accepted":true,"history":"2024-10-27"}
+{"type":"Date32","case":"compact","event":"\"20241027\"","accepted":true,"history":20023}
 {"type":"Date32","case":"day_first","event":"\"27/10/2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27/10/2024: (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"dots","event":"\"27.10.2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27.10.2024: (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"month_name","event":"\"27 Oct 2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27 Oct 202: (while reading the value of key v): (at row 1)"}
-{"type":"Date32","case":"single_digits","event":"\"2024-1-2\"","accepted":true,"history":"2024-01-02"}
-{"type":"Date32","case":"epoch","event":"\"1970-01-01\"","accepted":true,"history":"1970-01-01"}
-{"type":"Date32","case":"before_epoch","event":"\"1969-12-31\"","accepted":true,"history":"1969-12-31"}
-{"type":"Date32","case":"date_max","event":"\"2149-06-06\"","accepted":true,"history":"2149-06-06"}
-{"type":"Date32","case":"date_max_plus_one","event":"\"2149-06-07\"","accepted":true,"history":"2149-06-07"}
-{"type":"Date32","case":"year_1900","event":"\"1900-01-01\"","accepted":true,"history":"1900-01-01"}
-{"type":"Date32","case":"year_1899","event":"\"1899-12-31\"","accepted":true,"history":"1899-12-31"}
-{"type":"Date32","case":"date32_max_string","event":"\"2299-12-31\"","accepted":true,"history":"2299-12-31"}
-{"type":"Date32","case":"year_2300","event":"\"2300-01-01\"","accepted":true,"history":"2300-01-01"}
-{"type":"Date32","case":"feb_29_leap","event":"\"2024-02-29\"","accepted":true,"history":"2024-02-29"}
-{"type":"Date32","case":"feb_30","event":"\"2024-02-30\"","accepted":true,"history":"2024-03-01"}
-{"type":"Date32","case":"month_13","event":"\"2024-13-01\"","accepted":true,"history":"1900-01-01"}
+{"type":"Date32","case":"single_digits","event":"\"2024-1-2\"","accepted":true,"history":19724}
+{"type":"Date32","case":"epoch","event":"\"1970-01-01\"","accepted":true,"history":0}
+{"type":"Date32","case":"before_epoch","event":"\"1969-12-31\"","accepted":true,"history":-1}
+{"type":"Date32","case":"date_max","event":"\"2149-06-06\"","accepted":true,"history":65535}
+{"type":"Date32","case":"date_max_plus_one","event":"\"2149-06-07\"","accepted":true,"history":65536}
+{"type":"Date32","case":"year_1900","event":"\"1900-01-01\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"year_1899","event":"\"1899-12-31\"","accepted":true,"history":-25568}
+{"type":"Date32","case":"date32_max_string","event":"\"2299-12-31\"","accepted":true,"history":120529}
+{"type":"Date32","case":"year_2300","event":"\"2300-01-01\"","accepted":true,"history":120530}
+{"type":"Date32","case":"feb_29_leap","event":"\"2024-02-29\"","accepted":true,"history":19782}
+{"type":"Date32","case":"feb_30","event":"\"2024-02-30\"","accepted":true,"history":19783}
+{"type":"Date32","case":"month_13","event":"\"2024-13-01\"","accepted":true,"history":-25567}
 {"type":"Date32","case":"two_digit_year","event":"\"24-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 24-10-27\",: (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"string_days","event":"\"20023\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 20023\",\"ca: (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"string_seconds","event":"\"1730000000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '00\",\"case\":\"string_seconds\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"spaces","event":"\" 2024-10-27 \"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here:  2024-10-2: (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: \",\"case\":\": (while reading the value of key v): (at row 1)"}
 {"type":"Date32","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: abc\",\"case: (while reading the value of key v): (at row 1)"}
-{"type":"Date32","case":"true","event":"true","accepted":true,"history":"1970-01-02"}
-{"type":"Date32","case":"null","event":"null","accepted":true,"history":"1970-01-01"}
-{"type":"Date32","case":"absent","event":null,"accepted":true,"history":"1970-01-01"}
+{"type":"Date32","case":"true","event":"true","accepted":true,"history":1}
+{"type":"Date32","case":"null","event":"null","accepted":true,"history":0}
+{"type":"Date32","case":"absent","event":null,"accepted":true,"history":0}
 {"type":"Date32","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Date32","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Nullable(Date)","case":"zero","event":"0","accepted":true,"history":"1970-01-01"}
-{"type":"Nullable(Date)","case":"one","event":"1","accepted":true,"history":"1970-01-02"}
-{"type":"Nullable(Date)","case":"days","event":"20023","accepted":true,"history":"2024-10-27"}
+{"type":"Date32","case":"day_32","event":"\"2024-01-32\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"day_0","event":"\"2024-10-00\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"month_0","event":"\"2024-00-10\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"feb_31","event":"\"2024-02-31\"","accepted":true,"history":19784}
+{"type":"Date32","case":"dec_32","event":"\"2024-12-32\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"day_99","event":"\"2024-01-99\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"month_99","event":"\"2024-99-99\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"slashes","event":"\"2024/10/27\"","accepted":true,"history":20023}
+{"type":"Date32","case":"dots_ymd","event":"\"2024.10.27\"","accepted":true,"history":20023}
+{"type":"Date32","case":"underscores","event":"\"2024_10_27\"","accepted":true,"history":20023}
+{"type":"Date32","case":"mixed_separators","event":"\"2024-10/27\"","accepted":true,"history":20023}
+{"type":"Date32","case":"one_digit_day","event":"\"2024-10-2\"","accepted":true,"history":19998}
+{"type":"Date32","case":"trailing_space","event":"\"2024-10-27 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"leading_space","event":"\" 2024-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here:  2024-10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"year_9999","event":"\"9999-12-31\"","accepted":true,"history":2932896}
+{"type":"Date32","case":"year_0000","event":"\"0000-01-01\"","accepted":true,"history":-719528}
+{"type":"Date32","case":"year_month","event":"\"2024-10\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024-10\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"year_only","event":"\"2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024\",\"cas: (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"three_digit_month","event":"\"2024-010-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024-010-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"five_digit_year","event":"\"02024-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 02024-10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"compact_month_13","event":"\"20241332\"","accepted":true,"history":-25567}
+{"type":"Date32","case":"compact_feb_30","event":"\"20240230\"","accepted":true,"history":19783}
+{"type":"Date32","case":"seven_digits","event":"\"2024102\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024102\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"nine_digits","event":"\"202410270\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"nine_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"double_separator","event":"\"2024--10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024--10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"false","event":"false","accepted":true,"history":0}
+{"type":"Date32","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: -1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"Date32","case":"i32_max","event":"2147483647","accepted":true,"history":2147483647}
+{"type":"Date32","case":"i32_min","event":"-2147483648","accepted":true,"history":-2147483648}
+{"type":"Date32","case":"below_i32_min","event":"-2147483649","accepted":true,"history":2147483647}
+{"type":"Date32","case":"date_wrap","event":"85559","accepted":true,"history":85559}
+{"type":"Date32","case":"u32_overflow","event":"4294967296","accepted":true,"history":0}
+{"type":"Date32","case":"negative_big","event":"-1730000000","accepted":true,"history":-1730000000}
+{"type":"Nullable(Date)","case":"zero","event":"0","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"one","event":"1","accepted":true,"history":1}
+{"type":"Nullable(Date)","case":"days","event":"20023","accepted":true,"history":20023}
 {"type":"Nullable(Date)","case":"days_fraction","event":"20023.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.5,\"case\":\"days_fraction\"}': (at row 1)"}
-{"type":"Nullable(Date)","case":"u16_max","event":"65535","accepted":true,"history":"2149-06-06"}
-{"type":"Nullable(Date)","case":"u16_max_plus_one","event":"65536","accepted":true,"history":"1970-01-01"}
+{"type":"Nullable(Date)","case":"u16_max","event":"65535","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"u16_max_plus_one","event":"65536","accepted":true,"history":0}
 {"type":"Nullable(Date)","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"date32_min","event":"-25567","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Date)","case":"date32_max","event":"120529","accepted":true,"history":"2120-07-26"}
-{"type":"Nullable(Date)","case":"seconds","event":"1730000000","accepted":true,"history":"2096-07-06"}
-{"type":"Nullable(Date)","case":"millis","event":"1730000000123","accepted":true,"history":"1984-05-10"}
+{"type":"Nullable(Date)","case":"date32_max","event":"120529","accepted":true,"history":54993}
+{"type":"Nullable(Date)","case":"seconds","event":"1730000000","accepted":true,"history":46208}
+{"type":"Nullable(Date)","case":"millis","event":"1730000000123","accepted":true,"history":5243}
 {"type":"Nullable(Date)","case":"exponent","event":"2e4","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"exponent\"}': (at row 1)"}
-{"type":"Nullable(Date)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"1970-01-01"}
-{"type":"Nullable(Date)","case":"iso","event":"\"2024-10-27\"","accepted":true,"history":"2024-10-27"}
+{"type":"Nullable(Date)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"iso","event":"\"2024-10-27\"","accepted":true,"history":20023}
 {"type":"Nullable(Date)","case":"with_time","event":"\"2024-10-27 03:33:20\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 03:33:20\",\"case\":\"with_time\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"with_t_and_offset","event":"\"2024-10-27T23:59:59+05:00\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'T23:59:59+05:00\",\"case\":\"with_t_and_offset\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"with_z","event":"\"2024-10-27T23:59:59Z\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'T23:59:59Z\",\"case\":\"with_z\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Date)","case":"compact","event":"\"20241027\"","accepted":true,"history":"2024-10-27"}
+{"type":"Nullable(Date)","case":"compact","event":"\"20241027\"","accepted":true,"history":20023}
 {"type":"Nullable(Date)","case":"day_first","event":"\"27/10/2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27/10/2024: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"dots","event":"\"27.10.2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27.10.2024: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"month_name","event":"\"27 Oct 2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 27 Oct 202: (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Date)","case":"single_digits","event":"\"2024-1-2\"","accepted":true,"history":"2024-01-02"}
-{"type":"Nullable(Date)","case":"epoch","event":"\"1970-01-01\"","accepted":true,"history":"1970-01-01"}
-{"type":"Nullable(Date)","case":"before_epoch","event":"\"1969-12-31\"","accepted":true,"history":"1970-01-01"}
-{"type":"Nullable(Date)","case":"date_max","event":"\"2149-06-06\"","accepted":true,"history":"2149-06-06"}
-{"type":"Nullable(Date)","case":"date_max_plus_one","event":"\"2149-06-07\"","accepted":true,"history":"2149-06-06"}
-{"type":"Nullable(Date)","case":"year_1900","event":"\"1900-01-01\"","accepted":true,"history":"1970-01-01"}
-{"type":"Nullable(Date)","case":"year_1899","event":"\"1899-12-31\"","accepted":true,"history":"1970-01-01"}
-{"type":"Nullable(Date)","case":"date32_max_string","event":"\"2299-12-31\"","accepted":true,"history":"2149-06-06"}
-{"type":"Nullable(Date)","case":"year_2300","event":"\"2300-01-01\"","accepted":true,"history":"2149-06-06"}
-{"type":"Nullable(Date)","case":"feb_29_leap","event":"\"2024-02-29\"","accepted":true,"history":"2024-02-29"}
-{"type":"Nullable(Date)","case":"feb_30","event":"\"2024-02-30\"","accepted":true,"history":"2024-03-01"}
-{"type":"Nullable(Date)","case":"month_13","event":"\"2024-13-01\"","accepted":true,"history":"1970-01-01"}
+{"type":"Nullable(Date)","case":"single_digits","event":"\"2024-1-2\"","accepted":true,"history":19724}
+{"type":"Nullable(Date)","case":"epoch","event":"\"1970-01-01\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"before_epoch","event":"\"1969-12-31\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"date_max","event":"\"2149-06-06\"","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"date_max_plus_one","event":"\"2149-06-07\"","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"year_1900","event":"\"1900-01-01\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"year_1899","event":"\"1899-12-31\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"date32_max_string","event":"\"2299-12-31\"","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"year_2300","event":"\"2300-01-01\"","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"feb_29_leap","event":"\"2024-02-29\"","accepted":true,"history":19782}
+{"type":"Nullable(Date)","case":"feb_30","event":"\"2024-02-30\"","accepted":true,"history":19783}
+{"type":"Nullable(Date)","case":"month_13","event":"\"2024-13-01\"","accepted":true,"history":0}
 {"type":"Nullable(Date)","case":"two_digit_year","event":"\"24-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 24-10-27\",: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"string_days","event":"\"20023\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 20023\",\"ca: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"string_seconds","event":"\"1730000000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '00\",\"case\":\"string_seconds\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"spaces","event":"\" 2024-10-27 \"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here:  2024-10-2: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: \",\"case\":\": (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Date)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: abc\",\"case: (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Date)","case":"true","event":"true","accepted":true,"history":"1970-01-02"}
+{"type":"Nullable(Date)","case":"true","event":"true","accepted":true,"history":1}
 {"type":"Nullable(Date)","case":"null","event":"null","accepted":true,"history":null}
 {"type":"Nullable(Date)","case":"absent","event":null,"accepted":true,"history":null}
 {"type":"Nullable(Date)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Nullable(Date)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Nullable(Date)","case":"day_32","event":"\"2024-01-32\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"day_0","event":"\"2024-10-00\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"month_0","event":"\"2024-00-10\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"feb_31","event":"\"2024-02-31\"","accepted":true,"history":19784}
+{"type":"Nullable(Date)","case":"dec_32","event":"\"2024-12-32\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"day_99","event":"\"2024-01-99\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"month_99","event":"\"2024-99-99\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"slashes","event":"\"2024/10/27\"","accepted":true,"history":20023}
+{"type":"Nullable(Date)","case":"dots_ymd","event":"\"2024.10.27\"","accepted":true,"history":20023}
+{"type":"Nullable(Date)","case":"underscores","event":"\"2024_10_27\"","accepted":true,"history":20023}
+{"type":"Nullable(Date)","case":"mixed_separators","event":"\"2024-10/27\"","accepted":true,"history":20023}
+{"type":"Nullable(Date)","case":"one_digit_day","event":"\"2024-10-2\"","accepted":true,"history":19998}
+{"type":"Nullable(Date)","case":"trailing_space","event":"\"2024-10-27 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"trailing_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"leading_space","event":"\" 2024-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here:  2024-10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"year_9999","event":"\"9999-12-31\"","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"year_0000","event":"\"0000-01-01\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"year_month","event":"\"2024-10\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024-10\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"year_only","event":"\"2024\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024\",\"cas: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"three_digit_month","event":"\"2024-010-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024-010-2: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"five_digit_year","event":"\"02024-10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 02024-10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"compact_month_13","event":"\"20241332\"","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"compact_feb_30","event":"\"20240230\"","accepted":true,"history":19783}
+{"type":"Nullable(Date)","case":"seven_digits","event":"\"2024102\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024102\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"nine_digits","event":"\"202410270\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0\",\"case\":\"nine_digits\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"double_separator","event":"\"2024--10-27\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: 2024--10-2: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"false","event":"false","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"string_negative","event":"\"-1\"","accepted":false,"error":"java.io.IOException: Code: 38. DB::Exception: Cannot parse date here: -1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"i32_max","event":"2147483647","accepted":true,"history":65535}
+{"type":"Nullable(Date)","case":"i32_min","event":"-2147483648","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"below_i32_min","event":"-2147483649","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Date)","case":"date_wrap","event":"85559","accepted":true,"history":20023}
+{"type":"Nullable(Date)","case":"u32_overflow","event":"4294967296","accepted":true,"history":0}
+{"type":"Nullable(Date)","case":"negative_big","event":"-1730000000","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}

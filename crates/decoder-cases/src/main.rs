@@ -13,6 +13,7 @@ use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 use io::{HISTORY_FORMAT, HISTORY_SETTINGS};
 use serde_json::{Map, Value as Json};
+use types::DataType;
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
@@ -206,7 +207,12 @@ impl Stack {
         self.rpk(&["topic", "produce", "-f", "%t %V %v\n"], Some(&records))?;
 
         let (accepted, rejected) = self.wait(prefix, &topics, &dlq)?;
-        let history = fetch_history(&accepted)?;
+        let selects: BTreeMap<&str, String> = topics
+            .iter()
+            .zip(chunk)
+            .map(|(topic, case)| (topic.as_str(), DataType::parse(&case.ty).history_expr("v")))
+            .collect();
+        let history = fetch_history(&accepted, &selects)?;
         self.connect_delete(&format!("/connectors/{CONNECTOR}"))?;
         // Redpanda caps partitions per core, so a chunk's topics can't outlive it.
         let mut delete = vec!["topic", "delete"];
@@ -370,7 +376,10 @@ impl Stack {
 }
 
 /// The accepted topics' `v`, fetched exactly as the application fetches history.
-fn fetch_history(topics: &BTreeSet<String>) -> Result<BTreeMap<String, Json>> {
+fn fetch_history(
+    topics: &BTreeSet<String>,
+    selects: &BTreeMap<&str, String>,
+) -> Result<BTreeMap<String, Json>> {
     let settings = HISTORY_SETTINGS
         .iter()
         .map(|(k, v)| format!("{k} = '{v}'"))
@@ -378,8 +387,9 @@ fn fetch_history(topics: &BTreeSet<String>) -> Result<BTreeMap<String, Json>> {
         .join(", ");
     let mut queries = String::new();
     for topic in topics {
+        let v = selects.get(topic.as_str()).map_or("v", String::as_str);
         queries += &format!(
-            "SELECT '{topic}' AS topic, v FROM {DATABASE}.{topic} SETTINGS {settings} FORMAT {HISTORY_FORMAT};\n"
+            "SELECT '{topic}' AS topic, {v} AS v FROM {DATABASE}.{topic} SETTINGS {settings} FORMAT {HISTORY_FORMAT};\n"
         );
     }
     let mut history = BTreeMap::new();

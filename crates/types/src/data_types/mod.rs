@@ -3,13 +3,14 @@ use serde_json::Value as Json;
 pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
-    boolean::BoolType, datetime::DateTimeType, float::FloatType, int::IntType, json::JsonType,
-    string::StringType,
+    boolean::BoolType, date::DateType, datetime::DateTimeType, float::FloatType, int::IntType,
+    json::JsonType, string::StringType,
 };
 
 mod boolean;
 #[cfg(test)]
 mod cases;
+mod date;
 mod datetime;
 mod float;
 mod int;
@@ -42,6 +43,7 @@ pub enum DataType {
     Int(IntType),
     Float(FloatType),
     Bool(BoolType),
+    Date(DateType),
     DateTime(DateTimeType),
     Other(String),
 }
@@ -77,9 +79,20 @@ impl DataType {
             "Float32" => Self::Float(FloatType { width: 32 }),
             "Float64" => Self::Float(FloatType { width: 64 }),
             "Bool" => Self::Bool(BoolType),
+            "Date" => Self::Date(DateType { wide: false }),
+            "Date32" => Self::Date(DateType { wide: true }),
             _ => {
                 DateTimeType::parse(raw).map_or_else(|| Self::Other(raw.to_owned()), Self::DateTime)
             }
+        }
+    }
+
+    /// How a history query selects a column of this type so that [`crate::Value::from_history`] reads it exactly.
+    pub fn history_expr(&self, column: &str) -> String {
+        match self {
+            Self::Nullable(inner) => inner.history_expr(column),
+            Self::Date(d) => d.history_expr(column),
+            _ => column.to_owned(),
         }
     }
 
