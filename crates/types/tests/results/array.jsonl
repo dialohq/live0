@@ -1,0 +1,115 @@
+{"type":"Array(Int32)","case":"ints","event":"[1, 2, 3]","accepted":true,"history":[1,2,3]}
+{"type":"Array(Int32)","case":"mixed","event":"[1, \"2\"]","accepted":true,"history":[1,2]}
+{"type":"Array(Int32)","case":"strings","event":"[\"a\", \"b\"]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\",\"b\"],\"case\":\"strings\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"null_item","event":"[null]","accepted":true,"history":[0]}
+{"type":"Array(Int32)","case":"int_and_null","event":"[1, null]","accepted":true,"history":[1,0]}
+{"type":"Array(Int32)","case":"nested","event":"[[1, 2], [3]]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '[': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"nested_empty","event":"[[]]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '[': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"float_item","event":"[1.5]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '.': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"bool_item","event":"[true]","accepted":true,"history":[1]}
+{"type":"Array(Int32)","case":"string_number","event":"[\"1\"]","accepted":true,"history":[1]}
+{"type":"Array(Int32)","case":"negative","event":"[-1]","accepted":true,"history":[-1]}
+{"type":"Array(Int32)","case":"i32_overflow","event":"[2147483648]","accepted":true,"history":[-2147483648]}
+{"type":"Array(Int32)","case":"object_item","event":"[{}]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '{': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"ragged","event":"[[1], 2]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '[': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"string","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"string_of_array","event":"\"[1,2]\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Int32)","case":"null","event":"null","accepted":true,"history":[]}
+{"type":"Array(Int32)","case":"absent","event":null,"accepted":true,"history":[]}
+{"type":"Array(Int32)","case":"empty_array","event":"[]","accepted":true,"history":[]}
+{"type":"Array(Int32)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(String)","case":"ints","event":"[1, 2, 3]","accepted":true,"history":["1","2","3"]}
+{"type":"Array(String)","case":"mixed","event":"[1, \"2\"]","accepted":true,"history":["1","2"]}
+{"type":"Array(String)","case":"strings","event":"[\"a\", \"b\"]","accepted":true,"history":["a","b"]}
+{"type":"Array(String)","case":"null_item","event":"[null]","accepted":true,"history":[""]}
+{"type":"Array(String)","case":"int_and_null","event":"[1, null]","accepted":true,"history":["1",""]}
+{"type":"Array(String)","case":"nested","event":"[[1, 2], [3]]","accepted":true,"history":["[1,2]","[3]"]}
+{"type":"Array(String)","case":"nested_empty","event":"[[]]","accepted":true,"history":["[]"]}
+{"type":"Array(String)","case":"float_item","event":"[1.5]","accepted":true,"history":["1.5"]}
+{"type":"Array(String)","case":"bool_item","event":"[true]","accepted":true,"history":["true"]}
+{"type":"Array(String)","case":"string_number","event":"[\"1\"]","accepted":true,"history":["1"]}
+{"type":"Array(String)","case":"negative","event":"[-1]","accepted":true,"history":["-1"]}
+{"type":"Array(String)","case":"i32_overflow","event":"[2147483648]","accepted":true,"history":["2147483648"]}
+{"type":"Array(String)","case":"object_item","event":"[{}]","accepted":true,"history":["{}"]}
+{"type":"Array(String)","case":"ragged","event":"[[1], 2]","accepted":true,"history":["[1]","2"]}
+{"type":"Array(String)","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(String)","case":"string","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(String)","case":"string_of_array","event":"\"[1,2]\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(String)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(String)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(String)","case":"null","event":"null","accepted":true,"history":[]}
+{"type":"Array(String)","case":"absent","event":null,"accepted":true,"history":[]}
+{"type":"Array(String)","case":"empty_array","event":"[]","accepted":true,"history":[]}
+{"type":"Array(String)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"ints","event":"[1, 2, 3]","accepted":true,"history":[1,2,3]}
+{"type":"Array(Nullable(Int32))","case":"mixed","event":"[1, \"2\"]","accepted":true,"history":[1,2]}
+{"type":"Array(Nullable(Int32))","case":"strings","event":"[\"a\", \"b\"]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\",\"b\"],\"case\":\"strings\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"null_item","event":"[null]","accepted":true,"history":[null]}
+{"type":"Array(Nullable(Int32))","case":"int_and_null","event":"[1, null]","accepted":true,"history":[1,null]}
+{"type":"Array(Nullable(Int32))","case":"nested","event":"[[1, 2], [3]]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '[': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"nested_empty","event":"[[]]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '[': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"float_item","event":"[1.5]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '.': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"bool_item","event":"[true]","accepted":true,"history":[1]}
+{"type":"Array(Nullable(Int32))","case":"string_number","event":"[\"1\"]","accepted":true,"history":[1]}
+{"type":"Array(Nullable(Int32))","case":"negative","event":"[-1]","accepted":true,"history":[-1]}
+{"type":"Array(Nullable(Int32))","case":"i32_overflow","event":"[2147483648]","accepted":true,"history":[-2147483648]}
+{"type":"Array(Nullable(Int32))","case":"object_item","event":"[{}]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '{': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"ragged","event":"[[1], 2]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Cannot read array from text, expected comma or end of array, found '[': (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"string","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"string_of_array","event":"\"[1,2]\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Nullable(Int32))","case":"null","event":"null","accepted":true,"history":[]}
+{"type":"Array(Nullable(Int32))","case":"absent","event":null,"accepted":true,"history":[]}
+{"type":"Array(Nullable(Int32))","case":"empty_array","event":"[]","accepted":true,"history":[]}
+{"type":"Array(Nullable(Int32))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"ints","event":"[1, 2, 3]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"mixed","event":"[1, \"2\"]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"strings","event":"[\"a\", \"b\"]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"null_item","event":"[null]","accepted":true,"history":[[]]}
+{"type":"Array(Array(UInt8))","case":"int_and_null","event":"[1, null]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"nested","event":"[[1, 2], [3]]","accepted":true,"history":[[1,2],[3]]}
+{"type":"Array(Array(UInt8))","case":"nested_empty","event":"[[]]","accepted":true,"history":[[]]}
+{"type":"Array(Array(UInt8))","case":"float_item","event":"[1.5]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"bool_item","event":"[true]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"string_number","event":"[\"1\"]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"negative","event":"[-1]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"i32_overflow","event":"[2147483648]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"object_item","event":"[{}]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"ragged","event":"[[1], 2]","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"string","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"string_of_array","event":"\"[1,2]\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(Array(UInt8))","case":"null","event":"null","accepted":true,"history":[]}
+{"type":"Array(Array(UInt8))","case":"absent","event":null,"accepted":true,"history":[]}
+{"type":"Array(Array(UInt8))","case":"empty_array","event":"[]","accepted":true,"history":[]}
+{"type":"Array(Array(UInt8))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(LowCardinality(String))","case":"ints","event":"[1, 2, 3]","accepted":true,"history":["1","2","3"]}
+{"type":"Array(LowCardinality(String))","case":"mixed","event":"[1, \"2\"]","accepted":true,"history":["1","2"]}
+{"type":"Array(LowCardinality(String))","case":"strings","event":"[\"a\", \"b\"]","accepted":true,"history":["a","b"]}
+{"type":"Array(LowCardinality(String))","case":"null_item","event":"[null]","accepted":true,"history":[""]}
+{"type":"Array(LowCardinality(String))","case":"int_and_null","event":"[1, null]","accepted":true,"history":["1",""]}
+{"type":"Array(LowCardinality(String))","case":"nested","event":"[[1, 2], [3]]","accepted":true,"history":["[1,2]","[3]"]}
+{"type":"Array(LowCardinality(String))","case":"nested_empty","event":"[[]]","accepted":true,"history":["[]"]}
+{"type":"Array(LowCardinality(String))","case":"float_item","event":"[1.5]","accepted":true,"history":["1.5"]}
+{"type":"Array(LowCardinality(String))","case":"bool_item","event":"[true]","accepted":true,"history":["true"]}
+{"type":"Array(LowCardinality(String))","case":"string_number","event":"[\"1\"]","accepted":true,"history":["1"]}
+{"type":"Array(LowCardinality(String))","case":"negative","event":"[-1]","accepted":true,"history":["-1"]}
+{"type":"Array(LowCardinality(String))","case":"i32_overflow","event":"[2147483648]","accepted":true,"history":["2147483648"]}
+{"type":"Array(LowCardinality(String))","case":"object_item","event":"[{}]","accepted":true,"history":["{}"]}
+{"type":"Array(LowCardinality(String))","case":"ragged","event":"[[1], 2]","accepted":true,"history":["[1]","2"]}
+{"type":"Array(LowCardinality(String))","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(LowCardinality(String))","case":"string","event":"\"a\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(LowCardinality(String))","case":"string_of_array","event":"\"[1,2]\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(LowCardinality(String))","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(LowCardinality(String))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}
+{"type":"Array(LowCardinality(String))","case":"null","event":"null","accepted":true,"history":[]}
+{"type":"Array(LowCardinality(String))","case":"absent","event":null,"accepted":true,"history":[]}
+{"type":"Array(LowCardinality(String))","case":"empty_array","event":"[]","accepted":true,"history":[]}
+{"type":"Array(LowCardinality(String))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 130. DB::Exception: Array does not start with '[' character: (while reading the value of key v): (at row 1)"}

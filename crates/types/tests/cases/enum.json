@@ -1,0 +1,32 @@
+{
+  "types": ["Enum8('a' = 1, 'b' = 2)", "Enum8('neg' = -128, 'zero' = 0, 'pos' = 127)", "Enum16('x' = 1000, 'y' = -1000)", "Nullable(Enum8('a' = 1, 'b' = 2))"],
+  "cases": [
+    {"name": "name_a", "value": "\"a\""},
+    {"name": "name_b", "value": "\"b\""},
+    {"name": "upper_a", "value": "\"A\""},
+    {"name": "unknown_name", "value": "\"c\""},
+    {"name": "spaced_name", "value": "\" a\""},
+    {"name": "name_neg", "value": "\"neg\""},
+    {"name": "name_zero", "value": "\"zero\""},
+    {"name": "name_x", "value": "\"x\""},
+    {"name": "one", "value": "1"},
+    {"name": "two", "value": "2"},
+    {"name": "three", "value": "3"},
+    {"name": "zero", "value": "0"},
+    {"name": "i8_min", "value": "-128"},
+    {"name": "i8_max", "value": "127"},
+    {"name": "thousand", "value": "1000"},
+    {"name": "minus_thousand", "value": "-1000"},
+    {"name": "u8_wrap", "value": "257"},
+    {"name": "float_one", "value": "1.0"},
+    {"name": "float_fraction", "value": "1.5"},
+    {"name": "string_one", "value": "\"1\""},
+    {"name": "string_thousand", "value": "\"1000\""},
+    {"name": "empty_string", "value": "\"\""},
+    {"name": "true", "value": "true"},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "empty_object", "value": "{}"}
+  ]
+}

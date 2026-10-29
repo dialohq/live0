@@ -1,0 +1,25 @@
+{
+  "types": ["FixedString(1)", "FixedString(3)", "FixedString(16)", "Nullable(FixedString(3))", "LowCardinality(FixedString(3))"],
+  "cases": [
+    {"name": "empty", "value": "\"\""},
+    {"name": "one", "value": "\"a\""},
+    {"name": "two", "value": "\"ab\""},
+    {"name": "three", "value": "\"abc\""},
+    {"name": "four", "value": "\"abcd\""},
+    {"name": "polish_one", "value": "\"ż\""},
+    {"name": "polish_two", "value": "\"żż\""},
+    {"name": "emoji", "value": "\"🦀\""},
+    {"name": "nul", "value": "\"a\\u0000b\""},
+    {"name": "escaped", "value": "\"é\""},
+    {"name": "spaces", "value": "\"  \""},
+    {"name": "integer", "value": "123"},
+    {"name": "float", "value": "1.5"},
+    {"name": "big_integer", "value": "18446744073709551616"},
+    {"name": "false", "value": "false"},
+    {"name": "true", "value": "true"},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "empty_object", "value": "{}"}
+  ]
+}

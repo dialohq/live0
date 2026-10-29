@@ -1,0 +1,88 @@
+{"type":"Map(String, Int64)","case":"one","event":"{\"a\": 1}","accepted":true,"history":{"a":"1"}}
+{"type":"Map(String, Int64)","case":"two","event":"{\"a\": 1, \"b\": 2}","accepted":true,"history":{"a":"1","b":"2"}}
+{"type":"Map(String, Int64)","case":"string_value","event":"{\"a\": \"1\"}","accepted":true,"history":{"a":"1"}}
+{"type":"Map(String, Int64)","case":"null_value","event":"{\"a\": null}","accepted":true,"history":{}}
+{"type":"Map(String, Int64)","case":"float_value","event":"{\"a\": 1.5}","accepted":false,"error":"java.io.IOException: Code: 563. DB::Exception: Cannot read Map from text: (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"array_value","event":"{\"a\": [1]}","accepted":false,"error":"java.io.IOException: Code: 563. DB::Exception: Cannot read Map from text: (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"object_value","event":"{\"a\": {\"b\": 1}}","accepted":false,"error":"java.io.IOException: Code: 563. DB::Exception: Cannot read Map from text: (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"bool_value","event":"{\"a\": true}","accepted":true,"history":{"a":"1"}}
+{"type":"Map(String, Int64)","case":"int_key","event":"{\"1\": \"x\"}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x\"},\"case\":\"int_key\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"negative_key","event":"{\"-1\": \"x\"}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x\"},\"case\":\"negative_key\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"word_key","event":"{\"x\": \"y\"}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'y\"},\"case\":\"word_key\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"duplicate_key","event":"{\"a\": 1, \"a\": 2}","accepted":true,"history":{"a":"2"}}
+{"type":"Map(String, Int64)","case":"empty_key","event":"{\"\": 1}","accepted":true,"history":{"":"1"}}
+{"type":"Map(String, Int64)","case":"pairs","event":"[[\"a\", 1]]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[[\"a\",1]],\"case\":\"pairs\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"string_of_map","event":"\"{\\\"a\\\": 1}\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"{\\\\\"a\\\\\": 1}\",\"case\":\"string_of_map\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '1,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"\",\"case\":\"empty_string\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"null","event":"null","accepted":true,"history":{}}
+{"type":"Map(String, Int64)","case":"absent","event":null,"accepted":true,"history":{}}
+{"type":"Map(String, Int64)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, Int64)","case":"empty_object","event":"{}","accepted":true,"history":{}}
+{"type":"Map(String, String)","case":"one","event":"{\"a\": 1}","accepted":true,"history":{"a":"1"}}
+{"type":"Map(String, String)","case":"two","event":"{\"a\": 1, \"b\": 2}","accepted":true,"history":{"a":"1","b":"2"}}
+{"type":"Map(String, String)","case":"string_value","event":"{\"a\": \"1\"}","accepted":true,"history":{"a":"1"}}
+{"type":"Map(String, String)","case":"null_value","event":"{\"a\": null}","accepted":true,"history":{}}
+{"type":"Map(String, String)","case":"float_value","event":"{\"a\": 1.5}","accepted":true,"history":{"a":"1.5"}}
+{"type":"Map(String, String)","case":"array_value","event":"{\"a\": [1]}","accepted":true,"history":{"a":"[1]"}}
+{"type":"Map(String, String)","case":"object_value","event":"{\"a\": {\"b\": 1}}","accepted":true,"history":{"a":"{\"b\":1}"}}
+{"type":"Map(String, String)","case":"bool_value","event":"{\"a\": true}","accepted":true,"history":{"a":"true"}}
+{"type":"Map(String, String)","case":"int_key","event":"{\"1\": \"x\"}","accepted":true,"history":{"1":"x"}}
+{"type":"Map(String, String)","case":"negative_key","event":"{\"-1\": \"x\"}","accepted":true,"history":{"-1":"x"}}
+{"type":"Map(String, String)","case":"word_key","event":"{\"x\": \"y\"}","accepted":true,"history":{"x":"y"}}
+{"type":"Map(String, String)","case":"duplicate_key","event":"{\"a\": 1, \"a\": 2}","accepted":true,"history":{"a":"2"}}
+{"type":"Map(String, String)","case":"empty_key","event":"{\"\": 1}","accepted":true,"history":{"":"1"}}
+{"type":"Map(String, String)","case":"pairs","event":"[[\"a\", 1]]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[[\"a\",1]],\"case\":\"pairs\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, String)","case":"string_of_map","event":"\"{\\\"a\\\": 1}\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"{\\\\\"a\\\\\": 1}\",\"case\":\"string_of_map\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, String)","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '1,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, String)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"\",\"case\":\"empty_string\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, String)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, String)","case":"null","event":"null","accepted":true,"history":{}}
+{"type":"Map(String, String)","case":"absent","event":null,"accepted":true,"history":{}}
+{"type":"Map(String, String)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(String, String)","case":"empty_object","event":"{}","accepted":true,"history":{}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"one","event":"{\"a\": 1}","accepted":true,"history":{"a":1}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"two","event":"{\"a\": 1, \"b\": 2}","accepted":true,"history":{"a":1,"b":2}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"string_value","event":"{\"a\": \"1\"}","accepted":true,"history":{"a":1}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"null_value","event":"{\"a\": null}","accepted":true,"history":{}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"float_value","event":"{\"a\": 1.5}","accepted":true,"history":{"a":1.5}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"array_value","event":"{\"a\": [1]}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"object_value","event":"{\"a\": {\"b\": 1}}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"bool_value","event":"{\"a\": true}","accepted":true,"history":{"a":1}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"int_key","event":"{\"1\": \"x\"}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"negative_key","event":"{\"-1\": \"x\"}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"word_key","event":"{\"x\": \"y\"}","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Cannot read floating point value here: : (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"duplicate_key","event":"{\"a\": 1, \"a\": 2}","accepted":true,"history":{"a":2}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"empty_key","event":"{\"\": 1}","accepted":true,"history":{"":1}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"pairs","event":"[[\"a\", 1]]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[[\"a\",1]],\"case\":\"pairs\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"string_of_map","event":"\"{\\\"a\\\": 1}\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"{\\\\\"a\\\\\": 1}\",\"case\":\"string_of_map\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '1,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"\",\"case\":\"empty_string\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"null","event":"null","accepted":true,"history":{}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"absent","event":null,"accepted":true,"history":{}}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(LowCardinality(String), Nullable(Float64))","case":"empty_object","event":"{}","accepted":true,"history":{}}
+{"type":"Map(Int32, String)","case":"one","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":1},\"case\":\"one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"two","event":"{\"a\": 1, \"b\": 2}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":1,\"b\":2},\"case\":\"two\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"string_value","event":"{\"a\": \"1\"}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":\"1\"},\"case\":\"string_value\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"null_value","event":"{\"a\": null}","accepted":true,"history":{}}
+{"type":"Map(Int32, String)","case":"float_value","event":"{\"a\": 1.5}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":1.5},\"case\":\"float_value\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"array_value","event":"{\"a\": [1]}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":[1]},\"case\":\"array_value\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"object_value","event":"{\"a\": {\"b\": 1}}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":{\"b\":1}},\"case\":\"object_value\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"bool_value","event":"{\"a\": true}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":true},\"case\":\"bool_value\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"int_key","event":"{\"1\": \"x\"}","accepted":true,"history":{"1":"x"}}
+{"type":"Map(Int32, String)","case":"negative_key","event":"{\"-1\": \"x\"}","accepted":true,"history":{"-1":"x"}}
+{"type":"Map(Int32, String)","case":"word_key","event":"{\"x\": \"y\"}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x\":\"y\"},\"case\":\"word_key\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"duplicate_key","event":"{\"a\": 1, \"a\": 2}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'a\":2},\"case\":\"duplicate_key\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"empty_key","event":"{\"\": 1}","accepted":true,"history":{"0":"1"}}
+{"type":"Map(Int32, String)","case":"pairs","event":"[[\"a\", 1]]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[[\"a\",1]],\"case\":\"pairs\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"string_of_map","event":"\"{\\\"a\\\": 1}\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"{\\\\\"a\\\\\": 1}\",\"case\":\"string_of_map\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"number","event":"1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '1,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '\"\",\"case\":\"empty_string\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"null","event":"null","accepted":true,"history":{}}
+{"type":"Map(Int32, String)","case":"absent","event":null,"accepted":true,"history":{}}
+{"type":"Map(Int32, String)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '{' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Map(Int32, String)","case":"empty_object","event":"{}","accepted":true,"history":{}}

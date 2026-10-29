@@ -1,0 +1,26 @@
+{
+  "types": ["Tuple(Int32, String)", "Tuple(a Int32, b String)", "Tuple(a Int32, b Nullable(String))", "Tuple(UInt8)"],
+  "cases": [
+    {"name": "array", "value": "[1, \"x\"]"},
+    {"name": "object", "value": "{\"a\": 1, \"b\": \"x\"}"},
+    {"name": "object_reordered", "value": "{\"b\": \"x\", \"a\": 1}"},
+    {"name": "object_missing", "value": "{\"a\": 1}"},
+    {"name": "object_numbered", "value": "{\"1\": 1, \"2\": \"x\"}"},
+    {"name": "short_array", "value": "[1]"},
+    {"name": "long_array", "value": "[1, \"x\", 2]"},
+    {"name": "string_number", "value": "[\"1\", \"x\"]"},
+    {"name": "ints", "value": "[1, 2]"},
+    {"name": "object_extra", "value": "{\"a\": 1, \"b\": \"x\", \"c\": 3}"},
+    {"name": "null_items", "value": "[null, null]"},
+    {"name": "object_nulls", "value": "{\"a\": null, \"b\": null}"},
+    {"name": "null_first", "value": "[null, \"x\"]"},
+    {"name": "number", "value": "1"},
+    {"name": "string", "value": "\"x\""},
+    {"name": "empty_string", "value": "\"\""},
+    {"name": "true", "value": "true"},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "empty_object", "value": "{}"}
+  ]
+}

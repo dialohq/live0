@@ -1,0 +1,27 @@
+{
+  "types": ["Map(String, Int64)", "Map(String, String)", "Map(LowCardinality(String), Nullable(Float64))", "Map(Int32, String)"],
+  "cases": [
+    {"name": "one", "value": "{\"a\": 1}"},
+    {"name": "two", "value": "{\"a\": 1, \"b\": 2}"},
+    {"name": "string_value", "value": "{\"a\": \"1\"}"},
+    {"name": "null_value", "value": "{\"a\": null}"},
+    {"name": "float_value", "value": "{\"a\": 1.5}"},
+    {"name": "array_value", "value": "{\"a\": [1]}"},
+    {"name": "object_value", "value": "{\"a\": {\"b\": 1}}"},
+    {"name": "bool_value", "value": "{\"a\": true}"},
+    {"name": "int_key", "value": "{\"1\": \"x\"}"},
+    {"name": "negative_key", "value": "{\"-1\": \"x\"}"},
+    {"name": "word_key", "value": "{\"x\": \"y\"}"},
+    {"name": "duplicate_key", "value": "{\"a\": 1, \"a\": 2}"},
+    {"name": "empty_key", "value": "{\"\": 1}"},
+    {"name": "pairs", "value": "[[\"a\", 1]]"},
+    {"name": "string_of_map", "value": "\"{\\\"a\\\": 1}\""},
+    {"name": "number", "value": "1"},
+    {"name": "empty_string", "value": "\"\""},
+    {"name": "true", "value": "true"},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "empty_object", "value": "{}"}
+  ]
+}

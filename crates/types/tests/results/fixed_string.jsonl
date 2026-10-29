@@ -1,0 +1,100 @@
+{"type":"FixedString(1)","case":"empty","event":"\"\"","accepted":true,"history":"\u0000"}
+{"type":"FixedString(1)","case":"one","event":"\"a\"","accepted":true,"history":"a"}
+{"type":"FixedString(1)","case":"two","event":"\"ab\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"three","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"four","event":"\"abcd\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"polish_one","event":"\"ż\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"polish_two","event":"\"żż\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"emoji","event":"\"🦀\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"nul","event":"\"a\\u0000b\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"escaped","event":"\"é\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"spaces","event":"\"  \"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(1): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"integer","event":"123","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"float","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"big_integer","event":"18446744073709551616","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"false","event":"false","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"null","event":"null","accepted":true,"history":"\u0000"}
+{"type":"FixedString(1)","case":"absent","event":null,"accepted":true,"history":"\u0000"}
+{"type":"FixedString(1)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(1)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"FixedString(3)","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000"}
+{"type":"FixedString(3)","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000"}
+{"type":"FixedString(3)","case":"three","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"FixedString(3)","case":"four","event":"\"abcd\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"polish_one","event":"\"ż\"","accepted":true,"history":"ż\u0000"}
+{"type":"FixedString(3)","case":"polish_two","event":"\"żż\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"emoji","event":"\"🦀\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"FixedString(3)","case":"escaped","event":"\"é\"","accepted":true,"history":"é\u0000"}
+{"type":"FixedString(3)","case":"spaces","event":"\"  \"","accepted":true,"history":"  \u0000"}
+{"type":"FixedString(3)","case":"integer","event":"123","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"float","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"big_integer","event":"18446744073709551616","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"false","event":"false","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"null","event":"null","accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"FixedString(3)","case":"absent","event":null,"accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"FixedString(3)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(3)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"three","event":"\"abc\"","accepted":true,"history":"abc\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"four","event":"\"abcd\"","accepted":true,"history":"abcd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"polish_one","event":"\"ż\"","accepted":true,"history":"ż\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"polish_two","event":"\"żż\"","accepted":true,"history":"żż\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"emoji","event":"\"🦀\"","accepted":true,"history":"🦀\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"escaped","event":"\"é\"","accepted":true,"history":"é\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"spaces","event":"\"  \"","accepted":true,"history":"  \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"integer","event":"123","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"float","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"big_integer","event":"18446744073709551616","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"false","event":"false","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"null","event":"null","accepted":true,"history":"\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"absent","event":null,"accepted":true,"history":"\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
+{"type":"FixedString(16)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"FixedString(16)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"Nullable(FixedString(3))","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000"}
+{"type":"Nullable(FixedString(3))","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000"}
+{"type":"Nullable(FixedString(3))","case":"three","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"Nullable(FixedString(3))","case":"four","event":"\"abcd\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"polish_one","event":"\"ż\"","accepted":true,"history":"ż\u0000"}
+{"type":"Nullable(FixedString(3))","case":"polish_two","event":"\"żż\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"emoji","event":"\"🦀\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"Nullable(FixedString(3))","case":"escaped","event":"\"é\"","accepted":true,"history":"é\u0000"}
+{"type":"Nullable(FixedString(3))","case":"spaces","event":"\"  \"","accepted":true,"history":"  \u0000"}
+{"type":"Nullable(FixedString(3))","case":"integer","event":"123","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"float","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"big_integer","event":"18446744073709551616","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"false","event":"false","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"null","event":"null","accepted":true,"history":null}
+{"type":"Nullable(FixedString(3))","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"Nullable(FixedString(3))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(FixedString(3))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"empty","event":"\"\"","accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"one","event":"\"a\"","accepted":true,"history":"a\u0000\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"two","event":"\"ab\"","accepted":true,"history":"ab\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"three","event":"\"abc\"","accepted":true,"history":"abc"}
+{"type":"LowCardinality(FixedString(3))","case":"four","event":"\"abcd\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"polish_one","event":"\"ż\"","accepted":true,"history":"ż\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"polish_two","event":"\"żż\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"emoji","event":"\"🦀\"","accepted":false,"error":"java.io.IOException: Code: 131. DB::Exception: Too large value for FixedString(3): (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"nul","event":"\"a\\u0000b\"","accepted":true,"history":"a\u0000b"}
+{"type":"LowCardinality(FixedString(3))","case":"escaped","event":"\"é\"","accepted":true,"history":"é\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"spaces","event":"\"  \"","accepted":true,"history":"  \u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"integer","event":"123","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"float","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"big_integer","event":"18446744073709551616","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"false","event":"false","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"null","event":"null","accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"absent","event":null,"accepted":true,"history":"\u0000\u0000\u0000"}
+{"type":"LowCardinality(FixedString(3))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}
+{"type":"LowCardinality(FixedString(3))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 26. DB::Exception: Cannot parse JSON string: expected opening quote: (while reading the value of key v): (at row 1)"}

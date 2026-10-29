@@ -1,0 +1,87 @@
+{"type":"IPv4","case":"v4","event":"\"1.2.3.4\"","accepted":true,"history":"1.2.3.4"}
+{"type":"IPv4","case":"v4_zero","event":"\"0.0.0.0\"","accepted":true,"history":"0.0.0.0"}
+{"type":"IPv4","case":"v4_max","event":"\"255.255.255.255\"","accepted":true,"history":"255.255.255.255"}
+{"type":"IPv4","case":"v4_octet_overflow","event":"\"256.1.1.1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 .1.1.1\",\"case\":: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v4_three_parts","event":"\"1.2.3\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 \",\"case\":\"v4_th: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v4_leading_zero","event":"\"01.2.3.4\"","accepted":true,"history":"1.2.3.4"}
+{"type":"IPv4","case":"v4_spaces","event":"\" 1.2.3.4 \"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4  1.2.3.4 \",\"cas: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v4_cidr","event":"\"1.2.3.4/24\"","accepted":false,"error":"java.io.IOException: Code: 632. DB::Exception: Unexpected data '/24\",\"case' after parsed IPv4 value '1.2.3.4': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_loopback","event":"\"::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 ::1\",\"case\":\"v6: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_any","event":"\"::\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 ::\",\"case\":\"v6_: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6","event":"\"2001:db8::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :db8::1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_upper","event":"\"2001:DB8::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :DB8::1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_full","event":"\"2001:0db8:0000:0000:0000:0000:0000:0001\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :0db8:0000:0000: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_mapped","event":"\"::ffff:1.2.3.4\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 ::ffff:1.2.3.4\": (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_zone","event":"\"fe80::1%eth0\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 fe80::1%eth0\",\": (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"v6_bad","event":"\"2001:db8:::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :db8:::1\",\"case: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"number","event":"16909060","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '16909060,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"zero","event":"0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0,\"case\":\"zero\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '-1,\"case\":\"minus_one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"u32_max_plus_one","event":"4294967296","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '4294967296,\"case\":\"u32_max_plus_one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '1.5,\"case\":\"fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"string_number","event":"\"16909060\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 9060\",\"case\":\"s: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 \",\"case\":\"empty: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 abc\",\"case\":\"wo: (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"null","event":"null","accepted":true,"history":"0.0.0.0"}
+{"type":"IPv4","case":"absent","event":null,"accepted":true,"history":"0.0.0.0"}
+{"type":"IPv4","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv4","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '{},\"case\":\"empty_object\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v4","event":"\"1.2.3.4\"","accepted":true,"history":"::ffff:1.2.3.4"}
+{"type":"IPv6","case":"v4_zero","event":"\"0.0.0.0\"","accepted":true,"history":"::ffff:0.0.0.0"}
+{"type":"IPv6","case":"v4_max","event":"\"255.255.255.255\"","accepted":true,"history":"::ffff:255.255.255.255"}
+{"type":"IPv6","case":"v4_octet_overflow","event":"\"256.1.1.1\"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6 .1.1.1\",\"case\":\"v4_octet_overflow\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v4_three_parts","event":"\"1.2.3\"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6 \",\"case\":\"v4_three_parts\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v4_leading_zero","event":"\"01.2.3.4\"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6 .2.3.4\",\"case\":\"v4_leading_zero\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v4_spaces","event":"\" 1.2.3.4 \"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6  1.2.3.4 \",\"case\":\"v4_spaces\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v4_cidr","event":"\"1.2.3.4/24\"","accepted":false,"error":"java.io.IOException: Code: 632. DB::Exception: Unexpected data '/24\",\"case' after parsed IPv6 value '::ffff:1.2.3.4': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v6_loopback","event":"\"::1\"","accepted":true,"history":"::1"}
+{"type":"IPv6","case":"v6_any","event":"\"::\"","accepted":true,"history":"::"}
+{"type":"IPv6","case":"v6","event":"\"2001:db8::1\"","accepted":true,"history":"2001:db8::1"}
+{"type":"IPv6","case":"v6_upper","event":"\"2001:DB8::1\"","accepted":true,"history":"2001:db8::1"}
+{"type":"IPv6","case":"v6_full","event":"\"2001:0db8:0000:0000:0000:0000:0000:0001\"","accepted":true,"history":"2001:db8::1"}
+{"type":"IPv6","case":"v6_mapped","event":"\"::ffff:1.2.3.4\"","accepted":true,"history":"::ffff:1.2.3.4"}
+{"type":"IPv6","case":"v6_zone","event":"\"fe80::1%eth0\"","accepted":false,"error":"java.io.IOException: Code: 632. DB::Exception: Unexpected data '%eth0\",\"ca' after parsed IPv6 value 'fe80::1': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"v6_bad","event":"\"2001:db8:::1\"","accepted":true,"history":"2001:db8::1"}
+{"type":"IPv6","case":"number","event":"16909060","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '16909060,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"zero","event":"0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0,\"case\":\"zero\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '-1,\"case\":\"minus_one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"u32_max_plus_one","event":"4294967296","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '4294967296,\"case\":\"u32_max_plus_one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '1.5,\"case\":\"fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"string_number","event":"\"16909060\"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6 9060\",\"case\":\"string_number\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6 \",\"case\":\"empty_string\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 676. DB::Exception: Cannot parse IPv6 \",\"case\":\"word\"}: (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"null","event":"null","accepted":true,"history":"::"}
+{"type":"IPv6","case":"absent","event":null,"accepted":true,"history":"::"}
+{"type":"IPv6","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"IPv6","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '{},\"case\":\"empty_object\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v4","event":"\"1.2.3.4\"","accepted":true,"history":"1.2.3.4"}
+{"type":"Nullable(IPv4)","case":"v4_zero","event":"\"0.0.0.0\"","accepted":true,"history":"0.0.0.0"}
+{"type":"Nullable(IPv4)","case":"v4_max","event":"\"255.255.255.255\"","accepted":true,"history":"255.255.255.255"}
+{"type":"Nullable(IPv4)","case":"v4_octet_overflow","event":"\"256.1.1.1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 .1.1.1\",\"case\":: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v4_three_parts","event":"\"1.2.3\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 \",\"case\":\"v4_th: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v4_leading_zero","event":"\"01.2.3.4\"","accepted":true,"history":"1.2.3.4"}
+{"type":"Nullable(IPv4)","case":"v4_spaces","event":"\" 1.2.3.4 \"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4  1.2.3.4 \",\"cas: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v4_cidr","event":"\"1.2.3.4/24\"","accepted":false,"error":"java.io.IOException: Code: 632. DB::Exception: Unexpected data '/24\",\"case' after parsed IPv4 value '1.2.3.4': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_loopback","event":"\"::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 ::1\",\"case\":\"v6: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_any","event":"\"::\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 ::\",\"case\":\"v6_: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6","event":"\"2001:db8::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :db8::1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_upper","event":"\"2001:DB8::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :DB8::1\",\"case\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_full","event":"\"2001:0db8:0000:0000:0000:0000:0000:0001\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :0db8:0000:0000: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_mapped","event":"\"::ffff:1.2.3.4\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 ::ffff:1.2.3.4\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_zone","event":"\"fe80::1%eth0\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 fe80::1%eth0\",\": (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"v6_bad","event":"\"2001:db8:::1\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 :db8:::1\",\"case: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"number","event":"16909060","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '16909060,\"case\":\"number\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"zero","event":"0","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '0,\"case\":\"zero\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '-1,\"case\":\"minus_one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"u32_max_plus_one","event":"4294967296","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '4294967296,\"case\":\"u32_max_plus_one\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"fraction","event":"1.5","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '1.5,\"case\":\"fraction\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"string_number","event":"\"16909060\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 9060\",\"case\":\"s: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"empty_string","event":"\"\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 \",\"case\":\"empty: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 675. DB::Exception: Cannot parse IPv4 abc\",\"case\":\"wo: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'true,\"case\":\"true\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"null","event":"null","accepted":true,"history":null}
+{"type":"Nullable(IPv4)","case":"absent","event":null,"accepted":true,"history":null}
+{"type":"Nullable(IPv4)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '[],\"case\":\"empty_array\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(IPv4)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '{},\"case\":\"empty_object\"}': (while reading the value of key v): (at row 1)"}

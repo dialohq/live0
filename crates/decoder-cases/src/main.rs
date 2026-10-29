@@ -1,6 +1,6 @@
 //! Runs every case in `crates/types/tests/cases` through the dnvr stack (Redpanda, Kafka Connect with the
 //! ClickHouse Sink, ClickHouse) and writes what the Sink did with each one to `crates/types/tests/results`.
-//! Run it with the `decoder-cases` dnvr script while `dnvr up` is running.
+//! Run it with the `decoder-cases [family...]` dnvr script while `dnvr up` is running; no families means all.
 
 use std::collections::{BTreeMap, BTreeSet};
 use std::error::Error;
@@ -16,7 +16,24 @@ use serde_json::{Map, Value as Json};
 
 type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-const FAMILIES: &[&str] = &["string", "json", "int", "float", "bool", "datetime"];
+const FAMILIES: &[&str] = &[
+    "string",
+    "json",
+    "int",
+    "float",
+    "bool",
+    "datetime",
+    "date",
+    "decimal",
+    "uuid",
+    "enum",
+    "fixed_string",
+    "wide_int",
+    "array",
+    "map",
+    "tuple",
+    "ip",
+];
 const DATABASE: &str = "decoder_cases";
 const TOPIC_PREFIX: &str = "dc_";
 const CONNECTOR: &str = "decoder-cases";
@@ -59,7 +76,8 @@ fn run() -> Result<()> {
         redpanda: std::env::var("REDPANDA_CONTAINER")?,
         connect: std::env::var("CONNECT_URL")?,
     };
-    let cases = load_cases()?;
+    let families = selected_families()?;
+    let cases = load_cases(&families)?;
     let dev_config = stack.connect_get(&format!("/connectors/{DEV_CONNECTOR}/config"))?;
     let run_id = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
 
@@ -82,16 +100,32 @@ fn run() -> Result<()> {
     let versions = stack.versions()?;
     stack.cleanup()?;
 
-    write_results(&cases, &outcomes, &versions)
+    write_results(&families, &cases, &outcomes, &versions)
 }
 
 fn tests_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../types/tests")
 }
 
-fn load_cases() -> Result<Vec<Case>> {
+fn selected_families() -> Result<Vec<&'static str>> {
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    if args.is_empty() {
+        return Ok(FAMILIES.to_vec());
+    }
+    args.iter()
+        .map(|arg| {
+            FAMILIES
+                .iter()
+                .find(|f| **f == arg)
+                .copied()
+                .ok_or_else(|| format!("unknown family `{arg}`, expected one of {FAMILIES:?}").into())
+        })
+        .collect()
+}
+
+fn load_cases(families: &[&'static str]) -> Result<Vec<Case>> {
     let mut cases = Vec::new();
-    for family in FAMILIES {
+    for family in families {
         let path = tests_dir().join("cases").join(format!("{family}.json"));
         let file: Json = serde_json::from_str(&fs::read_to_string(&path)?)?;
         let types = file["types"].as_array().ok_or("`types` must be an array")?;
@@ -377,10 +411,16 @@ fn root_cause(trace: &str) -> Option<&str> {
         .next_back()
 }
 
-fn write_results(cases: &[Case], outcomes: &[Outcome], versions: &Json) -> Result<()> {
+/// Rewrites only the families that ran.
+fn write_results(
+    families: &[&'static str],
+    cases: &[Case],
+    outcomes: &[Outcome],
+    versions: &Json,
+) -> Result<()> {
     let dir = tests_dir().join("results");
     fs::create_dir_all(&dir)?;
-    for family in FAMILIES {
+    for family in families {
         let mut out = String::new();
         for (case, outcome) in cases
             .iter()

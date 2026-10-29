@@ -1,0 +1,26 @@
+{
+  "types": ["UUID", "Nullable(UUID)"],
+  "cases": [
+    {"name": "canonical", "value": "\"123e4567-e89b-12d3-a456-426614174000\""},
+    {"name": "upper", "value": "\"123E4567-E89B-12D3-A456-426614174000\""},
+    {"name": "no_hyphens", "value": "\"123e4567e89b12d3a456426614174000\""},
+    {"name": "braces", "value": "\"{123e4567-e89b-12d3-a456-426614174000}\""},
+    {"name": "urn", "value": "\"urn:uuid:123e4567-e89b-12d3-a456-426614174000\""},
+    {"name": "nil", "value": "\"00000000-0000-0000-0000-000000000000\""},
+    {"name": "max", "value": "\"ffffffff-ffff-ffff-ffff-ffffffffffff\""},
+    {"name": "too_short", "value": "\"123e4567-e89b-12d3-a456-42661417400\""},
+    {"name": "too_long", "value": "\"123e4567-e89b-12d3-a456-4266141740000\""},
+    {"name": "bad_hex", "value": "\"123e4567-e89b-12d3-a456-42661417400g\""},
+    {"name": "misplaced_hyphens", "value": "\"123e45-67e89b-12d3-a456-426614174000\""},
+    {"name": "leading_space", "value": "\" 123e4567-e89b-12d3-a456-426614174000\""},
+    {"name": "trailing_space", "value": "\"123e4567-e89b-12d3-a456-426614174000 \""},
+    {"name": "empty_string", "value": "\"\""},
+    {"name": "number", "value": "1"},
+    {"name": "zero", "value": "0"},
+    {"name": "true", "value": "true"},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "empty_object", "value": "{}"}
+  ]
+}

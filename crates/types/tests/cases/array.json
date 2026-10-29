@@ -1,0 +1,28 @@
+{
+  "types": ["Array(Int32)", "Array(String)", "Array(Nullable(Int32))", "Array(Array(UInt8))", "Array(LowCardinality(String))"],
+  "cases": [
+    {"name": "ints", "value": "[1, 2, 3]"},
+    {"name": "mixed", "value": "[1, \"2\"]"},
+    {"name": "strings", "value": "[\"a\", \"b\"]"},
+    {"name": "null_item", "value": "[null]"},
+    {"name": "int_and_null", "value": "[1, null]"},
+    {"name": "nested", "value": "[[1, 2], [3]]"},
+    {"name": "nested_empty", "value": "[[]]"},
+    {"name": "float_item", "value": "[1.5]"},
+    {"name": "bool_item", "value": "[true]"},
+    {"name": "string_number", "value": "[\"1\"]"},
+    {"name": "negative", "value": "[-1]"},
+    {"name": "i32_overflow", "value": "[2147483648]"},
+    {"name": "object_item", "value": "[{}]"},
+    {"name": "ragged", "value": "[[1], 2]"},
+    {"name": "number", "value": "1"},
+    {"name": "string", "value": "\"a\""},
+    {"name": "string_of_array", "value": "\"[1,2]\""},
+    {"name": "empty_string", "value": "\"\""},
+    {"name": "true", "value": "true"},
+    {"name": "null", "value": "null"},
+    {"name": "absent", "value": null},
+    {"name": "empty_array", "value": "[]"},
+    {"name": "empty_object", "value": "{}"}
+  ]
+}
