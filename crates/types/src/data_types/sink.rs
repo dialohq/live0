@@ -1,3 +1,4 @@
+use std::borrow::Cow;
 use std::fmt::Write;
 
 use serde_json::{Number, Value as Json};
@@ -26,6 +27,58 @@ impl SinkNumber {
         Some(Self::Int(
             if negative { low.wrapping_neg() } else { low } as i64
         ))
+    }
+}
+
+/// Drops the leading zeros of numbers outside strings, which the Sink accepts and serde_json doesn't.
+pub(crate) fn strip_leading_zeros(raw: &str) -> Cow<'_, str> {
+    let bytes = raw.as_bytes();
+    let mut out = String::new();
+    let mut copied = 0;
+    let (mut in_string, mut escaped) = (false, false);
+    let mut i = 0;
+    while i < bytes.len() {
+        let b = bytes[i];
+        if in_string {
+            match b {
+                _ if escaped => escaped = false,
+                b'\\' => escaped = true,
+                b'"' => in_string = false,
+                _ => {}
+            }
+        } else if b == b'"' {
+            in_string = true;
+        } else if b == b'0' && starts_number(bytes, i) {
+            let mut end = i;
+            while bytes.get(end) == Some(&b'0')
+                && bytes.get(end + 1).is_some_and(u8::is_ascii_digit)
+            {
+                end += 1;
+            }
+            if end > i {
+                out.push_str(&raw[copied..i]);
+                copied = end;
+                i = end;
+                continue;
+            }
+        }
+        i += 1;
+    }
+    match copied {
+        0 => Cow::Borrowed(raw),
+        _ => {
+            out.push_str(&raw[copied..]);
+            Cow::Owned(out)
+        }
+    }
+}
+
+/// Whether the byte at `i` is a number's first digit rather than one inside its fraction or exponent.
+fn starts_number(bytes: &[u8], i: usize) -> bool {
+    match i.checked_sub(1).map(|p| bytes[p]) {
+        None => true,
+        Some(b'-') => !matches!(i.checked_sub(2).map(|p| bytes[p]), Some(b'e' | b'E')),
+        Some(prev) => !(prev.is_ascii_alphanumeric() || matches!(prev, b'.' | b'+')),
     }
 }
 
@@ -97,5 +150,50 @@ pub(crate) fn java_double(x: f64) -> String {
         format!("{mantissa}E{exponent}")
     } else {
         format!("{mantissa}.0E{exponent}")
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn strips_leading_zeros() {
+        for (raw, stripped) in [
+            ("01", "1"),
+            ("007", "7"),
+            ("00", "0"),
+            ("-01.5", "-1.5"),
+            ("-00", "-0"),
+            ("00.5", "0.5"),
+            ("001e2", "1e2"),
+            (
+                "{\"a\": [01, {\"b\": -007.5}]}",
+                "{\"a\": [1, {\"b\": -7.5}]}",
+            ),
+        ] {
+            assert_eq!(strip_leading_zeros(raw), stripped, "{raw}");
+        }
+    }
+
+    #[test]
+    fn keeps_everything_else() {
+        for raw in [
+            "0",
+            "-0",
+            "0.5",
+            "10",
+            "100.007",
+            "1e-05",
+            "1E+005",
+            "\"01\"",
+            "{\"01\": \"a\\\"01\"}",
+            "[0, 0.0, -0.0]",
+        ] {
+            assert!(
+                matches!(strip_leading_zeros(raw), Cow::Borrowed(_)),
+                "{raw}"
+            );
+        }
     }
 }

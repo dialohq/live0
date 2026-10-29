@@ -61,6 +61,11 @@
     {"name": "invalid_plus", "value": "+1"},
     {"name": "invalid_hex", "value": "0x10"},
     {"name": "invalid_nan", "value": "NaN"},
-    {"name": "invalid_infinity", "value": "Infinity"}
+    {"name": "invalid_infinity", "value": "Infinity"},
+    {"name": "zeros", "value": "00"},
+    {"name": "leading_zeros", "value": "007"},
+    {"name": "negative_leading_zero", "value": "-01"},
+    {"name": "minus_zero_zero", "value": "-00"},
+    {"name": "leading_zero_exponent", "value": "01e1"}
   ]
 }

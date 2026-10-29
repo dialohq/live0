@@ -43,6 +43,9 @@
 {"type":"Float32","case":"invalid_leading_dot","event":".5","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('.' (code 46)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"Float32","case":"invalid_trailing_dot","event":"1.","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)) in numeric value: Decimal point not followed by a digit"}
 {"type":"Float32","case":"invalid_leading_zero","event":"01.5","accepted":true,"history":1.5}
+{"type":"Float32","case":"leading_zero_fraction","event":"00.5","accepted":true,"history":0.5}
+{"type":"Float32","case":"negative_leading_zero","event":"-01.5","accepted":true,"history":-1.5}
+{"type":"Float32","case":"leading_zero_exponent","event":"001e2","accepted":true,"history":100}
 {"type":"Float64","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Float64","case":"minus_zero","event":"-0","accepted":true,"history":0}
 {"type":"Float64","case":"zero_point_zero","event":"0.0","accepted":true,"history":0}
@@ -88,6 +91,9 @@
 {"type":"Float64","case":"invalid_leading_dot","event":".5","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('.' (code 46)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"Float64","case":"invalid_trailing_dot","event":"1.","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)) in numeric value: Decimal point not followed by a digit"}
 {"type":"Float64","case":"invalid_leading_zero","event":"01.5","accepted":true,"history":1.5}
+{"type":"Float64","case":"leading_zero_fraction","event":"00.5","accepted":true,"history":0.5}
+{"type":"Float64","case":"negative_leading_zero","event":"-01.5","accepted":true,"history":-1.5}
+{"type":"Float64","case":"leading_zero_exponent","event":"001e2","accepted":true,"history":100}
 {"type":"Nullable(Float64)","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Nullable(Float64)","case":"minus_zero","event":"-0","accepted":true,"history":0}
 {"type":"Nullable(Float64)","case":"zero_point_zero","event":"0.0","accepted":true,"history":0}
@@ -133,3 +139,6 @@
 {"type":"Nullable(Float64)","case":"invalid_leading_dot","event":".5","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('.' (code 46)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"Nullable(Float64)","case":"invalid_trailing_dot","event":"1.","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)) in numeric value: Decimal point not followed by a digit"}
 {"type":"Nullable(Float64)","case":"invalid_leading_zero","event":"01.5","accepted":true,"history":1.5}
+{"type":"Nullable(Float64)","case":"leading_zero_fraction","event":"00.5","accepted":true,"history":0.5}
+{"type":"Nullable(Float64)","case":"negative_leading_zero","event":"-01.5","accepted":true,"history":-1.5}
+{"type":"Nullable(Float64)","case":"leading_zero_exponent","event":"001e2","accepted":true,"history":100}

@@ -31,14 +31,14 @@ fn check_case(case: &Json) -> Result<(), String> {
 
     let event = match case["event"].as_str() {
         None => None,
-        Some(raw) => match serde_json::from_str::<Json>(raw) {
-            Ok(json) => Some(json),
-            Err(e) if accepted => {
+        Some(raw) => match crate::parse_event(raw) {
+            Some(json) => Some(json),
+            None if accepted => {
                 return Err(format!(
-                    "the Sink accepted `{raw}` but serde_json can't parse it: {e}"
+                    "the Sink accepted `{raw}` but parse_event rejects it"
                 ));
             }
-            Err(_) => return Ok(()),
+            None => return Ok(()),
         },
     };
 

@@ -23,6 +23,7 @@
 {"type":"Bool","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 467. DB::Exception: Invalid boolean value, should be true/false, 1/0, but it starts with the '[' character: (while reading the value of key v): (at row 1)"}
 {"type":"Bool","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 467. DB::Exception: Invalid boolean value, should be true/false, 1/0, but it starts with the '{' character: (while reading the value of key v): (at row 1)"}
 {"type":"Bool","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 467. DB::Exception: Invalid boolean value, should be true/false, 1/0, but it starts with the '{' character: (while reading the value of key v): (at row 1)"}
+{"type":"Bool","case":"leading_zero_one","event":"01","accepted":true,"history":true}
 {"type":"Nullable(Bool)","case":"true","event":"true","accepted":true,"history":true}
 {"type":"Nullable(Bool)","case":"false","event":"false","accepted":true,"history":false}
 {"type":"Nullable(Bool)","case":"zero","event":"0","accepted":true,"history":false}
@@ -48,3 +49,4 @@
 {"type":"Nullable(Bool)","case":"array","event":"[1]","accepted":false,"error":"java.io.IOException: Code: 467. DB::Exception: Invalid boolean value, should be true/false, 1/0, but it starts with the '[' character: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Bool)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 467. DB::Exception: Invalid boolean value, should be true/false, 1/0, but it starts with the '{' character: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Bool)","case":"object","event":"{\"a\": 1}","accepted":false,"error":"java.io.IOException: Code: 467. DB::Exception: Invalid boolean value, should be true/false, 1/0, but it starts with the '{' character: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Bool)","case":"leading_zero_one","event":"01","accepted":true,"history":true}

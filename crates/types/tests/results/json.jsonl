@@ -31,3 +31,5 @@
 {"type":"JSON","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
 {"type":"JSON","case":"array_of_objects","event":"[{\"a\": 1}]","accepted":false,"error":"java.io.IOException: Code: 117. DB::Exception: JSON object should start with '{': (while reading the value of key v): (at row 1)"}
 {"type":"JSON","case":"invalid_nan_field","event":"{\"a\": NaN}","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"JSON","case":"leading_zero_field","event":"{\"a\": 01}","accepted":true,"history":{"a":"1"}}
+{"type":"JSON","case":"leading_zero_nested","event":"{\"a\": [01, {\"b\": -007.5}]}","accepted":true,"history":{"a":["1",{"b":-7.5}]}}

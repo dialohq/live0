@@ -45,6 +45,9 @@
     {"name": "invalid_minus_infinity", "value": "-Infinity"},
     {"name": "invalid_leading_dot", "value": ".5"},
     {"name": "invalid_trailing_dot", "value": "1."},
-    {"name": "invalid_leading_zero", "value": "01.5"}
+    {"name": "invalid_leading_zero", "value": "01.5"},
+    {"name": "leading_zero_fraction", "value": "00.5"},
+    {"name": "negative_leading_zero", "value": "-01.5"},
+    {"name": "leading_zero_exponent", "value": "001e2"}
   ]
 }

@@ -1,5 +1,6 @@
 use serde_json::Value as Json;
 
+use crate::data_types::strip_leading_zeros;
 use crate::{HistoryError, Schema, Value};
 
 pub type Row = Vec<Value>;
@@ -17,6 +18,11 @@ pub enum DecodeError {
         column: String,
         source: HistoryError,
     },
+}
+
+/// Parses an event's JSON text the way the Sink does; `None` if the Sink would reject it.
+pub fn parse_event(raw: &str) -> Option<Json> {
+    serde_json::from_str(&strip_leading_zeros(raw)).ok()
 }
 
 pub fn decode_event(json: &Json, schema: &Schema) -> Option<Row> {

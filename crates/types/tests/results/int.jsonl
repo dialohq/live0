@@ -59,6 +59,11 @@
 {"type":"Int8","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"Int8","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"Int8","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int8","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"Int8","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"Int8","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
+{"type":"Int8","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"Int8","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"Int16","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Int16","case":"one","event":"1","accepted":true,"history":1}
 {"type":"Int16","case":"minus_one","event":"-1","accepted":true,"history":-1}
@@ -120,6 +125,11 @@
 {"type":"Int16","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"Int16","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"Int16","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int16","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"Int16","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"Int16","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
+{"type":"Int16","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"Int16","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"Int32","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Int32","case":"one","event":"1","accepted":true,"history":1}
 {"type":"Int32","case":"minus_one","event":"-1","accepted":true,"history":-1}
@@ -181,6 +191,11 @@
 {"type":"Int32","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"Int32","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"Int32","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int32","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"Int32","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"Int32","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
+{"type":"Int32","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"Int32","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"Int64","case":"zero","event":"0","accepted":true,"history":"0"}
 {"type":"Int64","case":"one","event":"1","accepted":true,"history":"1"}
 {"type":"Int64","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
@@ -242,6 +257,11 @@
 {"type":"Int64","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"Int64","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"Int64","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Int64","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"Int64","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"Int64","case":"negative_leading_zero","event":"-01","accepted":true,"history":"-1"}
+{"type":"Int64","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"Int64","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"UInt8","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"UInt8","case":"one","event":"1","accepted":true,"history":1}
 {"type":"UInt8","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -303,6 +323,11 @@
 {"type":"UInt8","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"UInt8","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"UInt8","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt8","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"UInt8","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"UInt8","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt8","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"UInt8","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"UInt16","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"UInt16","case":"one","event":"1","accepted":true,"history":1}
 {"type":"UInt16","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -364,6 +389,11 @@
 {"type":"UInt16","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"UInt16","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"UInt16","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt16","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"UInt16","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"UInt16","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt16","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"UInt16","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"UInt32","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"UInt32","case":"one","event":"1","accepted":true,"history":1}
 {"type":"UInt32","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -425,6 +455,11 @@
 {"type":"UInt32","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"UInt32","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"UInt32","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt32","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"UInt32","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"UInt32","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt32","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"UInt32","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"UInt64","case":"zero","event":"0","accepted":true,"history":"0"}
 {"type":"UInt64","case":"one","event":"1","accepted":true,"history":"1"}
 {"type":"UInt64","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -486,6 +521,11 @@
 {"type":"UInt64","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"UInt64","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"UInt64","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"UInt64","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"UInt64","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"UInt64","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"UInt64","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"UInt64","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"Nullable(Int8)","case":"zero","event":"0","accepted":true,"history":0}
 {"type":"Nullable(Int8)","case":"one","event":"1","accepted":true,"history":1}
 {"type":"Nullable(Int8)","case":"minus_one","event":"-1","accepted":true,"history":-1}
@@ -547,6 +587,11 @@
 {"type":"Nullable(Int8)","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"Nullable(Int8)","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"Nullable(Int8)","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(Int8)","case":"zeros","event":"00","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"leading_zeros","event":"007","accepted":true,"history":7}
+{"type":"Nullable(Int8)","case":"negative_leading_zero","event":"-01","accepted":true,"history":-1}
+{"type":"Nullable(Int8)","case":"minus_zero_zero","event":"-00","accepted":true,"history":0}
+{"type":"Nullable(Int8)","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}
 {"type":"Nullable(UInt64)","case":"zero","event":"0","accepted":true,"history":"0"}
 {"type":"Nullable(UInt64)","case":"one","event":"1","accepted":true,"history":"1"}
 {"type":"Nullable(UInt64)","case":"minus_one","event":"-1","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
@@ -608,3 +653,8 @@
 {"type":"Nullable(UInt64)","case":"invalid_hex","event":"0x10","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character ('x' (code 120)): was expecting comma to separate Object entries"}
 {"type":"Nullable(UInt64)","case":"invalid_nan","event":"NaN","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'NaN': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
 {"type":"Nullable(UInt64)","case":"invalid_infinity","event":"Infinity","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Non-standard token 'Infinity': enable `JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS` to allow"}
+{"type":"Nullable(UInt64)","case":"zeros","event":"00","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"leading_zeros","event":"007","accepted":true,"history":"7"}
+{"type":"Nullable(UInt64)","case":"negative_leading_zero","event":"-01","accepted":false,"error":"java.io.IOException: Code: 72. DB::Exception: Unsigned type must not contain '-' symbol: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(UInt64)","case":"minus_zero_zero","event":"-00","accepted":true,"history":"0"}
+{"type":"Nullable(UInt64)","case":"leading_zero_exponent","event":"01e1","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '.0,\"case\":\"leading_zero_exponent\"}': (at row 1)"}

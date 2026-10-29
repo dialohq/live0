@@ -1,5 +1,7 @@
 use serde_json::Value as Json;
 
+pub(crate) use crate::data_types::sink::strip_leading_zeros;
+
 use crate::data_types::{
     boolean::BoolType, float::FloatType, int::IntType, json::JsonType, string::StringType,
 };

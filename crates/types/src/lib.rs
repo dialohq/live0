@@ -1,7 +1,7 @@
 pub use crate::data_types::{DataType, HistoryError};
 pub use crate::diff::{Diff, Snapshot};
 pub use crate::event::Event;
-pub use crate::row::{DecodeError, Row, decode_event, decode_history};
+pub use crate::row::{DecodeError, Row, decode_event, decode_history, parse_event};
 pub use crate::schema::{Column, Schema};
 pub use crate::value::Value;
 pub use crate::watermark::{Offset, Partition, Watermark};

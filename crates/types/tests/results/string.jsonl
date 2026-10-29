@@ -28,6 +28,8 @@
 {"type":"String","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
 {"type":"String","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"String","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"String","case":"leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"String","case":"quoted_leading_zero","event":"\"01\"","accepted":true,"history":"01"}
 {"type":"Nullable(String)","case":"empty","event":"\"\"","accepted":true,"history":""}
 {"type":"Nullable(String)","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
 {"type":"Nullable(String)","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
@@ -58,6 +60,8 @@
 {"type":"Nullable(String)","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
 {"type":"Nullable(String)","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"Nullable(String)","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"Nullable(String)","case":"leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"Nullable(String)","case":"quoted_leading_zero","event":"\"01\"","accepted":true,"history":"01"}
 {"type":"LowCardinality(String)","case":"empty","event":"\"\"","accepted":true,"history":""}
 {"type":"LowCardinality(String)","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
 {"type":"LowCardinality(String)","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
@@ -88,6 +92,8 @@
 {"type":"LowCardinality(String)","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
 {"type":"LowCardinality(String)","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"LowCardinality(String)","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"LowCardinality(String)","case":"leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"LowCardinality(String)","case":"quoted_leading_zero","event":"\"01\"","accepted":true,"history":"01"}
 {"type":"LowCardinality(Nullable(String))","case":"empty","event":"\"\"","accepted":true,"history":""}
 {"type":"LowCardinality(Nullable(String))","case":"word","event":"\"abc\"","accepted":true,"history":"abc"}
 {"type":"LowCardinality(Nullable(String))","case":"polish","event":"\"zażółć gęślą jaźń\"","accepted":true,"history":"zażółć gęślą jaźń"}
@@ -118,3 +124,5 @@
 {"type":"LowCardinality(Nullable(String))","case":"object_spaced","event":"{ \"a\" : 1 }","accepted":true,"history":"{\"a\":1}"}
 {"type":"LowCardinality(Nullable(String))","case":"invalid_single_quotes","event":"'abc'","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
 {"type":"LowCardinality(Nullable(String))","case":"invalid_unquoted","event":"abc","accepted":false,"error":"com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'abc': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')"}
+{"type":"LowCardinality(Nullable(String))","case":"leading_zero","event":"01","accepted":true,"history":"1"}
+{"type":"LowCardinality(Nullable(String))","case":"quoted_leading_zero","event":"\"01\"","accepted":true,"history":"01"}

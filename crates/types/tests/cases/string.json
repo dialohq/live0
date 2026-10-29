@@ -30,6 +30,8 @@
     {"name": "object", "value": "{\"b\": 1, \"a\": [true, null]}"},
     {"name": "object_spaced", "value": "{ \"a\" : 1 }"},
     {"name": "invalid_single_quotes", "value": "'abc'"},
-    {"name": "invalid_unquoted", "value": "abc"}
+    {"name": "invalid_unquoted", "value": "abc"},
+    {"name": "leading_zero", "value": "01"},
+    {"name": "quoted_leading_zero", "value": "\"01\""}
   ]
 }

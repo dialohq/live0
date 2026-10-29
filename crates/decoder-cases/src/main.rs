@@ -174,6 +174,11 @@ impl Stack {
         let (accepted, rejected) = self.wait(prefix, &topics, &dlq)?;
         let history = fetch_history(&accepted)?;
         self.connect_delete(&format!("/connectors/{CONNECTOR}"))?;
+        // Redpanda caps partitions per core, so a chunk's topics can't outlive it.
+        let mut delete = vec!["topic", "delete"];
+        delete.extend(topics.iter().map(String::as_str));
+        delete.push(&dlq);
+        self.rpk(&delete, None)?;
 
         topics
             .iter()
