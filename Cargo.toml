@@ -13,6 +13,7 @@ catalog = { path = "crates/catalog" }
 qstate = { path = "crates/qstate" }
 functions = { path = "crates/functions" }
 async-trait = "0.1.92"
+ethnum = "1.5.3"
 jiff = { version = "0.2.38", features = ["tzdb-bundle-always"] }
 thiserror = "2.0.21"
 serde = "1.0.229"

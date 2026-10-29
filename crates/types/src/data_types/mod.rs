@@ -3,8 +3,8 @@ use serde_json::Value as Json;
 pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
-    boolean::BoolType, date::DateType, datetime::DateTimeType, float::FloatType, int::IntType,
-    json::JsonType, string::StringType,
+    boolean::BoolType, date::DateType, datetime::DateTimeType, decimal::DecimalType,
+    float::FloatType, int::IntType, json::JsonType, string::StringType,
 };
 
 mod boolean;
@@ -12,6 +12,7 @@ mod boolean;
 mod cases;
 mod date;
 mod datetime;
+mod decimal;
 mod float;
 mod int;
 mod json;
@@ -45,6 +46,7 @@ pub enum DataType {
     Bool(BoolType),
     Date(DateType),
     DateTime(DateTimeType),
+    Decimal(DecimalType),
     Other(String),
 }
 
@@ -81,9 +83,10 @@ impl DataType {
             "Bool" => Self::Bool(BoolType),
             "Date" => Self::Date(DateType { wide: false }),
             "Date32" => Self::Date(DateType { wide: true }),
-            _ => {
-                DateTimeType::parse(raw).map_or_else(|| Self::Other(raw.to_owned()), Self::DateTime)
-            }
+            _ => DateTimeType::parse(raw)
+                .map(Self::DateTime)
+                .or_else(|| DecimalType::parse_type(raw).map(Self::Decimal))
+                .unwrap_or_else(|| Self::Other(raw.to_owned())),
         }
     }
 
@@ -155,7 +158,7 @@ mod tests {
         for raw in [
             "UUID",
             "LowCardinality(UUID)",
-            "Nullable(Decimal(10, 2))",
+            "Nullable(Point)",
             "LowCardinality(Nullable(FixedString(3)))",
             "Nullable(String",
             "LowCardinality",

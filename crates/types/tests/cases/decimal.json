@@ -1,5 +1,5 @@
 {
-  "types": ["Decimal(9, 2)", "Decimal(18, 4)", "Decimal(38, 10)", "Decimal32(3)", "Decimal(76, 20)", "Nullable(Decimal(9, 2))"],
+  "types": ["Decimal(9, 2)", "Decimal(18, 4)", "Decimal(38, 10)", "Decimal32(3)", "Decimal(76, 20)", "Nullable(Decimal(9, 2))", "Decimal(76, 0)"],
   "cases": [
     {"name": "zero", "value": "0"},
     {"name": "one", "value": "1"},
@@ -44,6 +44,28 @@
     {"name": "null", "value": "null"},
     {"name": "absent", "value": null},
     {"name": "empty_array", "value": "[]"},
-    {"name": "empty_object", "value": "{}"}
+    {"name": "empty_object", "value": "{}"},
+    {"name": "negative_round_down", "value": "-1.239"},
+    {"name": "string_negative_leading_dot", "value": "\"-.5\""},
+    {"name": "string_dot", "value": "\".\""},
+    {"name": "string_minus", "value": "\"-\""},
+    {"name": "string_plus_only", "value": "\"+\""},
+    {"name": "string_bare_exponent", "value": "\"1e\""},
+    {"name": "string_exponent_plus", "value": "\"1e+2\""},
+    {"name": "string_exponent_upper_negative", "value": "\"1E-2\""},
+    {"name": "string_tiny_negative", "value": "\"-1e-30\""},
+    {"name": "string_space", "value": "\" \""},
+    {"name": "string_zeros", "value": "\"0.000\""},
+    {"name": "string_leading_zeros", "value": "\"007.50\""},
+    {"name": "string_exponent_76", "value": "\"1e76\""},
+    {"name": "string_75_nines", "value": "\"999999999999999999999999999999999999999999999999999999999999999999999999999\""},
+    {"name": "string_76_nines", "value": "\"9999999999999999999999999999999999999999999999999999999999999999999999999999\""},
+    {"name": "string_77_nines", "value": "\"99999999999999999999999999999999999999999999999999999999999999999999999999999\""},
+    {"name": "string_huge_exponent", "value": "\"1e400\""},
+    {"name": "string_tiny_exponent", "value": "\"1e-400\""},
+    {"name": "string_double_dot", "value": "\"1.2.3\""},
+    {"name": "string_hex", "value": "\"0x10\""},
+    {"name": "string_underscore", "value": "\"1_000\""},
+    {"name": "negative_tiny", "value": "-1e-10"}
   ]
 }

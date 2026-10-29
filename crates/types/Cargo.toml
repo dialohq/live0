@@ -9,6 +9,7 @@ version = "0.1.0"
 workspace = true
 
 [dependencies]
+ethnum.workspace = true
 jiff.workspace = true
 serde.workspace = true
 serde_json = { workspace = true, features = ["arbitrary_precision"] }

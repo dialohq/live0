@@ -1,264 +1,462 @@
-{"type":"Decimal(9, 2)","case":"zero","event":"0","accepted":true,"history":0}
-{"type":"Decimal(9, 2)","case":"one","event":"1","accepted":true,"history":1}
-{"type":"Decimal(9, 2)","case":"minus_one","event":"-1","accepted":true,"history":-1}
-{"type":"Decimal(9, 2)","case":"fraction","event":"1.5","accepted":true,"history":1.5}
-{"type":"Decimal(9, 2)","case":"half_cent","event":"1.005","accepted":true,"history":1}
-{"type":"Decimal(9, 2)","case":"round_down","event":"1.234","accepted":true,"history":1.23}
-{"type":"Decimal(9, 2)","case":"round_half","event":"1.235","accepted":true,"history":1.23}
-{"type":"Decimal(9, 2)","case":"negative_round_half","event":"-1.235","accepted":true,"history":-1.23}
-{"type":"Decimal(9, 2)","case":"round_up","event":"1.239","accepted":true,"history":1.23}
-{"type":"Decimal(9, 2)","case":"tenth","event":"0.1","accepted":true,"history":0.1}
-{"type":"Decimal(9, 2)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":3.14}
-{"type":"Decimal(9, 2)","case":"exponent","event":"1e2","accepted":true,"history":100}
-{"type":"Decimal(9, 2)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":0.01}
-{"type":"Decimal(9, 2)","case":"tiny","event":"1e-10","accepted":true,"history":0}
-{"type":"Decimal(9, 2)","case":"max_9_2","event":"9999999.99","accepted":true,"history":9999999.99}
+{"type":"Decimal(9, 2)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Decimal(9, 2)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Decimal(9, 2)","case":"fraction","event":"1.5","accepted":true,"history":"1.5"}
+{"type":"Decimal(9, 2)","case":"half_cent","event":"1.005","accepted":true,"history":"1"}
+{"type":"Decimal(9, 2)","case":"round_down","event":"1.234","accepted":true,"history":"1.23"}
+{"type":"Decimal(9, 2)","case":"round_half","event":"1.235","accepted":true,"history":"1.23"}
+{"type":"Decimal(9, 2)","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1.23"}
+{"type":"Decimal(9, 2)","case":"round_up","event":"1.239","accepted":true,"history":"1.23"}
+{"type":"Decimal(9, 2)","case":"tenth","event":"0.1","accepted":true,"history":"0.1"}
+{"type":"Decimal(9, 2)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3.14"}
+{"type":"Decimal(9, 2)","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Decimal(9, 2)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0.01"}
+{"type":"Decimal(9, 2)","case":"tiny","event":"1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"max_9_2","event":"9999999.99","accepted":true,"history":"9999999.99"}
 {"type":"Decimal(9, 2)","case":"beyond_9_2","event":"10000000","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 8 digits were read: '10000000'e0. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(9, 2)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":-9999999.99}
+{"type":"Decimal(9, 2)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":"-9999999.99"}
 {"type":"Decimal(9, 2)","case":"max_18_4","event":"99999999999999.9999","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e14. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(9, 2)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Decimal(9, 2)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
 {"type":"Decimal(9, 2)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e30. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(9, 2)","case":"minus_zero","event":"-0","accepted":true,"history":0}
-{"type":"Decimal(9, 2)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":0}
-{"type":"Decimal(9, 2)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(9, 2)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":1}
-{"type":"Decimal(9, 2)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":3.14}
+{"type":"Decimal(9, 2)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(9, 2)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1"}
+{"type":"Decimal(9, 2)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3.14"}
 {"type":"Decimal(9, 2)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(9, 2)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":100}
-{"type":"Decimal(9, 2)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(9, 2)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":0.5}
-{"type":"Decimal(9, 2)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":5}
+{"type":"Decimal(9, 2)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Decimal(9, 2)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(9, 2)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0.5"}
+{"type":"Decimal(9, 2)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
 {"type":"Decimal(9, 2)","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(9, 2)","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Decimal(9, 2)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
 {"type":"Decimal(9, 2)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(9, 2)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
-{"type":"Decimal(9, 2)","case":"null","event":"null","accepted":true,"history":0}
-{"type":"Decimal(9, 2)","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Decimal(9, 2)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"absent","event":null,"accepted":true,"history":"0"}
 {"type":"Decimal(9, 2)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Decimal(9, 2)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Decimal(18, 4)","case":"zero","event":"0","accepted":true,"history":0}
-{"type":"Decimal(18, 4)","case":"one","event":"1","accepted":true,"history":1}
-{"type":"Decimal(18, 4)","case":"minus_one","event":"-1","accepted":true,"history":-1}
-{"type":"Decimal(18, 4)","case":"fraction","event":"1.5","accepted":true,"history":1.5}
-{"type":"Decimal(18, 4)","case":"half_cent","event":"1.005","accepted":true,"history":1.005}
-{"type":"Decimal(18, 4)","case":"round_down","event":"1.234","accepted":true,"history":1.234}
-{"type":"Decimal(18, 4)","case":"round_half","event":"1.235","accepted":true,"history":1.235}
-{"type":"Decimal(18, 4)","case":"negative_round_half","event":"-1.235","accepted":true,"history":-1.235}
-{"type":"Decimal(18, 4)","case":"round_up","event":"1.239","accepted":true,"history":1.239}
-{"type":"Decimal(18, 4)","case":"tenth","event":"0.1","accepted":true,"history":0.1}
-{"type":"Decimal(18, 4)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":3.1415}
-{"type":"Decimal(18, 4)","case":"exponent","event":"1e2","accepted":true,"history":100}
-{"type":"Decimal(18, 4)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":0.015}
-{"type":"Decimal(18, 4)","case":"tiny","event":"1e-10","accepted":true,"history":0}
-{"type":"Decimal(18, 4)","case":"max_9_2","event":"9999999.99","accepted":true,"history":9999999.99}
-{"type":"Decimal(18, 4)","case":"beyond_9_2","event":"10000000","accepted":true,"history":10000000}
-{"type":"Decimal(18, 4)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":-9999999.99}
+{"type":"Decimal(9, 2)","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1.23"}
+{"type":"Decimal(9, 2)","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"-0.5"}
+{"type":"Decimal(9, 2)","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Decimal(9, 2)","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Decimal(9, 2)","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0.01"}
+{"type":"Decimal(9, 2)","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7.5"}
+{"type":"Decimal(9, 2)","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Decimal(9, 2)","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1.23"}
+{"type":"Decimal(9, 2)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(9, 2)","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Decimal(18, 4)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Decimal(18, 4)","case":"fraction","event":"1.5","accepted":true,"history":"1.5"}
+{"type":"Decimal(18, 4)","case":"half_cent","event":"1.005","accepted":true,"history":"1.005"}
+{"type":"Decimal(18, 4)","case":"round_down","event":"1.234","accepted":true,"history":"1.234"}
+{"type":"Decimal(18, 4)","case":"round_half","event":"1.235","accepted":true,"history":"1.235"}
+{"type":"Decimal(18, 4)","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1.235"}
+{"type":"Decimal(18, 4)","case":"round_up","event":"1.239","accepted":true,"history":"1.239"}
+{"type":"Decimal(18, 4)","case":"tenth","event":"0.1","accepted":true,"history":"0.1"}
+{"type":"Decimal(18, 4)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3.1415"}
+{"type":"Decimal(18, 4)","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Decimal(18, 4)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0.015"}
+{"type":"Decimal(18, 4)","case":"tiny","event":"1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"max_9_2","event":"9999999.99","accepted":true,"history":"9999999.99"}
+{"type":"Decimal(18, 4)","case":"beyond_9_2","event":"10000000","accepted":true,"history":"10000000"}
+{"type":"Decimal(18, 4)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":"-9999999.99"}
 {"type":"Decimal(18, 4)","case":"max_18_4","event":"99999999999999.9999","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e14. Expected to read decimal with scale 4 and precision 18: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (19 > 18) in decimal value: (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(18, 4)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Decimal(18, 4)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
 {"type":"Decimal(18, 4)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (19 > 18) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e30. Expected to read decimal with scale 4 and precision 18: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(18, 4)","case":"minus_zero","event":"-0","accepted":true,"history":0}
-{"type":"Decimal(18, 4)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":0}
-{"type":"Decimal(18, 4)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(18, 4)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":1.005}
-{"type":"Decimal(18, 4)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":3.1415}
+{"type":"Decimal(18, 4)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(18, 4)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1.005"}
+{"type":"Decimal(18, 4)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3.1415"}
 {"type":"Decimal(18, 4)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (19 > 18) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(18, 4)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":100}
-{"type":"Decimal(18, 4)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(18, 4)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":0.5}
-{"type":"Decimal(18, 4)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":5}
+{"type":"Decimal(18, 4)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Decimal(18, 4)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(18, 4)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0.5"}
+{"type":"Decimal(18, 4)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
 {"type":"Decimal(18, 4)","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(18, 4)","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Decimal(18, 4)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
 {"type":"Decimal(18, 4)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(18, 4)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
-{"type":"Decimal(18, 4)","case":"null","event":"null","accepted":true,"history":0}
-{"type":"Decimal(18, 4)","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Decimal(18, 4)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"absent","event":null,"accepted":true,"history":"0"}
 {"type":"Decimal(18, 4)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Decimal(18, 4)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Decimal(38, 10)","case":"zero","event":"0","accepted":true,"history":0}
-{"type":"Decimal(38, 10)","case":"one","event":"1","accepted":true,"history":1}
-{"type":"Decimal(38, 10)","case":"minus_one","event":"-1","accepted":true,"history":-1}
-{"type":"Decimal(38, 10)","case":"fraction","event":"1.5","accepted":true,"history":1.5}
-{"type":"Decimal(38, 10)","case":"half_cent","event":"1.005","accepted":true,"history":1.005}
-{"type":"Decimal(38, 10)","case":"round_down","event":"1.234","accepted":true,"history":1.234}
-{"type":"Decimal(38, 10)","case":"round_half","event":"1.235","accepted":true,"history":1.235}
-{"type":"Decimal(38, 10)","case":"negative_round_half","event":"-1.235","accepted":true,"history":-1.235}
-{"type":"Decimal(38, 10)","case":"round_up","event":"1.239","accepted":true,"history":1.239}
-{"type":"Decimal(38, 10)","case":"tenth","event":"0.1","accepted":true,"history":0.1}
-{"type":"Decimal(38, 10)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":3.1415926535}
-{"type":"Decimal(38, 10)","case":"exponent","event":"1e2","accepted":true,"history":100}
-{"type":"Decimal(38, 10)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":0.015}
-{"type":"Decimal(38, 10)","case":"tiny","event":"1e-10","accepted":true,"history":0.0000000001}
-{"type":"Decimal(38, 10)","case":"max_9_2","event":"9999999.99","accepted":true,"history":9999999.99}
-{"type":"Decimal(38, 10)","case":"beyond_9_2","event":"10000000","accepted":true,"history":10000000}
-{"type":"Decimal(38, 10)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":-9999999.99}
-{"type":"Decimal(38, 10)","case":"max_18_4","event":"99999999999999.9999","accepted":true,"history":100000000000000}
-{"type":"Decimal(38, 10)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":9223372036854775807}
-{"type":"Decimal(38, 10)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
-{"type":"Decimal(38, 10)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":true,"history":-4362896299872285998}
+{"type":"Decimal(18, 4)","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1.239"}
+{"type":"Decimal(18, 4)","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"-0.5"}
+{"type":"Decimal(18, 4)","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Decimal(18, 4)","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Decimal(18, 4)","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0.01"}
+{"type":"Decimal(18, 4)","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7.5"}
+{"type":"Decimal(18, 4)","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 4 and precision 18: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (19 > 18) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (19 > 18) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (19 > 18) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 4 and precision 18: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Decimal(18, 4)","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1.23"}
+{"type":"Decimal(18, 4)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(18, 4)","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Decimal(38, 10)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Decimal(38, 10)","case":"fraction","event":"1.5","accepted":true,"history":"1.5"}
+{"type":"Decimal(38, 10)","case":"half_cent","event":"1.005","accepted":true,"history":"1.005"}
+{"type":"Decimal(38, 10)","case":"round_down","event":"1.234","accepted":true,"history":"1.234"}
+{"type":"Decimal(38, 10)","case":"round_half","event":"1.235","accepted":true,"history":"1.235"}
+{"type":"Decimal(38, 10)","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1.235"}
+{"type":"Decimal(38, 10)","case":"round_up","event":"1.239","accepted":true,"history":"1.239"}
+{"type":"Decimal(38, 10)","case":"tenth","event":"0.1","accepted":true,"history":"0.1"}
+{"type":"Decimal(38, 10)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3.1415926535"}
+{"type":"Decimal(38, 10)","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Decimal(38, 10)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0.015"}
+{"type":"Decimal(38, 10)","case":"tiny","event":"1e-10","accepted":true,"history":"0.0000000001"}
+{"type":"Decimal(38, 10)","case":"max_9_2","event":"9999999.99","accepted":true,"history":"9999999.99"}
+{"type":"Decimal(38, 10)","case":"beyond_9_2","event":"10000000","accepted":true,"history":"10000000"}
+{"type":"Decimal(38, 10)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":"-9999999.99"}
+{"type":"Decimal(38, 10)","case":"max_18_4","event":"99999999999999.9999","accepted":true,"history":"100000000000000"}
+{"type":"Decimal(38, 10)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"Decimal(38, 10)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":true,"history":"-4362896299872285998"}
 {"type":"Decimal(38, 10)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e30. Expected to read decimal with scale 10 and precision 38: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(38, 10)","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(38, 10)","case":"minus_zero","event":"-0","accepted":true,"history":0}
-{"type":"Decimal(38, 10)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":0}
-{"type":"Decimal(38, 10)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(38, 10)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":1.005}
-{"type":"Decimal(38, 10)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":3.1415926535}
+{"type":"Decimal(38, 10)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(38, 10)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1.005"}
+{"type":"Decimal(38, 10)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3.1415926535"}
 {"type":"Decimal(38, 10)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 38 digits were read: '12345678901234567890123456789012345678'e-8. Expected to read decimal with scale 10 and precision 38: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(38, 10)","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(38, 10)","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(38, 10)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":100}
-{"type":"Decimal(38, 10)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(38, 10)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":0.5}
-{"type":"Decimal(38, 10)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":5}
+{"type":"Decimal(38, 10)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Decimal(38, 10)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(38, 10)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0.5"}
+{"type":"Decimal(38, 10)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
 {"type":"Decimal(38, 10)","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(38, 10)","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(38, 10)","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Decimal(38, 10)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
 {"type":"Decimal(38, 10)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(38, 10)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
-{"type":"Decimal(38, 10)","case":"null","event":"null","accepted":true,"history":0}
-{"type":"Decimal(38, 10)","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Decimal(38, 10)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"absent","event":null,"accepted":true,"history":"0"}
 {"type":"Decimal(38, 10)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Decimal(38, 10)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Decimal32(3)","case":"zero","event":"0","accepted":true,"history":0}
-{"type":"Decimal32(3)","case":"one","event":"1","accepted":true,"history":1}
-{"type":"Decimal32(3)","case":"minus_one","event":"-1","accepted":true,"history":-1}
-{"type":"Decimal32(3)","case":"fraction","event":"1.5","accepted":true,"history":1.5}
-{"type":"Decimal32(3)","case":"half_cent","event":"1.005","accepted":true,"history":1.005}
-{"type":"Decimal32(3)","case":"round_down","event":"1.234","accepted":true,"history":1.234}
-{"type":"Decimal32(3)","case":"round_half","event":"1.235","accepted":true,"history":1.235}
-{"type":"Decimal32(3)","case":"negative_round_half","event":"-1.235","accepted":true,"history":-1.235}
-{"type":"Decimal32(3)","case":"round_up","event":"1.239","accepted":true,"history":1.239}
-{"type":"Decimal32(3)","case":"tenth","event":"0.1","accepted":true,"history":0.1}
-{"type":"Decimal32(3)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":3.141}
-{"type":"Decimal32(3)","case":"exponent","event":"1e2","accepted":true,"history":100}
-{"type":"Decimal32(3)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":0.015}
-{"type":"Decimal32(3)","case":"tiny","event":"1e-10","accepted":true,"history":0}
+{"type":"Decimal(38, 10)","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1.239"}
+{"type":"Decimal(38, 10)","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"-0.5"}
+{"type":"Decimal(38, 10)","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Decimal(38, 10)","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Decimal(38, 10)","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0.01"}
+{"type":"Decimal(38, 10)","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7.5"}
+{"type":"Decimal(38, 10)","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 10 and precision 38: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (39 > 38) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (39 > 38) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (39 > 38) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 10 and precision 38: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Decimal(38, 10)","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1.23"}
+{"type":"Decimal(38, 10)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(38, 10)","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"-0.0000000001"}
+{"type":"Decimal32(3)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Decimal32(3)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Decimal32(3)","case":"fraction","event":"1.5","accepted":true,"history":"1.5"}
+{"type":"Decimal32(3)","case":"half_cent","event":"1.005","accepted":true,"history":"1.005"}
+{"type":"Decimal32(3)","case":"round_down","event":"1.234","accepted":true,"history":"1.234"}
+{"type":"Decimal32(3)","case":"round_half","event":"1.235","accepted":true,"history":"1.235"}
+{"type":"Decimal32(3)","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1.235"}
+{"type":"Decimal32(3)","case":"round_up","event":"1.239","accepted":true,"history":"1.239"}
+{"type":"Decimal32(3)","case":"tenth","event":"0.1","accepted":true,"history":"0.1"}
+{"type":"Decimal32(3)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3.141"}
+{"type":"Decimal32(3)","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Decimal32(3)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0.015"}
+{"type":"Decimal32(3)","case":"tiny","event":"1e-10","accepted":true,"history":"0"}
 {"type":"Decimal32(3)","case":"max_9_2","event":"9999999.99","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 9 digits were read: '999999999'e-2. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"beyond_9_2","event":"10000000","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 8 digits were read: '10000000'e0. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"min_9_2","event":"-9999999.99","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 9 digits were read: '-999999999'e-2. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"max_18_4","event":"99999999999999.9999","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e14. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
-{"type":"Decimal32(3)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Decimal32(3)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
 {"type":"Decimal32(3)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e30. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal32(3)","case":"minus_zero","event":"-0","accepted":true,"history":0}
-{"type":"Decimal32(3)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":0}
-{"type":"Decimal32(3)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal32(3)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":1.005}
-{"type":"Decimal32(3)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":3.141}
+{"type":"Decimal32(3)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal32(3)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1.005"}
+{"type":"Decimal32(3)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3.141"}
 {"type":"Decimal32(3)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal32(3)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":100}
-{"type":"Decimal32(3)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal32(3)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":0.5}
-{"type":"Decimal32(3)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":5}
+{"type":"Decimal32(3)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Decimal32(3)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal32(3)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0.5"}
+{"type":"Decimal32(3)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
 {"type":"Decimal32(3)","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal32(3)","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Decimal32(3)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
 {"type":"Decimal32(3)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal32(3)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
-{"type":"Decimal32(3)","case":"null","event":"null","accepted":true,"history":0}
-{"type":"Decimal32(3)","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Decimal32(3)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"absent","event":null,"accepted":true,"history":"0"}
 {"type":"Decimal32(3)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Decimal32(3)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Decimal(76, 20)","case":"zero","event":"0","accepted":true,"history":0}
-{"type":"Decimal(76, 20)","case":"one","event":"1","accepted":true,"history":1}
-{"type":"Decimal(76, 20)","case":"minus_one","event":"-1","accepted":true,"history":-1}
-{"type":"Decimal(76, 20)","case":"fraction","event":"1.5","accepted":true,"history":1.5}
-{"type":"Decimal(76, 20)","case":"half_cent","event":"1.005","accepted":true,"history":1.005}
-{"type":"Decimal(76, 20)","case":"round_down","event":"1.234","accepted":true,"history":1.234}
-{"type":"Decimal(76, 20)","case":"round_half","event":"1.235","accepted":true,"history":1.235}
-{"type":"Decimal(76, 20)","case":"negative_round_half","event":"-1.235","accepted":true,"history":-1.235}
-{"type":"Decimal(76, 20)","case":"round_up","event":"1.239","accepted":true,"history":1.239}
-{"type":"Decimal(76, 20)","case":"tenth","event":"0.1","accepted":true,"history":0.1}
-{"type":"Decimal(76, 20)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":3.141592653589793}
-{"type":"Decimal(76, 20)","case":"exponent","event":"1e2","accepted":true,"history":100}
-{"type":"Decimal(76, 20)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":0.015}
-{"type":"Decimal(76, 20)","case":"tiny","event":"1e-10","accepted":true,"history":0.0000000001}
-{"type":"Decimal(76, 20)","case":"max_9_2","event":"9999999.99","accepted":true,"history":9999999.99}
-{"type":"Decimal(76, 20)","case":"beyond_9_2","event":"10000000","accepted":true,"history":10000000}
-{"type":"Decimal(76, 20)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":-9999999.99}
-{"type":"Decimal(76, 20)","case":"max_18_4","event":"99999999999999.9999","accepted":true,"history":100000000000000}
-{"type":"Decimal(76, 20)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":9223372036854775807}
-{"type":"Decimal(76, 20)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
-{"type":"Decimal(76, 20)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":true,"history":-4362896299872285998}
-{"type":"Decimal(76, 20)","case":"exponent_30","event":"1e30","accepted":true,"history":1000000000000000000000000000000}
+{"type":"Decimal32(3)","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1.239"}
+{"type":"Decimal32(3)","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"-0.5"}
+{"type":"Decimal32(3)","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Decimal32(3)","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Decimal32(3)","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0.01"}
+{"type":"Decimal32(3)","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7.5"}
+{"type":"Decimal32(3)","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 3 and precision 9: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Decimal32(3)","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1.23"}
+{"type":"Decimal32(3)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal32(3)","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Decimal(76, 20)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Decimal(76, 20)","case":"fraction","event":"1.5","accepted":true,"history":"1.5"}
+{"type":"Decimal(76, 20)","case":"half_cent","event":"1.005","accepted":true,"history":"1.005"}
+{"type":"Decimal(76, 20)","case":"round_down","event":"1.234","accepted":true,"history":"1.234"}
+{"type":"Decimal(76, 20)","case":"round_half","event":"1.235","accepted":true,"history":"1.235"}
+{"type":"Decimal(76, 20)","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1.235"}
+{"type":"Decimal(76, 20)","case":"round_up","event":"1.239","accepted":true,"history":"1.239"}
+{"type":"Decimal(76, 20)","case":"tenth","event":"0.1","accepted":true,"history":"0.1"}
+{"type":"Decimal(76, 20)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3.141592653589793"}
+{"type":"Decimal(76, 20)","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Decimal(76, 20)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0.015"}
+{"type":"Decimal(76, 20)","case":"tiny","event":"1e-10","accepted":true,"history":"0.0000000001"}
+{"type":"Decimal(76, 20)","case":"max_9_2","event":"9999999.99","accepted":true,"history":"9999999.99"}
+{"type":"Decimal(76, 20)","case":"beyond_9_2","event":"10000000","accepted":true,"history":"10000000"}
+{"type":"Decimal(76, 20)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":"-9999999.99"}
+{"type":"Decimal(76, 20)","case":"max_18_4","event":"99999999999999.9999","accepted":true,"history":"100000000000000"}
+{"type":"Decimal(76, 20)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"Decimal(76, 20)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":true,"history":"-4362896299872285998"}
+{"type":"Decimal(76, 20)","case":"exponent_30","event":"1e30","accepted":true,"history":"1000000000000000000000000000000"}
 {"type":"Decimal(76, 20)","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(76, 20)","case":"minus_zero","event":"-0","accepted":true,"history":0}
-{"type":"Decimal(76, 20)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":0}
-{"type":"Decimal(76, 20)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(76, 20)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":1.005}
-{"type":"Decimal(76, 20)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":3.14159265358979323846}
-{"type":"Decimal(76, 20)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":true,"history":123456789012345678901234567890.123456789}
+{"type":"Decimal(76, 20)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(76, 20)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1.005"}
+{"type":"Decimal(76, 20)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3.14159265358979323846"}
+{"type":"Decimal(76, 20)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":true,"history":"123456789012345678901234567890.123456789"}
 {"type":"Decimal(76, 20)","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(76, 20)","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(76, 20)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":100}
-{"type":"Decimal(76, 20)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":1.5}
-{"type":"Decimal(76, 20)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":0.5}
-{"type":"Decimal(76, 20)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":5}
+{"type":"Decimal(76, 20)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Decimal(76, 20)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1.5"}
+{"type":"Decimal(76, 20)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0.5"}
+{"type":"Decimal(76, 20)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
 {"type":"Decimal(76, 20)","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(76, 20)","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Decimal(76, 20)","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Decimal(76, 20)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
 {"type":"Decimal(76, 20)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Decimal(76, 20)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
-{"type":"Decimal(76, 20)","case":"null","event":"null","accepted":true,"history":0}
-{"type":"Decimal(76, 20)","case":"absent","event":null,"accepted":true,"history":0}
+{"type":"Decimal(76, 20)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"absent","event":null,"accepted":true,"history":"0"}
 {"type":"Decimal(76, 20)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Decimal(76, 20)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
-{"type":"Nullable(Decimal(9, 2))","case":"zero","event":"0","accepted":true,"history":0}
-{"type":"Nullable(Decimal(9, 2))","case":"one","event":"1","accepted":true,"history":1}
-{"type":"Nullable(Decimal(9, 2))","case":"minus_one","event":"-1","accepted":true,"history":-1}
-{"type":"Nullable(Decimal(9, 2))","case":"fraction","event":"1.5","accepted":true,"history":1.5}
-{"type":"Nullable(Decimal(9, 2))","case":"half_cent","event":"1.005","accepted":true,"history":1}
-{"type":"Nullable(Decimal(9, 2))","case":"round_down","event":"1.234","accepted":true,"history":1.23}
-{"type":"Nullable(Decimal(9, 2))","case":"round_half","event":"1.235","accepted":true,"history":1.23}
-{"type":"Nullable(Decimal(9, 2))","case":"negative_round_half","event":"-1.235","accepted":true,"history":-1.23}
-{"type":"Nullable(Decimal(9, 2))","case":"round_up","event":"1.239","accepted":true,"history":1.23}
-{"type":"Nullable(Decimal(9, 2))","case":"tenth","event":"0.1","accepted":true,"history":0.1}
-{"type":"Nullable(Decimal(9, 2))","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":3.14}
-{"type":"Nullable(Decimal(9, 2))","case":"exponent","event":"1e2","accepted":true,"history":100}
-{"type":"Nullable(Decimal(9, 2))","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":0.01}
-{"type":"Nullable(Decimal(9, 2))","case":"tiny","event":"1e-10","accepted":true,"history":0}
-{"type":"Nullable(Decimal(9, 2))","case":"max_9_2","event":"9999999.99","accepted":true,"history":9999999.99}
+{"type":"Decimal(76, 20)","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1.239"}
+{"type":"Decimal(76, 20)","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"-0.5"}
+{"type":"Decimal(76, 20)","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Decimal(76, 20)","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Decimal(76, 20)","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0.01"}
+{"type":"Decimal(76, 20)","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7.5"}
+{"type":"Decimal(76, 20)","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 20 and precision 76: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 75 digits were read: '999999999999999999999999999999999999999999999999999999999999999999999999999'e0. Expected to read decimal with scale 20 and precision 76: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 76 digits were read: '9999999999999999999999999999999999999999999999999999999999999999999999999999'e0. Expected to read decimal with scale 20 and precision 76: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (77 > 76) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 20 and precision 76: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 20)","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1.23"}
+{"type":"Decimal(76, 20)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 20)","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"-0.0000000001"}
+{"type":"Nullable(Decimal(9, 2))","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Nullable(Decimal(9, 2))","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Nullable(Decimal(9, 2))","case":"fraction","event":"1.5","accepted":true,"history":"1.5"}
+{"type":"Nullable(Decimal(9, 2))","case":"half_cent","event":"1.005","accepted":true,"history":"1"}
+{"type":"Nullable(Decimal(9, 2))","case":"round_down","event":"1.234","accepted":true,"history":"1.23"}
+{"type":"Nullable(Decimal(9, 2))","case":"round_half","event":"1.235","accepted":true,"history":"1.23"}
+{"type":"Nullable(Decimal(9, 2))","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1.23"}
+{"type":"Nullable(Decimal(9, 2))","case":"round_up","event":"1.239","accepted":true,"history":"1.23"}
+{"type":"Nullable(Decimal(9, 2))","case":"tenth","event":"0.1","accepted":true,"history":"0.1"}
+{"type":"Nullable(Decimal(9, 2))","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3.14"}
+{"type":"Nullable(Decimal(9, 2))","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Nullable(Decimal(9, 2))","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0.01"}
+{"type":"Nullable(Decimal(9, 2))","case":"tiny","event":"1e-10","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"max_9_2","event":"9999999.99","accepted":true,"history":"9999999.99"}
 {"type":"Nullable(Decimal(9, 2))","case":"beyond_9_2","event":"10000000","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 8 digits were read: '10000000'e0. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Decimal(9, 2))","case":"min_9_2","event":"-9999999.99","accepted":true,"history":-9999999.99}
+{"type":"Nullable(Decimal(9, 2))","case":"min_9_2","event":"-9999999.99","accepted":true,"history":"-9999999.99"}
 {"type":"Nullable(Decimal(9, 2))","case":"max_18_4","event":"99999999999999.9999","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e14. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"i64_max","event":"9223372036854775807","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Decimal(9, 2))","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":0}
+{"type":"Nullable(Decimal(9, 2))","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
 {"type":"Nullable(Decimal(9, 2))","case":"thirty_digits","event":"123456789012345678901234567890","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"exponent_30","event":"1e30","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e30. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Decimal(9, 2))","case":"minus_zero","event":"-0","accepted":true,"history":0}
-{"type":"Nullable(Decimal(9, 2))","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":0}
-{"type":"Nullable(Decimal(9, 2))","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":1.5}
-{"type":"Nullable(Decimal(9, 2))","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":1}
-{"type":"Nullable(Decimal(9, 2))","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":3.14}
+{"type":"Nullable(Decimal(9, 2))","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1.5"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3.14"}
 {"type":"Nullable(Decimal(9, 2))","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Decimal(9, 2))","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":100}
-{"type":"Nullable(Decimal(9, 2))","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":1.5}
-{"type":"Nullable(Decimal(9, 2))","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":0.5}
-{"type":"Nullable(Decimal(9, 2))","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":5}
+{"type":"Nullable(Decimal(9, 2))","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1.5"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0.5"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
 {"type":"Nullable(Decimal(9, 2))","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
-{"type":"Nullable(Decimal(9, 2))","case":"empty_string","event":"\"\"","accepted":true,"history":0}
+{"type":"Nullable(Decimal(9, 2))","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
 {"type":"Nullable(Decimal(9, 2))","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"null","event":"null","accepted":true,"history":null}
 {"type":"Nullable(Decimal(9, 2))","case":"absent","event":null,"accepted":true,"history":null}
 {"type":"Nullable(Decimal(9, 2))","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
 {"type":"Nullable(Decimal(9, 2))","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1.23"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"-0.5"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0.01"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7.5"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (10 > 9) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 2 and precision 9: (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1.23"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Nullable(Decimal(9, 2))","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"zero","event":"0","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"one","event":"1","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"minus_one","event":"-1","accepted":true,"history":"-1"}
+{"type":"Decimal(76, 0)","case":"fraction","event":"1.5","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"half_cent","event":"1.005","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"round_down","event":"1.234","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"round_half","event":"1.235","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"negative_round_half","event":"-1.235","accepted":true,"history":"-1"}
+{"type":"Decimal(76, 0)","case":"round_up","event":"1.239","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"tenth","event":"0.1","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"long_fraction","event":"3.14159265358979323846264338327950288","accepted":true,"history":"3"}
+{"type":"Decimal(76, 0)","case":"exponent","event":"1e2","accepted":true,"history":"100"}
+{"type":"Decimal(76, 0)","case":"negative_exponent","event":"1.5e-2","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"tiny","event":"1e-10","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"max_9_2","event":"9999999.99","accepted":true,"history":"9999999"}
+{"type":"Decimal(76, 0)","case":"beyond_9_2","event":"10000000","accepted":true,"history":"10000000"}
+{"type":"Decimal(76, 0)","case":"min_9_2","event":"-9999999.99","accepted":true,"history":"-9999999"}
+{"type":"Decimal(76, 0)","case":"max_18_4","event":"99999999999999.9999","accepted":true,"history":"100000000000000"}
+{"type":"Decimal(76, 0)","case":"i64_max","event":"9223372036854775807","accepted":true,"history":"9223372036854775807"}
+{"type":"Decimal(76, 0)","case":"beyond_u64","event":"18446744073709551616","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"thirty_digits","event":"123456789012345678901234567890","accepted":true,"history":"-4362896299872285998"}
+{"type":"Decimal(76, 0)","case":"exponent_30","event":"1e30","accepted":true,"history":"1000000000000000000000000000000"}
+{"type":"Decimal(76, 0)","case":"beyond_f64","event":"1e400","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'Infinity\",\"case\":\"beyond_f64\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"minus_zero","event":"-0","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"minus_zero_fraction","event":"-0.0","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_fraction","event":"\"1.5\"","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"string_half_cent","event":"\"1.005\"","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"string_long","event":"\"3.14159265358979323846264338327950288\"","accepted":true,"history":"3"}
+{"type":"Decimal(76, 0)","case":"string_big","event":"\"123456789012345678901234567890.123456789\"","accepted":true,"history":"123456789012345678901234567890"}
+{"type":"Decimal(76, 0)","case":"string_spaces","event":"\" 1.5 \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' 1.5 \",\"case\":\"string_spaces\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_comma","event":"\"1,5\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ',5\",\"case\":\"string_comma\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_exponent","event":"\"1e2\"","accepted":true,"history":"100"}
+{"type":"Decimal(76, 0)","case":"string_plus","event":"\"+1.5\"","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"string_leading_dot","event":"\".5\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_trailing_dot","event":"\"5.\"","accepted":true,"history":"5"}
+{"type":"Decimal(76, 0)","case":"string_nan","event":"\"nan\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'nan\",\"case\":\"string_nan\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_inf","event":"\"inf\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'inf\",\"case\":\"string_inf\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"empty_string","event":"\"\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"word","event":"\"abc\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'abc\",\"case\":\"word\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"true","event":"true","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: 'true,\"case\":\"true\"}': (at row 1)"}
+{"type":"Decimal(76, 0)","case":"null","event":"null","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"absent","event":null,"accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"empty_array","event":"[]","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '[],\"case\":\"empty_array\"}': (at row 1)"}
+{"type":"Decimal(76, 0)","case":"empty_object","event":"{}","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected ',' before: '{},\"case\":\"empty_object\"}': (at row 1)"}
+{"type":"Decimal(76, 0)","case":"negative_round_down","event":"-1.239","accepted":true,"history":"-1"}
+{"type":"Decimal(76, 0)","case":"string_negative_leading_dot","event":"\"-.5\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_dot","event":"\".\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_minus","event":"\"-\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_plus_only","event":"\"+\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_bare_exponent","event":"\"1e\"","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"string_exponent_plus","event":"\"1e+2\"","accepted":true,"history":"100"}
+{"type":"Decimal(76, 0)","case":"string_exponent_upper_negative","event":"\"1E-2\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_tiny_negative","event":"\"-1e-30\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_space","event":"\" \"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: ' \",\"case\":\"string_space\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_zeros","event":"\"0.000\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_leading_zeros","event":"\"007.50\"","accepted":true,"history":"7"}
+{"type":"Decimal(76, 0)","case":"string_exponent_76","event":"\"1e76\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e76. Expected to read decimal with scale 0 and precision 76: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_75_nines","event":"\"999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":true,"history":"999999999999999999999999999999999999999999999999999999999999999999999999999"}
+{"type":"Decimal(76, 0)","case":"string_76_nines","event":"\"9999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":true,"history":"9999999999999999999999999999999999999999999999999999999999999999999999999999"}
+{"type":"Decimal(76, 0)","case":"string_77_nines","event":"\"99999999999999999999999999999999999999999999999999999999999999999999999999999\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Too many digits (77 > 76) in decimal value: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_huge_exponent","event":"\"1e400\"","accepted":false,"error":"java.io.IOException: Code: 69. DB::Exception: Decimal value is too big: 1 digits were read: '1'e400. Expected to read decimal with scale 0 and precision 76: (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_tiny_exponent","event":"\"1e-400\"","accepted":true,"history":"0"}
+{"type":"Decimal(76, 0)","case":"string_double_dot","event":"\"1.2.3\"","accepted":true,"history":"1"}
+{"type":"Decimal(76, 0)","case":"string_hex","event":"\"0x10\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: 'x10\",\"case\":\"string_hex\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"string_underscore","event":"\"1_000\"","accepted":false,"error":"java.io.IOException: Code: 27. DB::Exception: Cannot parse input: expected '\"' before: '_000\",\"case\":\"string_underscore\"}': (while reading the value of key v): (at row 1)"}
+{"type":"Decimal(76, 0)","case":"negative_tiny","event":"-1e-10","accepted":true,"history":"0"}

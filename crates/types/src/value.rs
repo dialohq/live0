@@ -1,3 +1,4 @@
+use ethnum::I256;
 use serde_json::{Map, Value as Json};
 
 use crate::data_types::{DataType, HistoryError};
@@ -12,6 +13,8 @@ pub enum Value {
     Bool(bool),
     /// Days since the epoch.
     Date(i32),
+    /// The number times `10^scale` of the column's type.
+    Decimal(I256),
     /// Ticks of the column's precision since the epoch; the time zone is in the type.
     DateTime(i64),
 }
@@ -29,6 +32,7 @@ impl Value {
             DataType::Bool(b) => b.decode_event(json).map(Value::Bool),
             DataType::Date(d) => d.decode_event(json).map(Value::Date),
             DataType::DateTime(t) => t.decode_event(json).map(Value::DateTime),
+            DataType::Decimal(d) => d.decode_event(json).map(Value::Decimal),
             DataType::Other(_) => None,
         }
     }
@@ -44,6 +48,7 @@ impl Value {
             DataType::Bool(b) => b.decode_history(json).map(Value::Bool),
             DataType::Date(d) => d.decode_history(json).map(Value::Date),
             DataType::DateTime(t) => t.decode_history(json).map(Value::DateTime),
+            DataType::Decimal(d) => d.decode_history(json).map(Value::Decimal),
             DataType::Other(raw) => Err(HistoryError::new(raw, json)),
         }
     }
