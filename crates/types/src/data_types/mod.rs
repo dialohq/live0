@@ -4,7 +4,7 @@ pub(crate) use crate::data_types::sink::strip_leading_zeros;
 
 use crate::data_types::{
     boolean::BoolType, date::DateType, datetime::DateTimeType, decimal::DecimalType,
-    float::FloatType, int::IntType, json::JsonType, string::StringType,
+    float::FloatType, int::IntType, json::JsonType, string::StringType, uuid::UuidType,
 };
 
 mod boolean;
@@ -18,6 +18,7 @@ mod int;
 mod json;
 mod sink;
 mod string;
+mod uuid;
 
 /// A history value that doesn't fit its column, so the history query or ClickHouse doesn't behave as expected.
 #[derive(Debug, thiserror::Error)]
@@ -47,6 +48,7 @@ pub enum DataType {
     Date(DateType),
     DateTime(DateTimeType),
     Decimal(DecimalType),
+    Uuid(UuidType),
     Other(String),
 }
 
@@ -83,6 +85,7 @@ impl DataType {
             "Bool" => Self::Bool(BoolType),
             "Date" => Self::Date(DateType { wide: false }),
             "Date32" => Self::Date(DateType { wide: true }),
+            "UUID" => Self::Uuid(UuidType),
             _ => DateTimeType::parse(raw)
                 .map(Self::DateTime)
                 .or_else(|| DecimalType::parse_type(raw).map(Self::Decimal))
@@ -156,10 +159,10 @@ mod tests {
     #[test]
     fn unsupported_keeps_the_full_name() {
         for raw in [
-            "UUID",
-            "LowCardinality(UUID)",
-            "Nullable(Point)",
-            "LowCardinality(Nullable(FixedString(3)))",
+            "Point",
+            "LowCardinality(Polygon)",
+            "Nullable(Ring)",
+            "LowCardinality(Nullable(MultiPolygon))",
             "Nullable(String",
             "LowCardinality",
         ] {

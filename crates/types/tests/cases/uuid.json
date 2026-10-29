@@ -21,6 +21,13 @@
     {"name": "null", "value": "null"},
     {"name": "absent", "value": null},
     {"name": "empty_array", "value": "[]"},
-    {"name": "empty_object", "value": "{}"}
+    {"name": "empty_object", "value": "{}"},
+    {"name": "missing_one_hyphen", "value": "\"123e4567-e89b12d3-a456-426614174000\""},
+    {"name": "upper_no_hyphens", "value": "\"123E4567E89B12D3A456426614174000\""},
+    {"name": "mixed_case", "value": "\"123E4567-e89b-12D3-a456-426614174000\""},
+    {"name": "trailing_hyphen", "value": "\"123e4567e89b12d3a456426614174000-\""},
+    {"name": "hyphens_elsewhere_36", "value": "\"123e4567e-89b-12d3-a456-42661417400\""},
+    {"name": "unicode_digit", "value": "\"123e4567-e89b-12d3-a456-42661417400٠\""},
+    {"name": "string_number", "value": "\"1\""}
   ]
 }
