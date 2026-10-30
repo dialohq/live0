@@ -15,3 +15,7 @@ reqwest = { version = "0.13.5", features = ["query"] }
 serde_json.workspace = true
 thiserror.workspace = true
 types.workspace = true
+
+[dev-dependencies]
+ethnum.workspace = true
+tokio = { version = "1", features = ["macros", "rt"] }

@@ -2,7 +2,10 @@ use async_trait::async_trait;
 use serde_json::Value as Json;
 use types::{DataType, DecodeError, Row, Schema};
 
-use crate::{ColumnDefault, DescribedColumn, Error, HistorySource, Statement, TableDescription};
+use crate::{
+    ColumnDefault, DescribedColumn, Error, HistorySource, ReplacingMergeTree, Statement,
+    TableDescription, TableEngine,
+};
 
 pub const HISTORY_FORMAT: &str = "JSONCompactEachRowWithNamesAndTypes";
 pub const HISTORY_SETTINGS: &[(&str, &str)] = &[
@@ -22,6 +25,8 @@ pub enum ClickhouseError {
     ResponseError(#[from] serde_json::Error),
     #[error(transparent)]
     DecodeError(#[from] DecodeError),
+    #[error("no table `{0}` in the database")]
+    UnknownTable(String),
 }
 
 /// A ClickHouse HTTP connection, also used by `snapshot` for clone DDL.
@@ -106,14 +111,26 @@ impl ClickhouseHistory {
 #[async_trait]
 impl HistorySource for ClickhouseHistory {
     async fn describe(&self, table: &str) -> Result<TableDescription, Error> {
+        let params = vec![("table".to_owned(), table.to_owned())];
+        let tables = Statement {
+            sql: "SELECT engine, engine_full, sorting_key FROM system.tables \
+                  WHERE database = currentDatabase() AND name = {table:String}"
+                .to_owned(),
+            params: params.clone(),
+        };
+        let body = self.client.query(&tables, "JSONEachRow").await?;
+        let Some(line) = body.lines().find(|l| !l.is_empty()) else {
+            return Err(ClickhouseError::UnknownTable(table.to_owned()).into());
+        };
+        let engine = decode_engine(&serde_json::from_str(line).map_err(ClickhouseError::from)?);
         let columns = Statement {
             sql: "DESCRIBE TABLE {table:Identifier}".to_owned(),
-            params: vec![("table".to_owned(), table.to_owned())],
+            params,
         };
         let body = self.client.query(&columns, "JSONEachRow").await?;
         Ok(TableDescription {
             columns: decode_columns(&body)?,
-            engine: todo!("get the table engine from `system.tables` as well"),
+            engine,
         })
     }
 
@@ -152,6 +169,63 @@ fn decode_columns(body: &str) -> Result<Vec<DescribedColumn>, ClickhouseError> {
                 },
             })
         })
+        .collect()
+}
+
+/// A `system.tables` row; `Replicated` and `Shared` variants behave like the plain engine.
+fn decode_engine(row: &Json) -> TableEngine {
+    let field = |key: &str| row[key].as_str().unwrap_or_default();
+    let engine = field("engine");
+    let plain = ["Replicated", "Shared"]
+        .iter()
+        .find_map(|prefix| engine.strip_prefix(prefix))
+        .unwrap_or(engine);
+    match plain {
+        "MergeTree" => TableEngine::MergeTree,
+        "ReplacingMergeTree" => {
+            let args = field("engine_full")
+                .strip_prefix(engine)
+                .and_then(|rest| rest.strip_prefix('('))
+                .map(split_list)
+                .unwrap_or_default();
+            // Replicated engines may start with their quoted ZooKeeper path and replica name.
+            let mut args = args.into_iter().skip_while(|a| a.starts_with('\''));
+            TableEngine::ReplacingMergeTree(ReplacingMergeTree {
+                key: split_list(field("sorting_key")),
+                version: args.next(),
+                is_deleted: args.next(),
+            })
+        }
+        _ => TableEngine::Other(engine.to_owned()),
+    }
+}
+
+/// The items of a comma-separated list, up to an unmatched `)`; commas in parentheses and quotes don't split.
+fn split_list(s: &str) -> Vec<String> {
+    let (mut depth, mut quoted, mut escaped) = (0usize, false, false);
+    let mut end = s.len();
+    let mut cuts = vec![0];
+    for (i, c) in s.char_indices() {
+        match c {
+            _ if escaped => escaped = false,
+            '\\' if quoted => escaped = true,
+            '\'' => quoted = !quoted,
+            _ if quoted => {}
+            '(' => depth += 1,
+            ')' if depth == 0 => {
+                end = i;
+                break;
+            }
+            ')' => depth -= 1,
+            ',' if depth == 0 => cuts.push(i + 1),
+            _ => {}
+        }
+    }
+    cuts.push(end + 1);
+    cuts.windows(2)
+        .map(|w| s[w[0]..w[1] - 1].trim())
+        .filter(|item| !item.is_empty())
+        .map(str::to_owned)
         .collect()
 }
 
@@ -235,6 +309,54 @@ mod tests {
                 column("name", "Nullable(String)", ColumnDefault::Default),
                 column("upper", "String", ColumnDefault::Materialized),
             ]
+        );
+    }
+
+    #[test]
+    fn engines() {
+        let engine = |engine: &str, full: &str, key: &str| {
+            decode_engine(&serde_json::json!({
+                "engine": engine, "engine_full": full, "sorting_key": key
+            }))
+        };
+        let replacing = |key: &[&str], version: Option<&str>, is_deleted: Option<&str>| {
+            TableEngine::ReplacingMergeTree(ReplacingMergeTree {
+                key: key.iter().map(|k| k.to_string()).collect(),
+                version: version.map(str::to_owned),
+                is_deleted: is_deleted.map(str::to_owned),
+            })
+        };
+        assert_eq!(
+            engine("MergeTree", "MergeTree ORDER BY id", "id"),
+            TableEngine::MergeTree
+        );
+        assert_eq!(
+            engine("SharedMergeTree", "SharedMergeTree ORDER BY id", "id"),
+            TableEngine::MergeTree
+        );
+        assert_eq!(
+            engine(
+                "ReplacingMergeTree",
+                "ReplacingMergeTree(ver, del) ORDER BY (a, cityHash64(b, a)) SETTINGS x = 1",
+                "a, cityHash64(b, a)"
+            ),
+            replacing(&["a", "cityHash64(b, a)"], Some("ver"), Some("del"))
+        );
+        assert_eq!(
+            engine("ReplacingMergeTree", "ReplacingMergeTree ORDER BY a", "a"),
+            replacing(&["a"], None, None)
+        );
+        assert_eq!(
+            engine(
+                "ReplicatedReplacingMergeTree",
+                "ReplicatedReplacingMergeTree('/t/{shard}', '{replica}', ver) ORDER BY a",
+                "a"
+            ),
+            replacing(&["a"], Some("ver"), None)
+        );
+        assert_eq!(
+            engine("Memory", "Memory", ""),
+            TableEngine::Other("Memory".to_owned())
         );
     }
 }

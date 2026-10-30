@@ -180,6 +180,15 @@
             '';
           };
 
+          scripts.io-tests = {
+            description = "io-tests [test filter...]: run the io crate's integration tests against the running stack";
+            text = ''
+              export CLICKHOUSE_URL=http://127.0.0.1:${toString ch.httpPort}
+              cd "$DNVR_ROOT"
+              exec cargo test -p io --tests -- --ignored "$@"
+            '';
+          };
+
           processes.connectors = {
             env = {
               CONNECT_URL = "dnvr://kafka-connect/url";
