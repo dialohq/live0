@@ -1,6 +1,6 @@
 use std::{net::SocketAddr, time::Duration};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Config {
     pub clickhouse: ClickhouseConfig,
     pub kafka: KafkaConfig,
@@ -12,7 +12,7 @@ pub struct Config {
     pub server: ServerConfig,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ClickhouseConfig {
     /// ClickHouse HTTP URL
     pub url: String,
@@ -21,13 +21,13 @@ pub struct ClickhouseConfig {
     pub database: String,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct KafkaConfig {
     pub brokers: String,
     pub metadata_refresh: Duration,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct PauseConfig {
     /// Every replica; whichever is the leader answers.
     pub urls: Vec<String>,
@@ -36,13 +36,13 @@ pub struct PauseConfig {
 }
 
 /// How this process gets table clones.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum SnapshotsConfig {
     Embedded(ManagerConfig),
     Remote(RemoteConfig),
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ManagerConfig {
     /// Prefixes clone names, so deployments sharing a ClickHouse don't adopt each other's clones.
     pub namespace: String,
@@ -52,27 +52,27 @@ pub struct ManagerConfig {
     pub adopt_grace: Duration,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct RemoteConfig {
     pub url: String,
     pub renew_interval: Duration,
 }
 
 /// The `snapshot-manager` binary's own settings.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct SnapshotManagerConfig {
     pub listen: SocketAddr,
     pub manager: ManagerConfig,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct TablesConfig {
     /// Every ClickHouse table can be queried, loaded on first use.
     pub expose_all: bool,
     pub tables: Vec<TableConfig>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct TableConfig {
     pub name: String,
     /// Defaults to the table's name.
@@ -84,43 +84,43 @@ pub struct TableConfig {
 }
 
 /// The column is hidden from subjects without the check grant.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ColumnRule {
     pub column: String,
     pub grant: String,
 }
 
 /// Only rows whose `column` is one of the subject's values for the value grant are visible.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct RowRule {
     pub column: String,
     pub grant: String,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct SecurityConfig {
     pub provider: Option<ProviderConfig>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum ProviderConfig {
     Postgres(PostgresConfig),
     WorkOs(WorkOsConfig),
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct PostgresConfig {
     pub url: String,
     pub publication: String,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct WorkOsConfig {
     pub api_key_env: String,
     pub poll_interval: Duration,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ServerConfig {
     pub listen: SocketAddr,
 }

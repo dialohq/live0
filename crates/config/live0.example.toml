@@ -1,0 +1,47 @@
+[server]
+listen = "127.0.0.1:8080"
+
+[clickhouse]
+url = "http://127.0.0.1:8123"          # required; HTTP or HTTPS
+user = "default"
+password = ""
+database = "default"
+
+[kafka]
+brokers = "127.0.0.1:9092"             # required; comma-separated
+metadata_refresh = "30s"
+
+[pause]
+urls = ["http://127.0.0.1:18091"]      # required; every replica, the leader answers
+retry_for = "30s"
+
+[snapshots]                            # how this process gets clones
+mode = "embedded"                      # or "remote", with `url` and `renew_interval = "10s"`
+namespace = "live0"
+refresh_interval = "10s"
+lease_ttl = "30s"
+adopt_grace = "1m"
+
+[snapshot_manager]                     # only read by the snapshot-manager binary
+listen = "127.0.0.1:9100"
+namespace = "live0"
+refresh_interval = "10s"
+lease_ttl = "30s"
+adopt_grace = "1m"
+
+[tables]
+expose_all = false                     # true: any ClickHouse table, loaded on first use
+
+[tables.events]                        # topic `events`, no security
+
+[tables.orders]
+topic = "prod.orders"
+grant = "orders:read"                  # check grant to query the table at all
+columns = { email = "pii:read" }       # column hidden without the check grant
+rows = { tenant_id = "tenant" }        # only rows whose tenant_id is one of the subject's `tenant` values
+
+[security.provider]                    # optional; where grants come from
+kind = "postgres"
+url = "postgres://live0@127.0.0.1/live0"
+publication = "live0_grants"
+# or: kind = "workos", api_key_env = "WORKOS_API_KEY", poll_interval = "1m"

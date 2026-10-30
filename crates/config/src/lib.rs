@@ -6,4 +6,5 @@ pub use crate::sections::{
 };
 
 mod load;
+mod raw;
 mod sections;

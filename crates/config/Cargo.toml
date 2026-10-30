@@ -9,4 +9,6 @@ version = "0.1.0"
 workspace = true
 
 [dependencies]
+figment = { version = "0.10", features = ["parse-value", "toml"] }
+serde = { workspace = true, features = ["derive"] }
 thiserror.workspace = true
