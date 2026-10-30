@@ -12,5 +12,5 @@ workspace = true
 ethnum.workspace = true
 jiff.workspace = true
 serde.workspace = true
-serde_json = { workspace = true, features = ["arbitrary_precision"] }
+serde_json = { workspace = true, features = ["arbitrary_precision", "preserve_order"] }
 thiserror.workspace = true

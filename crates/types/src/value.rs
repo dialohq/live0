@@ -26,6 +26,8 @@ pub enum Value {
     Ipv4(Ipv4Addr),
     Ipv6(Ipv6Addr),
     Array(Vec<Value>),
+    /// Entries in the order ClickHouse keeps them.
+    Map(Vec<(Value, Value)>),
     /// The number of one of the type's names.
     Enum(i16),
     /// Ticks of the column's precision since the epoch; the time zone is in the type.
@@ -50,6 +52,7 @@ impl Value {
             DataType::Ipv4(ip) => ip.decode_event(json).map(Value::Ipv4),
             DataType::Ipv6(ip) => ip.decode_event(json).map(Value::Ipv6),
             DataType::Array(a) => a.decode_event(json).map(Value::Array),
+            DataType::Map(m) => m.decode_event(json).map(Value::Map),
             DataType::Enum(e) => e.decode_event(json).map(Value::Enum),
             DataType::FixedString(f) => f.decode_event(json).map(Value::String),
             DataType::Other(_) => None,
@@ -72,6 +75,7 @@ impl Value {
             DataType::Ipv4(ip) => ip.decode_history(json).map(Value::Ipv4),
             DataType::Ipv6(ip) => ip.decode_history(json).map(Value::Ipv6),
             DataType::Array(a) => a.decode_history(json).map(Value::Array),
+            DataType::Map(m) => m.decode_history(json).map(Value::Map),
             DataType::Enum(e) => e.decode_history(json).map(Value::Enum),
             DataType::FixedString(f) => f.decode_history(json).map(Value::String),
             DataType::Other(raw) => Err(HistoryError::new(raw, json)),

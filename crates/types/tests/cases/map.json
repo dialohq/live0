@@ -1,5 +1,5 @@
 {
-  "types": ["Map(String, Int64)", "Map(String, String)", "Map(LowCardinality(String), Nullable(Float64))", "Map(Int32, String)"],
+  "types": ["Map(String, Int64)", "Map(String, String)", "Map(LowCardinality(String), Nullable(Float64))", "Map(Int32, String)", "Map(String, Array(Int32))", "Map(String, Map(String, Int32))", "Map(Date32, Date32)", "Map(String, Nullable(Int32))"],
   "cases": [
     {"name": "one", "value": "{\"a\": 1}"},
     {"name": "two", "value": "{\"a\": 1, \"b\": 2}"},
@@ -22,6 +22,12 @@
     {"name": "null", "value": "null"},
     {"name": "absent", "value": null},
     {"name": "empty_array", "value": "[]"},
-    {"name": "empty_object", "value": "{}"}
+    {"name": "empty_object", "value": "{}"},
+    {"name": "key_order", "value": "{\"b\": 1, \"a\": 2}"},
+    {"name": "many_keys", "value": "{\"k7\": 0, \"k2\": 1, \"k9\": 2, \"k0\": 3, \"k5\": 4, \"k3\": 5, \"k8\": 6, \"k1\": 7, \"k6\": 8, \"k4\": 9, \"k10\": 10, \"k15\": 11, \"k12\": 12}"},
+    {"name": "date_key", "value": "{\"2024-10-27\": 1730000000}"},
+    {"name": "null_and_value", "value": "{\"a\": null, \"b\": 1}"},
+    {"name": "duplicate_order", "value": "{\"a\": 1, \"b\": 2, \"a\": 3}"},
+    {"name": "nested_values", "value": "{\"a\": {\"x\": 1}, \"b\": [1, 2]}"}
   ]
 }

@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 use std::fmt::Write;
 
-use serde_json::{Number, Value as Json};
+use serde_json::{Map, Number, Value as Json};
 
 /// A JSON number as the Sink passes it on to ClickHouse.
 pub(crate) enum SinkNumber {
@@ -118,7 +118,7 @@ fn write_text(out: &mut String, json: &Json) {
         }
         Json::Object(map) => {
             out.push('{');
-            for (i, (key, value)) in map.iter().enumerate() {
+            for (i, (key, value)) in java_order(map).into_iter().enumerate() {
                 if i > 0 {
                     out.push(',');
                 }
@@ -130,6 +130,26 @@ fn write_text(out: &mut String, json: &Json) {
         }
         other => out.push_str(&other.to_string()),
     }
+}
+
+/// The entries in the order a Java `HashMap` holding them iterates, which is the order the Sink passes them on.
+/// Buckets that Java turns into trees, with 8 or more colliding keys, aren't modelled.
+pub(crate) fn java_order(map: &Map<String, Json>) -> Vec<(&String, &Json)> {
+    let mut capacity = 16;
+    while map.len() > capacity / 4 * 3 {
+        capacity *= 2;
+    }
+    let bucket = |key: &str| {
+        let h = key.encode_utf16().fold(0u32, |h, unit| {
+            h.wrapping_mul(31).wrapping_add(u32::from(unit))
+        });
+        (h ^ (h >> 16)) as usize & (capacity - 1)
+    };
+    let mut entries: Vec<(usize, &String, &Json)> =
+        map.iter().map(|(k, v)| (bucket(k), k, v)).collect();
+    // Stable, so keys in one bucket keep their insertion order.
+    entries.sort_by_key(|(bucket, ..)| *bucket);
+    entries.into_iter().map(|(_, k, v)| (k, v)).collect()
 }
 
 /// Java's `Double.toString`, which is how the Sink writes non-integer numbers.
@@ -174,6 +194,24 @@ mod tests {
         ] {
             assert_eq!(strip_leading_zeros(raw), stripped, "{raw}");
         }
+    }
+
+    #[test]
+    fn java_hash_map_order() {
+        let map: Map<String, Json> = serde_json::from_str(
+            r#"{"k7":0,"k2":0,"k9":0,"k0":0,"k5":0,"k3":0,"k8":0,"k1":0,"k6":0,"k4":0,"k10":0,"k15":0,"k12":0}"#,
+        )
+        .unwrap();
+        let keys: Vec<&str> = java_order(&map)
+            .into_iter()
+            .map(|(k, _)| k.as_str())
+            .collect();
+        assert_eq!(
+            keys,
+            [
+                "k0", "k1", "k2", "k3", "k4", "k5", "k6", "k10", "k7", "k8", "k12", "k9", "k15"
+            ]
+        );
     }
 
     #[test]

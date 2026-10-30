@@ -14,6 +14,7 @@ use crate::data_types::{
     int::IntType,
     ip::{Ipv4Type, Ipv6Type},
     json::JsonType,
+    map::MapType,
     string::StringType,
     uuid::UuidType,
 };
@@ -31,6 +32,7 @@ mod float;
 mod int;
 mod ip;
 mod json;
+mod map;
 mod sink;
 mod string;
 mod uuid;
@@ -69,6 +71,7 @@ pub enum DataType {
     Ipv4(Ipv4Type),
     Ipv6(Ipv6Type),
     Array(ArrayType),
+    Map(MapType),
     Other(String),
 }
 
@@ -118,6 +121,7 @@ impl DataType {
                 .or_else(|| EnumType::parse(raw).map(Self::Enum))
                 .or_else(|| FixedStringType::parse(raw).map(Self::FixedString))
                 .or_else(|| ArrayType::parse(raw).map(Self::Array))
+                .or_else(|| MapType::parse(raw).map(Self::Map))
                 .unwrap_or_else(|| Self::Other(raw.to_owned())),
         }
     }
@@ -132,6 +136,7 @@ impl DataType {
             Self::Nullable(inner) => inner.history_expr_at(column, depth),
             Self::Date(d) => d.history_expr(column),
             Self::Array(a) => a.history_expr(column, depth),
+            Self::Map(m) => m.history_expr(column, depth),
             _ => column.to_owned(),
         }
     }
@@ -145,6 +150,7 @@ impl DataType {
             Self::Other(_) => false,
             Self::Nullable(inner) => inner.is_supported(),
             Self::Array(a) => a.item.is_supported(),
+            Self::Map(m) => m.key.is_supported() && m.value.is_supported(),
             _ => true,
         }
     }
