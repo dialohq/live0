@@ -79,6 +79,7 @@ dependencies = [
  "config",
  "io",
  "thiserror",
+ "tokio",
  "types",
 ]
 

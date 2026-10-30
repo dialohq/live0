@@ -13,3 +13,6 @@ config.workspace = true
 io.workspace = true
 thiserror.workspace = true
 types.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt"] }
