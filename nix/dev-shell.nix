@@ -39,6 +39,9 @@
             nixfmt
             apacheKafka
             jq
+            pkg-config
+            rdkafka
+            zlib
           ];
 
           processes.clickhouse = {
@@ -184,6 +187,7 @@
             description = "io-tests [test filter...]: run the io crate's integration tests against the running stack";
             text = ''
               export CLICKHOUSE_URL=http://127.0.0.1:${toString ch.httpPort}
+              export KAFKA_BROKERS=127.0.0.1:9092
               cd "$DNVR_ROOT"
               exec cargo test -p io --tests -- --ignored "$@"
             '';

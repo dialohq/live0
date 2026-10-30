@@ -11,11 +11,13 @@ workspace = true
 [dependencies]
 async-trait.workspace = true
 config.workspace = true
+rdkafka.workspace = true
 reqwest = { version = "0.13.5", features = ["query"] }
 serde_json.workspace = true
 thiserror.workspace = true
+tokio = { workspace = true, features = ["rt", "time"] }
 types.workspace = true
 
 [dev-dependencies]
 ethnum.workspace = true
-tokio = { version = "1", features = ["macros", "rt"] }
+tokio = { workspace = true, features = ["macros"] }
