@@ -1,5 +1,6 @@
 pub use crate::clickhouse::{
     ClickhouseClient, ClickhouseError, ClickhouseHistory, HISTORY_FORMAT, HISTORY_SETTINGS,
+    quote_identifier,
 };
 pub use crate::error::Error;
 pub use crate::fake::{FakeCluster, FakeError, FakeHistory, FakeStream};

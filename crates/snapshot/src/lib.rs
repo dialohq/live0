@@ -20,3 +20,5 @@ mod ports;
 #[cfg(feature = "service")]
 mod service;
 mod status;
+#[cfg(test)]
+mod tests;

@@ -3,7 +3,7 @@ use std::time::SystemTime;
 use config::{ClickhouseConfig, PauseConfig, RemoteConfig, SnapshotsConfig};
 use types::Watermark;
 
-use crate::{Error, Manager, Status, client::Client};
+use crate::{CloneInfo, Error, Manager, Status, client::Client};
 
 /// Table clones, the same whether the manager runs in this process or elsewhere.
 #[derive(Clone)]
@@ -28,7 +28,7 @@ pub struct Lease {
 
 /// Dropping it releases the clone.
 enum Holder {
-    Embedded,
+    Embedded { manager: Manager, id: u64 },
     Remote,
 }
 
@@ -39,7 +39,12 @@ impl Snapshots {
         clickhouse: &ClickhouseConfig,
         pause: &PauseConfig,
     ) -> Result<Self, Error> {
-        todo!()
+        match config {
+            SnapshotsConfig::Embedded(manager) => Ok(Self::embedded(
+                Manager::from_config(manager, clickhouse, pause).await?,
+            )),
+            SnapshotsConfig::Remote(remote) => Self::remote(remote).await,
+        }
     }
 
     pub fn embedded(manager: Manager) -> Self {
@@ -58,15 +63,31 @@ impl Snapshots {
         table: &str,
         newer_than: Option<&Watermark>,
     ) -> Result<Lease, Error> {
-        todo!()
+        match &self.mode {
+            Mode::Embedded(manager) => manager.acquire_local(table, newer_than).await,
+            Mode::Remote(client) => client.acquire(table, newer_than).await,
+        }
     }
 
     pub async fn status(&self) -> Result<Status, Error> {
-        todo!()
+        match &self.mode {
+            Mode::Embedded(manager) => Ok(manager.status().await),
+            Mode::Remote(client) => client.status().await,
+        }
     }
 }
 
 impl Lease {
+    pub(crate) fn embedded(manager: Manager, id: u64, info: &CloneInfo) -> Self {
+        Self {
+            table: info.table.clone(),
+            clone: info.name.clone(),
+            watermark: info.watermark.clone(),
+            taken_at: info.taken_at,
+            holder: Holder::Embedded { manager, id },
+        }
+    }
+
     pub fn table(&self) -> &str {
         &self.table
     }
@@ -83,5 +104,14 @@ impl Lease {
 
     pub fn taken_at(&self) -> SystemTime {
         self.taken_at
+    }
+}
+
+impl Drop for Lease {
+    fn drop(&mut self) {
+        match &self.holder {
+            Holder::Embedded { manager, id } => manager.release_local(*id),
+            Holder::Remote => {}
+        }
     }
 }

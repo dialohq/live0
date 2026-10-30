@@ -7,6 +7,11 @@ use crate::{
     TableDescription, TableEngine,
 };
 
+/// A name as a ClickHouse identifier, for statements where an `Identifier` parameter isn't accepted.
+pub fn quote_identifier(name: &str) -> String {
+    format!("`{}`", name.replace('\\', "\\\\").replace('`', "\\`"))
+}
+
 pub const HISTORY_FORMAT: &str = "JSONCompactEachRowWithNamesAndTypes";
 pub const HISTORY_SETTINGS: &[(&str, &str)] = &[
     ("output_format_json_quote_64bit_integers", "1"),
@@ -240,6 +245,13 @@ mod tests {
                 .map(|(name, ty)| Column::new(*name, DataType::parse(ty)))
                 .collect(),
         }
+    }
+
+    #[test]
+    fn quotes_identifiers() {
+        assert_eq!(quote_identifier("events"), "`events`");
+        assert_eq!(quote_identifier("odd name-1"), "`odd name-1`");
+        assert_eq!(quote_identifier("a`b\\c"), "`a\\`b\\\\c`");
     }
 
     #[test]
