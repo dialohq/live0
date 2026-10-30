@@ -29,7 +29,34 @@ pub struct HistorySql {
     schema: Schema,
 }
 
+fn error(message: impl Into<String>) -> Error {
+    Error {
+        message: message.into(),
+        span: None,
+    }
+}
+
 impl HistorySql {
+    pub(crate) fn new(
+        sql: String,
+        params: Vec<(String, String)>,
+        tables: BTreeMap<String, String>,
+        slots: Vec<String>,
+        schema: Schema,
+    ) -> Self {
+        Self {
+            sql,
+            params,
+            tables,
+            slots,
+            schema,
+        }
+    }
+
+    pub(crate) fn sql(&self) -> &str {
+        &self.sql
+    }
+
     /// How each result row decodes.
     pub fn schema(&self) -> &Schema {
         &self.schema
@@ -41,11 +68,34 @@ impl HistorySql {
 
     /// Fills the slots, in order.
     pub fn fill(&self, values: &[Value]) -> Result<HistorySql, Error> {
-        todo!()
+        if values.len() != self.slots.len() {
+            return Err(error(format!(
+                "history query has {} slots, got {} values",
+                self.slots.len(),
+                values.len()
+            )));
+        }
+        if !values.is_empty() {
+            return Err(error("filling slots isn't supported yet"));
+        }
+        Ok(self.clone())
     }
 
     /// Binds each table to its clone; fails if a table or a slot is left unbound.
     pub fn statement(&self, clones: &BTreeMap<String, String>) -> Result<io::Statement, Error> {
-        todo!()
+        if let Some(slot) = self.slots.first() {
+            return Err(error(format!("history query slot `{slot}` isn't filled")));
+        }
+        let mut params = self.params.clone();
+        for (table, param) in &self.tables {
+            let clone = clones.get(table).ok_or_else(|| {
+                error(format!("no clone of `{table}` to run the history query on"))
+            })?;
+            params.push((param.clone(), clone.clone()));
+        }
+        Ok(io::Statement {
+            sql: self.sql.clone(),
+            params,
+        })
     }
 }

@@ -10,6 +10,8 @@ mod error;
 mod expr;
 mod history;
 mod plan;
+#[cfg(test)]
+mod testing;
 
 pub fn compile(
     query: &parser::Query,
