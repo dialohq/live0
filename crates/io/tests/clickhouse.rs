@@ -213,7 +213,7 @@ async fn describe_only_sees_its_database() {
         .await;
     let err = history(&db).describe("t").await.unwrap_err();
     assert!(
-        matches!(&err, Error::Clickhouse(ClickhouseError::UnknownTable(t)) if t == "t"),
+        matches!(&err, Error::UnknownTable(t) if t == "t"),
         "{err:?}"
     );
     db.drop().await;

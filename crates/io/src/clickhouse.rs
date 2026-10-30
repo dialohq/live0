@@ -25,8 +25,6 @@ pub enum ClickhouseError {
     ResponseError(#[from] serde_json::Error),
     #[error(transparent)]
     DecodeError(#[from] DecodeError),
-    #[error("no table `{0}` in the database")]
-    UnknownTable(String),
 }
 
 /// A ClickHouse HTTP connection, also used by `snapshot` for clone DDL.
@@ -120,7 +118,7 @@ impl HistorySource for ClickhouseHistory {
         };
         let body = self.client.query(&tables, "JSONEachRow").await?;
         let Some(line) = body.lines().find(|l| !l.is_empty()) else {
-            return Err(ClickhouseError::UnknownTable(table.to_owned()).into());
+            return Err(Error::UnknownTable(table.to_owned()));
         };
         let engine = decode_engine(&serde_json::from_str(line).map_err(ClickhouseError::from)?);
         let columns = Statement {

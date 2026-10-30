@@ -9,10 +9,12 @@ use rdkafka::{
 };
 use types::{Event, Offset, Partition, Schema, Watermark};
 
-use crate::{Error, EventStream, PartitionOffsets, StreamSource};
+use crate::{
+    Error, EventStream, PartitionOffsets, StreamSource,
+    stream::{MAX_BATCH, check_offset},
+};
 
 const METADATA_TIMEOUT: Duration = Duration::from_secs(5);
-const MAX_BATCH: usize = 1000;
 
 #[derive(Debug, thiserror::Error)]
 pub enum KafkaError {
@@ -20,20 +22,6 @@ pub enum KafkaError {
     Client(#[from] ClientError),
     #[error("a blocking Kafka call failed to run: {0}")]
     Blocking(#[from] tokio::task::JoinError),
-    #[error("no topic `{0}`")]
-    UnknownTopic(String),
-    #[error("topic `{topic}` has no partition {partition}")]
-    UnknownPartition { topic: String, partition: Partition },
-    #[error("no schema for topic `{0}`")]
-    NoSchema(String),
-    #[error("offset {offset} of `{topic}` partition {partition} is outside {low}..={high}")]
-    OffsetOutOfRange {
-        topic: String,
-        partition: Partition,
-        offset: Offset,
-        low: Offset,
-        high: Offset,
-    },
 }
 
 /// Reads partitions at the offsets it's given; nothing is committed, so it never joins a group.
@@ -84,7 +72,7 @@ impl StreamSource for KafkaStream {
         let mut assignment = TopicPartitionList::new();
         for (topic, offsets) in from.topics() {
             if !schemas.contains_key(topic) {
-                return Err(KafkaError::NoSchema(topic.to_owned()).into());
+                return Err(Error::NoSchema(topic.to_owned()));
             }
             let known = self.partitions(topic).await?;
             for (&partition, &offset) in offsets {
@@ -103,57 +91,36 @@ impl StreamSource for KafkaStream {
     }
 }
 
-fn partitions(consumer: &BaseConsumer, topic: &str) -> Result<Vec<PartitionOffsets>, KafkaError> {
-    let metadata = consumer.fetch_metadata(Some(topic), METADATA_TIMEOUT)?;
+fn partitions(consumer: &BaseConsumer, topic: &str) -> Result<Vec<PartitionOffsets>, Error> {
+    let metadata = consumer
+        .fetch_metadata(Some(topic), METADATA_TIMEOUT)
+        .map_err(KafkaError::from)?;
     let Some(found) = metadata.topics().iter().find(|t| t.name() == topic) else {
-        return Err(KafkaError::UnknownTopic(topic.to_owned()));
+        return Err(Error::UnknownTopic(topic.to_owned()));
     };
     match found.error().map(RDKafkaErrorCode::from) {
         Some(RDKafkaErrorCode::UnknownTopicOrPartition) => {
-            return Err(KafkaError::UnknownTopic(topic.to_owned()));
+            return Err(Error::UnknownTopic(topic.to_owned()));
         }
-        Some(code) => return Err(ClientError::MetadataFetch(code).into()),
+        Some(code) => return Err(KafkaError::from(ClientError::MetadataFetch(code)).into()),
         None => {}
     }
     let mut offsets = found
         .partitions()
         .iter()
         .map(|p| {
-            let (low, high) = consumer.fetch_watermarks(topic, p.id(), METADATA_TIMEOUT)?;
+            let (low, high) = consumer
+                .fetch_watermarks(topic, p.id(), METADATA_TIMEOUT)
+                .map_err(KafkaError::from)?;
             Ok(PartitionOffsets {
                 partition: p.id(),
                 low,
                 high,
             })
         })
-        .collect::<Result<Vec<_>, KafkaError>>()?;
+        .collect::<Result<Vec<_>, Error>>()?;
     offsets.sort_by_key(|p| p.partition);
     Ok(offsets)
-}
-
-/// Starting anywhere but `low..=high` would skip events or wait for ones that don't exist yet.
-fn check_offset(
-    topic: &str,
-    partition: Partition,
-    offset: Offset,
-    known: &[PartitionOffsets],
-) -> Result<(), KafkaError> {
-    let Some(p) = known.iter().find(|p| p.partition == partition) else {
-        return Err(KafkaError::UnknownPartition {
-            topic: topic.to_owned(),
-            partition,
-        });
-    };
-    match (p.low..=p.high).contains(&offset) {
-        true => Ok(()),
-        false => Err(KafkaError::OffsetOutOfRange {
-            topic: topic.to_owned(),
-            partition,
-            offset,
-            low: p.low,
-            high: p.high,
-        }),
-    }
 }
 
 struct KafkaEvents {
@@ -162,11 +129,11 @@ struct KafkaEvents {
 }
 
 impl KafkaEvents {
-    fn event(&self, message: &impl Message) -> Result<Event, KafkaError> {
+    fn event(&self, message: &impl Message) -> Result<Event, Error> {
         let schema = self
             .schemas
             .get(message.topic())
-            .ok_or_else(|| KafkaError::NoSchema(message.topic().to_owned()))?;
+            .ok_or_else(|| Error::NoSchema(message.topic().to_owned()))?;
         Ok(decode(
             message.topic(),
             message.partition(),
@@ -254,32 +221,5 @@ mod tests {
         ] {
             assert_eq!(row(payload), None, "{payload:?}");
         }
-    }
-
-    #[test]
-    fn offsets_must_be_retained_or_next() {
-        let known = [PartitionOffsets {
-            partition: 0,
-            low: 3,
-            high: 8,
-        }];
-        assert!(check_offset("t", 0, 3, &known).is_ok());
-        assert!(check_offset("t", 0, 8, &known).is_ok());
-        assert!(matches!(
-            check_offset("t", 0, 2, &known),
-            Err(KafkaError::OffsetOutOfRange {
-                low: 3,
-                high: 8,
-                ..
-            })
-        ));
-        assert!(matches!(
-            check_offset("t", 0, 9, &known),
-            Err(KafkaError::OffsetOutOfRange { .. })
-        ));
-        assert!(matches!(
-            check_offset("t", 1, 0, &known),
-            Err(KafkaError::UnknownPartition { partition: 1, .. })
-        ));
     }
 }

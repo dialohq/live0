@@ -15,7 +15,7 @@ rdkafka.workspace = true
 reqwest = { version = "0.13.5", features = ["query"] }
 serde_json.workspace = true
 thiserror.workspace = true
-tokio = { workspace = true, features = ["rt", "time"] }
+tokio = { workspace = true, features = ["rt", "sync", "time"] }
 types.workspace = true
 
 [dev-dependencies]

@@ -1,17 +1,25 @@
-#![allow(dead_code)]
+#![allow(dead_code, unused_imports, unused_macros)]
+#![allow(clippy::unwrap_used, clippy::expect_used, clippy::panic)]
 
+use std::collections::BTreeMap;
 use std::sync::atomic::{AtomicU32, Ordering};
+use std::sync::{Arc, Mutex};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
+use async_trait::async_trait;
+
 use config::{ClickhouseConfig, KafkaConfig};
-use io::{ClickhouseClient, EventStream, Statement};
+use io::{ClickhouseClient, EventStream, FakeCluster, KafkaStream, Statement, StreamSource};
 use rdkafka::{
     ClientConfig, Offset as KafkaOffset, TopicPartitionList,
     admin::{AdminClient, AdminOptions, NewTopic, TopicReplication},
     client::DefaultClientContext,
     producer::{FutureProducer, FutureRecord},
 };
+use serde_json::Value as Json;
 use types::{Event, Offset, Partition};
+
+pub mod contract;
 
 const KAFKA_TIMEOUT: Duration = Duration::from_secs(10);
 
@@ -165,4 +173,75 @@ pub async fn assert_quiet(stream: &mut dyn EventStream) {
     if let Ok(batch) = tokio::time::timeout(Duration::from_millis(300), stream.next()).await {
         panic!("expected no events, got {batch:?}");
     }
+}
+
+/// Topics and records on a stream backend, so one contract runs against Kafka and the fake.
+#[async_trait]
+pub trait Harness: Send + Sync {
+    async fn topic(&self, partitions: Partition) -> String;
+    async fn produce(&self, topic: &str, partition: Partition, value: &Json) -> Offset;
+    fn source(&self) -> Box<dyn StreamSource>;
+    async fn cleanup(&self);
+}
+
+#[derive(Default)]
+pub struct KafkaHarness {
+    topics: Mutex<BTreeMap<String, Arc<Topic>>>,
+}
+
+#[async_trait]
+impl Harness for KafkaHarness {
+    async fn topic(&self, partitions: Partition) -> String {
+        let topic = Topic::new(partitions).await;
+        let name = topic.name.clone();
+        self.topics
+            .lock()
+            .unwrap()
+            .insert(name.clone(), Arc::new(topic));
+        name
+    }
+
+    async fn produce(&self, topic: &str, partition: Partition, value: &Json) -> Offset {
+        let topic = self.topics.lock().unwrap()[topic].clone();
+        topic.produce(partition, Some(&value.to_string())).await
+    }
+
+    fn source(&self) -> Box<dyn StreamSource> {
+        Box::new(KafkaStream::new(&kafka_config()).unwrap())
+    }
+
+    async fn cleanup(&self) {
+        let topics: Vec<_> = std::mem::take(&mut *self.topics.lock().unwrap())
+            .into_values()
+            .collect();
+        for topic in topics {
+            Arc::into_inner(topic).unwrap().drop().await;
+        }
+    }
+}
+
+#[derive(Default)]
+pub struct FakeHarness {
+    pub cluster: FakeCluster,
+}
+
+#[async_trait]
+impl Harness for FakeHarness {
+    async fn topic(&self, partitions: Partition) -> String {
+        let name = unique("fake");
+        self.cluster.create_topic(&name, partitions).unwrap();
+        name
+    }
+
+    async fn produce(&self, topic: &str, partition: Partition, value: &Json) -> Offset {
+        self.cluster
+            .produce(topic, partition, value.clone())
+            .unwrap()
+    }
+
+    fn source(&self) -> Box<dyn StreamSource> {
+        Box::new(self.cluster.stream())
+    }
+
+    async fn cleanup(&self) {}
 }
