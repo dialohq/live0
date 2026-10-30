@@ -1,7 +1,14 @@
+{ inputs, ... }:
 {
   perSystem =
     { pkgs, presets, ... }:
     let
+      pauseServer =
+        (pkgs.callPackage "${inputs.clickhouse-continuous-backup}/nix/backup.nix" { }).overrideAttrs
+          {
+            doCheck = false;
+          };
+      pausePort = 18091;
       clickhouseSink = pkgs.fetchzip {
         url = "https://github.com/ClickHouse/clickhouse-kafka-connect/releases/download/v1.7.0/clickhouse-kafka-connect-v1.7.0.zip";
         hash = "sha256-it7cLGRfu7wWG4GGs5oUUDz1I2lDgsJ1sIms15peqcQ=";
@@ -12,6 +19,7 @@
       connectPort = 8083;
       keeperPort = 9181;
       topics = [ "events" ];
+      partitions = 3;
     in
     {
       dnvr.shells.default =
@@ -96,6 +104,15 @@
               until curl -sf http://127.0.0.1:8082/topics >/dev/null; do
                 kill -0 $pid 2>/dev/null || exit 1
                 sleep 0.5
+              done
+              topic_list=(${pkgs.lib.escapeShellArgs topics})
+              for topic in "''${topic_list[@]}"; do
+                have=$(docker exec "$container" rpk topic describe "$topic" -p 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')
+                if [ "$have" -eq 0 ]; then
+                  docker exec "$container" rpk topic create "$topic" -p ${toString partitions} >/dev/null
+                elif [ "$have" -lt ${toString partitions} ]; then
+                  docker exec "$container" rpk topic add-partitions "$topic" --num $((${toString partitions} - have)) >/dev/null
+                fi
               done
               dnvr-state set brokers 127.0.0.1:9092
               dnvr-state set proxyUrl http://127.0.0.1:8082
@@ -183,14 +200,89 @@
             '';
           };
 
-          scripts.io-tests = {
-            description = "io-tests [test filter...]: run the io crate's integration tests against the running stack";
+          scripts.stack-tests = {
+            description = "stack-tests [test filter...]: run the io and snapshot integration tests against the running stack";
             text = ''
               export CLICKHOUSE_URL=http://127.0.0.1:${toString ch.httpPort}
               export KAFKA_BROKERS=127.0.0.1:9092
+              export PAUSE_URL=http://127.0.0.1:${toString pausePort}
               cd "$DNVR_ROOT"
-              exec cargo test -p io --tests -- --ignored "$@"
+              exec cargo test -p io -p snapshot --tests -- --ignored "$@"
             '';
+          };
+
+          processes.pause-server = {
+            env = {
+              CONNECT_URL = "dnvr://kafka-connect/url";
+              CH_URL = "dnvr://clickhouse/httpUrl";
+              CH_DATABASE = "dnvr://clickhouse/database";
+            };
+            command = pkgs.writeShellApplication {
+              name = "pause-server";
+              runtimeInputs = [
+                pkgs.curl
+                pkgs.jq
+                pauseServer
+              ];
+              text = ''
+                # Its pipeline is the sink connector's; wait until the connectors process registered it.
+                until curl -sf "$CONNECT_URL/connectors/clickhouse-sink" >/dev/null; do
+                  sleep 0.5
+                done
+                config="$DNVR_ROOT/.dnvr/pause-server.json"
+                pipelines=()
+                topic_list=(${pkgs.lib.escapeShellArgs topics})
+                for topic in "''${topic_list[@]}"; do
+                  count=$(docker exec ${redpandaContainer} rpk topic describe "$topic" -p | tail -n +2 | wc -l | tr -d ' ')
+                  pipelines+=("$(jq -n --arg topic "$topic" --arg db "$CH_DATABASE" --argjson count "$count" '{
+                    connector: "clickhouse-sink",
+                    database: $db,
+                    state_table: "connect_state",
+                    keeper_path: "/kafka-connect",
+                    table: $topic,
+                    topic: $topic,
+                    partitions: $count
+                  }')")
+                done
+                jq -n \
+                  --arg connect "$CONNECT_URL" \
+                  --arg clickhouse "$CH_URL" \
+                  --argjson pipelines "$(printf '%s\n' "''${pipelines[@]}" | jq -s .)" '{
+                    listen: "127.0.0.1:${toString pausePort}",
+                    keeperAddress: "127.0.0.1:${toString keeperPort}",
+                    keeperPath: "/live0/pause-server",
+                    connectUrl: $connect,
+                    clickhouseUrl: $clickhouse,
+                    pauseTimeoutSeconds: 30,
+                    pauseTtlSeconds: 30,
+                    pipelines: $pipelines,
+                    timeouts: {
+                      clickhouseConnectSeconds: 10,
+                      connectConnectSeconds: 10,
+                      connectRequestSeconds: 30,
+                      connectPollSeconds: 1,
+                      kafkaMetadataSeconds: 10,
+                      kafkaCatalogReadSeconds: 15,
+                      kafkaTransactionSeconds: 30,
+                      kafkaMaxPollSeconds: 86400,
+                      kafkaReplayPollSeconds: 15,
+                      recoveryCatchupSeconds: 3600,
+                      controllerRetrySeconds: 15
+                    }
+                  }' > "$config"
+
+                CLICKHOUSE_USERNAME=default durable-clickhouse-backup pause-server "$config" &
+                pid=$!
+                trap 'kill -TERM $pid 2>/dev/null || true; wait $pid' EXIT INT TERM
+                until curl -sf http://127.0.0.1:${toString pausePort}/health >/dev/null; do
+                  kill -0 $pid 2>/dev/null || exit 1
+                  sleep 0.5
+                done
+                dnvr-state set url http://127.0.0.1:${toString pausePort}
+                echo "[pause-server] ready"
+                wait $pid
+              '';
+            };
           };
 
           processes.connectors = {

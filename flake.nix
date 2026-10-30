@@ -5,6 +5,10 @@
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     dnvr.url = "github:dialohq/dnvr/feat/rex-runner";
     dnvr.inputs.nixpkgs.follows = "nixpkgs";
+    clickhouse-continuous-backup = {
+      url = "github:dialohq/clickhouse-continuous-backup/pause-server";
+      flake = false;
+    };
   };
 
   outputs =

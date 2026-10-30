@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "clickhouse-continuous-backup": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792668058,
+        "narHash": "sha256-i5m2/PP/pmntv3boIXGk9Opom4EO3jaC+eWl3pdaIPs=",
+        "owner": "dialohq",
+        "repo": "clickhouse-continuous-backup",
+        "rev": "4bfe2915182a3ad9b1411480419451dc7a760bf1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dialohq",
+        "ref": "pause-server",
+        "repo": "clickhouse-continuous-backup",
+        "type": "github"
+      }
+    },
     "dnvr": {
       "inputs": {
         "nixpkgs": [
@@ -59,6 +76,7 @@
     },
     "root": {
       "inputs": {
+        "clickhouse-continuous-backup": "clickhouse-continuous-backup",
         "dnvr": "dnvr",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs"
