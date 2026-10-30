@@ -157,11 +157,13 @@ name = "compiler"
 version = "0.1.0"
 dependencies = [
  "catalog",
+ "config",
  "functions",
  "io",
  "parser",
  "serde_json",
  "thiserror",
+ "tokio",
  "types",
 ]
 
