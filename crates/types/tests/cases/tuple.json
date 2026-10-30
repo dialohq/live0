@@ -1,5 +1,5 @@
 {
-  "types": ["Tuple(Int32, String)", "Tuple(a Int32, b String)", "Tuple(a Int32, b Nullable(String))", "Tuple(UInt8)"],
+  "types": ["Tuple(Int32, String)", "Tuple(a Int32, b String)", "Tuple(a Int32, b Nullable(String))", "Tuple(UInt8)", "Tuple(String)", "Tuple(Nullable(Int32))", "Tuple(a Date32, b Array(Date32))", "Tuple(Int32, Tuple(String, UInt8))", "Tuple(Date32, UInt8)"],
   "cases": [
     {"name": "array", "value": "[1, \"x\"]"},
     {"name": "object", "value": "{\"a\": 1, \"b\": \"x\"}"},
@@ -21,6 +21,14 @@
     {"name": "null", "value": "null"},
     {"name": "absent", "value": null},
     {"name": "empty_array", "value": "[]"},
-    {"name": "empty_object", "value": "{}"}
+    {"name": "empty_object", "value": "{}"},
+    {"name": "single_null", "value": "[null]"},
+    {"name": "nested", "value": "[1, [\"x\", 2]]"},
+    {"name": "nested_short", "value": "[1, [\"x\"]]"},
+    {"name": "dates_object", "value": "{\"a\": 1730000000, \"b\": [1730000000]}"},
+    {"name": "dates_array", "value": "[1730000000, 1]"},
+    {"name": "object_upper_name", "value": "{\"A\": 1, \"B\": \"x\"}"},
+    {"name": "array_in_named", "value": "{\"a\": [1], \"b\": \"x\"}"},
+    {"name": "empty_nested", "value": "[1, []]"}
   ]
 }

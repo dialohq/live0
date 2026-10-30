@@ -16,6 +16,7 @@ use crate::data_types::{
     json::JsonType,
     map::MapType,
     string::StringType,
+    tuple::TupleType,
     uuid::UuidType,
 };
 
@@ -35,6 +36,7 @@ mod json;
 mod map;
 mod sink;
 mod string;
+mod tuple;
 mod uuid;
 
 /// A history value that doesn't fit its column, so the history query or ClickHouse doesn't behave as expected.
@@ -72,6 +74,7 @@ pub enum DataType {
     Ipv6(Ipv6Type),
     Array(ArrayType),
     Map(MapType),
+    Tuple(TupleType),
     Other(String),
 }
 
@@ -122,6 +125,7 @@ impl DataType {
                 .or_else(|| FixedStringType::parse(raw).map(Self::FixedString))
                 .or_else(|| ArrayType::parse(raw).map(Self::Array))
                 .or_else(|| MapType::parse(raw).map(Self::Map))
+                .or_else(|| TupleType::parse(raw).map(Self::Tuple))
                 .unwrap_or_else(|| Self::Other(raw.to_owned())),
         }
     }
@@ -137,6 +141,7 @@ impl DataType {
             Self::Date(d) => d.history_expr(column),
             Self::Array(a) => a.history_expr(column, depth),
             Self::Map(m) => m.history_expr(column, depth),
+            Self::Tuple(t) => t.history_expr(column, depth),
             _ => column.to_owned(),
         }
     }
@@ -151,9 +156,33 @@ impl DataType {
             Self::Nullable(inner) => inner.is_supported(),
             Self::Array(a) => a.item.is_supported(),
             Self::Map(m) => m.key.is_supported() && m.value.is_supported(),
+            Self::Tuple(t) => t.items.iter().all(|(_, ty)| ty.is_supported()),
             _ => true,
         }
     }
+}
+
+/// A type's arguments, split at the commas outside parentheses and quotes.
+pub(crate) fn split_args(s: &str) -> Option<Vec<&str>> {
+    let (mut depth, mut quoted, mut escaped) = (0usize, false, false);
+    let (mut args, mut start) = (Vec::new(), 0);
+    for (i, c) in s.char_indices() {
+        match c {
+            _ if escaped => escaped = false,
+            '\\' if quoted => escaped = true,
+            '\'' => quoted = !quoted,
+            _ if quoted => {}
+            '(' => depth += 1,
+            ')' => depth = depth.checked_sub(1)?,
+            ',' if depth == 0 => {
+                args.push(&s[start..i]);
+                start = i + 1;
+            }
+            _ => {}
+        }
+    }
+    args.push(&s[start..]);
+    Some(args)
 }
 
 fn unwrap<'a>(raw: &'a str, wrapper: &str) -> Option<&'a str> {

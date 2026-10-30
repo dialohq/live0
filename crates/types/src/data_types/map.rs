@@ -1,7 +1,7 @@
 use serde_json::Value as Json;
 
 use crate::data_types::sink::java_order;
-use crate::data_types::{DataType, HistoryError};
+use crate::data_types::{DataType, HistoryError, split_args};
 use crate::value::Value;
 
 #[derive(Debug, Clone, PartialEq)]
@@ -63,30 +63,14 @@ impl MapType {
 
     pub(crate) fn parse(raw: &str) -> Option<Self> {
         let args = raw.strip_prefix("Map(")?.strip_suffix(')')?;
-        let (key, value) = split_top_level(args)?;
+        let [key, value] = split_args(args)?[..] else {
+            return None;
+        };
         Some(Self {
             key: Box::new(DataType::parse(key.trim())),
             value: Box::new(DataType::parse(value.trim())),
         })
     }
-}
-
-/// At the first comma outside parentheses and quotes.
-fn split_top_level(s: &str) -> Option<(&str, &str)> {
-    let (mut depth, mut quoted, mut escaped) = (0usize, false, false);
-    for (i, c) in s.char_indices() {
-        match c {
-            _ if escaped => escaped = false,
-            '\\' if quoted => escaped = true,
-            '\'' => quoted = !quoted,
-            _ if quoted => {}
-            '(' => depth += 1,
-            ')' => depth = depth.checked_sub(1)?,
-            ',' if depth == 0 => return Some((&s[..i], &s[i + 1..])),
-            _ => {}
-        }
-    }
-    None
 }
 
 #[cfg(test)]
